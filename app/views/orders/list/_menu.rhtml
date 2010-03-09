@@ -1,0 +1,9 @@
+<p class="pb5"><a href="#" onclick="toggleSelectAll('listOrder', 'check')">Chọn tất cả</a> | <a href="#" onclick="toggleSelectAll('listOrder', 'uncheck')">Bỏ tất cả</a></p>
+			
+<p class="pb20">
+<%= submit_tag "Đã giao - tốt", :class => "actionBtn", :onclick => "$('status').value='good'"%>
+<%= submit_tag "Đã giao - Xấu", :class => "actionBtn", :onclick => "$('status').value='bad'"%>
+<%= submit_tag "Hủy", :class => "actionBtn", :onclick => "$('status').value='cancel'"%>
+<%= submit_tag "Không giao", :class => "actionBtn", :onclick => "$('status').value='none'"%>
+<%= hidden_field_tag :status, params[:status]%>
+</p>

@@ -1,0 +1,13 @@
+<div id="subnav">
+    <%= render :partial => "subnav"%>
+</div><!-- end of #subnav -->
+
+<div id="content">
+    <h1>Sửa menu theo ngày</h1>
+    <table class="newOrder">
+        <% form_tag :controller => :menus, :action => :save_or_update_menu_date, :id => params[:id] do%>
+            <%= render :partial => "menus/form_info/menu_date" %>
+        <% end %>
+    </table>
+</div><!-- end of #content -->
+<br class="clr" />

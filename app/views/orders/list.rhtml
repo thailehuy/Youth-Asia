@@ -1,0 +1,46 @@
+<div id="subnav">
+    <%= render :partial => "subnav"%>
+</div><!-- end of #subnav -->
+
+<div id="content">
+        <div id="dateOrder">
+                <p>
+                   <strong>Ngày</strong>: 
+                    &nbsp;
+                    <%=link_to_function image_tag("/images/icon_calendar.gif", :class => "alignV"), :id => "show1up",
+                            :onclick => "Element.toggle('start_time_calendar');"%>
+                  &nbsp;<span id="display_date"><%=@display_date%></span>
+                  <div class="float:left;" id="start_time_calendar" style="display:none; width:250px;">
+                    <%= render :partial => "orders/calendar/calendar", :locals => {:is_list => true}%>
+                  </div>
+                 </p>
+        </div>
+
+        <h1>Tất cả đơn hàng</h1>			
+        <br class="clr" />
+        <%form_tag url_for(:action => :update_all_orders_status, :page => params[:page], :id => params[:id]), :id => "list_form", :name => "list_form" do %>
+            <%= render :partial => "orders/list/menu"%>
+
+            <table class="listOrder" id="listOrder" name="listOrder">
+                    <tr>
+                            <th>&nbsp;</th>
+                            <th>Tên</th>
+                            <th>Cty / Địa chỉ</th>
+                            <th>Giờ giao</th>
+                            <th>Ghi chú</th>
+                            <th>SL đặt</th>
+                            <th>Tình trạng</th>
+                    </tr>
+
+                    <%= render :partial => "orders/list/order", :collection => @orders%>
+            </table>			
+
+            <div class="pagination">
+                    <%= render :partial => "orders/list/paginate", :locals => {:collection => @orders}%>
+            </div>
+
+            <%= render :partial => "orders/list/menu"%>
+        <%end%>
+
+</div><!-- end of #content -->
+<br class="clr" />

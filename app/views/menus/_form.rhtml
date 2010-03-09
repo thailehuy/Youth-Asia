@@ -1,0 +1,15 @@
+<tr>
+        <td class="col1">Tên</td>					
+        <td class="col2"><%= text_field_tag :name, @menu.nil? ? params[:name] : @menu.name, :maxlength => 50, :class => "textfield"%></td>
+</tr>
+<% @categories.each do |cat| %>
+  <tr>
+    <td class="col1">Món <%= cat.name%>  </td>					
+    <td class="col2">
+      <span id="menu_dish_list_<%= cat.id.to_s%>">
+            <%= render :partial => "menus/form_info/dish_list", :locals => {:cat_id => cat.id}%>
+      </span>
+    </td>
+  </tr>            
+<% end %>
+<%= render :partial => "menus/form_info/buttons"%>

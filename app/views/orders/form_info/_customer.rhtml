@@ -1,0 +1,54 @@
+<table class="newOrder">
+        <tr>
+                <td class="col1">Ngày</td>
+                <td class="col2">
+                    <%=link_to_function image_tag("/images/icon_calendar.gif", :class => "alignV"), :id => "show1up",
+                            :onclick => "Element.toggle('start_time_calendar');"%>
+                  &nbsp;<span id="display_date"><%=@display_date%></span>
+                  <div class="float:left;" id="start_time_calendar" style="display:none; width:250px;">
+                    <%= render :partial => "orders/calendar/calendar", :locals => {:is_list => false}%>
+                  </div>
+
+                </td>
+                <%= hidden_field_tag :date, @date%>
+                <%= observe_field "date",  :on => :change,
+                    :update => "orders_info",
+                  :url => { :controller => :orders, :action=> :update_dish_list}, 
+                   :with => "'date=' + escape(value)" %>
+        </tr>
+        <tr>
+                <td class="col1">Mã đơn hàng</td>
+                <td class="col2"><%= text_field_tag :code, params[:code], :maxlength => 20, :class => "textfield"%>
+                </td>
+        </tr>
+        <tr>
+                <td class="col1">Họ tên</td>
+
+                <td class="col2">
+                    <%= text_field_tag :customer_name, params[:customer_name],
+                      :maxlength => 50, :class => "textfield", :onkeyup => "$('customer_id').value=''"%>
+                    <div class="auto_complete" id="customer_name_auto_complete" ></div>
+                    <%= auto_complete_field :customer_name,
+                             :url=>{:controller =>  :orders, :action=>'autocomplete_customer_name', :is_multi_selection => false } %>
+                           <%= hidden_field_tag :customer_id, params[:customer_id]%>
+                </td>
+        </tr>
+
+        <tr>
+                <td class="col1">Địa chỉ</td>
+                <td class="col2"><%= text_field_tag :address, params[:address], :maxlength => 50, :class => "textfield"%>
+                <%= district_selection(params[:district])%>
+                </td>
+        </tr>		
+
+        <tr>
+
+                <td class="col1">ĐT bàn</td>
+                <td class="col2"><%= text_field_tag :phone, params[:phone], :maxlength => 50, :class => "textfield"%></td>
+        </tr>
+
+        <tr>
+                <td class="col1">ĐT DĐ</td>
+                <td class="col2"><%= text_field_tag :mobile, params[:mobile], :maxlength => 50, :class => "textfield"%></td>
+        </tr>				
+</table>

@@ -1,0 +1,28 @@
+<div id="subnav">
+    <%= render :partial => "subnav"%>
+</div><!-- end of #subnav -->
+
+<div id="content">			
+
+        <h1>Tất cả các món </h1>
+        <%= render :partial => "menus/list/navigation"%>
+
+        <table class="listDish" id="listDish" name="listDish">
+            <tr>
+                <th>&nbsp;</th>
+                <th>Tên món</th>
+                <th>Loại</th>
+                <th>Giá</th>
+                <th>&nbsp;</th>
+            </tr>
+
+            <%= render :partial => "menus/list/dish", :collection => @dishes %>
+        </table>			
+
+        <div class="pagination">
+            <%= render :partial => "menus/list/paginate", :locals => {:collection => @dishes}%>
+        </div>
+
+        <%= render :partial => "menus/list/navigation"%>
+</div><!-- end of #content -->
+<br class="clr" />

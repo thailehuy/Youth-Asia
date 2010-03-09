@@ -1,0 +1,16 @@
+<tr>
+        <td class="col1"><%= menu_dish.name%></td>
+        <td class="col2"><%= menu_dish.price%></td>
+        <td class="col3">
+        <%= text_field_tag "dish_#{menu_dish.id}_quantity", 
+          params["dish_#{menu_dish.id}_quantity"] || 0, {:class => "textfield", :onkeyup => "this.value=checkNumeric(this.value)"}%></td>
+        <td class="col4">
+          <%= submit_to_remote "remove_dish", "Xóa", 
+                {:url => { :controller => :menus, :action => :update_dish_menu, :act => "remove", 
+                :cat_id => menu_dish.category_id, "dish_#{menu_dish.id}_quantity" => params["dish_#{menu_dish.id}_quantity"], 
+                "dish_ids_#{menu_dish.category_id.to_s}" => params["dish_ids_#{menu_dish.category_id.to_s}"],
+                "remove_dish_id_#{menu_dish.category_id.to_s}" => menu_dish.id
+              },
+                :update => "menu_dish_list_#{menu_dish.category_id.to_s}"}%>
+        </td>
+</tr>

@@ -1,0 +1,7 @@
+<ul>
+        <li class="<%= @main_nav == "orders" ? "active" : ""%>"><%= link_to "Đơn hàng", :controller => :orders %></li>
+        <li class="<%= @main_nav == "customers" ? "active" : ""%>"><a href="#">Khách hàng</a></li>				
+        <li class="<%= @main_nav == "reports" ? "active" : ""%>"><%= link_to "Báo cáo", :controller => :reports %></li>
+        <li class="<%= @main_nav == "resources" ? "active" : ""%>"><a href="#">Nhân sự</a></li>
+        <li class="<%= @main_nav == "menus" ? "active" : ""%>"><%= link_to "Thực đơn", :controller => :menus %></li>
+</ul>
