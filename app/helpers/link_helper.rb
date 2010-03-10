@@ -3,7 +3,7 @@ module LinkHelper
     ["Text", "link"]
   ]
 
-  def navigation_menu current_tab
+  def navigation_menu current_tab = ""
     links = MENU_ITEMS.map{|m|
       %Q{
         <li class="#{current_tab == m[0] ? "current" : ""}">
