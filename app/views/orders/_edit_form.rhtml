@@ -1,9 +1,0 @@
-<% form_tag url_for(:action => :update, :id => params[:id]), :onsubmit => "return validateCode()" do%>
-  <%= render :partial => "orders/form_info/customer"%>
-  <span id="orders_info">
-  <%= render :partial => "orders/form_info/orders"%>
-  </span>
-  <%= render :partial => "orders/form_info/delivery"%>
-  <%= render :partial => "orders/form_info/email"%>
-  <%= render :partial => "orders/form_info/buttons"%>
-<%end%>

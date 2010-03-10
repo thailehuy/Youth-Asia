@@ -1,5 +1,0 @@
-<ul class="autocomplete_list">
-  <%  @suggested_companies.each do |u| %>
-  <li class="autocomplete_item"><strong onClick="$('company_id').value=<%=u.id%>;"><%= u.name.to_s%></strong></li>
-  <% end %>
-</ul>

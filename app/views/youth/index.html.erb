@@ -1,0 +1,91 @@
+<div id="top_header">
+  <h1>Malaysia's largest youth festival is back</h1>
+</div>
+
+<div id="top_info">
+  <div id="video_holder">
+    Video goes here
+  </div>
+
+  <div id="info_panel">
+    <p>
+      Malaysia's largest Youth Festival YOUTH'10 28-30 May, 2010 at Putra World Trade Center (PWTC), Kuala Lumpur
+    </p>
+
+    <p>
+      Where youths connect with brands, leaders, goverment, media and parents
+      <ul id="info_list">
+        <li><strong>50 000</strong> youths</li>
+        <li><strong>200</strong> brands</li>
+        <li><strong>100</strong> events</li>
+        <li><strong>3</strong> days</li>
+        <li><strong>1</strong> place</li>
+        <li><strong>FREE</strong> tickets</li>
+      </ul>
+      <%= link_to "Book a ticket", book_ticket_url, :class => "bigButton" %>
+      <%= link_to "Download festival guide", download_guide_url, :class => "bigButton" %>
+
+    </p>
+  </div>
+</div>
+
+<div id="events">
+  <h1>Featured events</h1>
+  <div id="see_all_events">
+    <%= link_to "See all", :action => "see_all_events", :class => "seeAll" %>
+  </div>
+
+  <div id="events_panel">
+    Event loading here
+  </div>
+</div>
+
+<div id="events">
+  <h1>Friends coming to Youth'10</h1>
+  <div id="see_all_events">
+    <%= link_to "See all", :action => "see_all_friends_coming", :class => "seeAll" %>
+  </div>
+
+  <div id="friends_panel">
+    Friend loading here
+  </div>
+</div>
+
+<div id="tickets_info">
+  <h1>Your ticket information</h1>
+
+  <div id="ticket_signup">
+    <%= render :partial => "ticket_signup" %>
+  </div>
+</div>
+
+<div id="next_move">
+  <h3>Your next move</h3>
+
+  <table id="next_move_table">
+    <tr>
+      <td>Get a ticket</td>
+      <td><%= link_to "Book here for free", :action => "booking", :class => "soft_link" %></td>
+    </tr>
+    <tr>
+      <td>Share the opportunities with your friends and get rewarded</td>
+      <td><%= link_to "Invite your friends", :action => "invite", :class => "soft_link" %></td>
+    </tr>
+    <tr>
+      <td>RSVP for an event</td>
+      <td><%= link_to "See list of events", :action => "view_events", :class => "soft_link" %></td>
+    </tr>
+    <tr>
+      <td>Lend us a hand</td>
+      <td><%= link_to "Become a volunteer", :action => "volunteer", :class => "soft_link" %></td>
+    </tr>
+  </table>
+</div>
+
+<div id="tickets_info">
+  <h3>Partners logos</h3>
+
+  <div id="logo_list">
+    Logo is loaded here
+  </div>
+</div>
