@@ -31,8 +31,13 @@ require File.join(File.dirname(__FILE__), "lib", "view_extensions")
 require File.join(File.dirname(__FILE__), "lib", "controller_extensions")
 require File.join(File.dirname(__FILE__), "lib", "model_extensions")
 require File.join(File.dirname(__FILE__), "lib", "session_extensions")
-
-
+module ActionController::Session
+  def new_session
+    session = ActionController::Integration::Session.new
+    yield session if block_given?
+    session
+  end
+end
 # load Facebook YAML configuration file (credit: Evan Weaver)
 ::FACEBOOK = {}
 begin
@@ -57,15 +62,15 @@ ActionController::Base.send(:include, RFacebook::Rails::ControllerExtensions)
 ActiveRecord::Base.send(:include, RFacebook::Rails::ModelExtensions)
 
 # inject methods to Rails session management classes
-CGI::Session.send(:include, RFacebook::Rails::SessionExtensions)
+ActionController::Session.send(:include, RFacebook::Rails::SessionExtensions)
 
 # TODO: document SessionStoreExtensions as API so that anyone can patch their own custom session container in addition to these
-CGI::Session::PStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
-CGI::Session::ActiveRecordStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
-CGI::Session::DRbStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
-CGI::Session::FileStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
-CGI::Session::MemoryStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
-CGI::Session::MemCacheStore.send(:include, RFacebook::Rails::SessionStoreExtensions) if defined?(CGI::Session::MemCacheStore)
+ActionController::Session::CookieStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
+#ActionController::SessionStore::ActiveRecordStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
+#ActionController::Session::DRbStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
+#ActionController::Session::FileStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
+#ActionController::Session::MemoryStore.send(:include, RFacebook::Rails::SessionStoreExtensions)
+ActionController::Session::MemCacheStore.send(:include, RFacebook::Rails::SessionStoreExtensions) if defined?(ActionController::Session::MemCacheStore)
 
 # parse for full URLs in facebook.yml (multiple people have made this mistake)
 module RFacebook::Rails

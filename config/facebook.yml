@@ -4,30 +4,15 @@ development:
     secret: beb70cf8a5aa0150110fc4aca6ac12db
     canvas_path: /youthasia/
     callback_path: /
-    tunnel:
-      username: yourLoginName
-      host: www.yourexternaldomain.com
-      port: 1234
-      local_port: 5678
 
 test:
     key: e6888d5e9df5989ebdf6407343ed69c1
     secret: beb70cf8a5aa0150110fc4aca6ac12dbYOUR_API_SECRET_HERE
     canvas_path: /youthasia/
     callback_path: /path/to/your/callback/
-    tunnel:
-      username: yourLoginName
-      host: www.yourexternaldomain.com
-      port: 1234
-      local_port: 5678
 
 production:
     key: e6888d5e9df5989ebdf6407343ed69c1
     secret: beb70cf8a5aa0150110fc4aca6ac12db
     canvas_path: /youthasia/
     callback_path: /path/to/your/callback/
-    tunnel:
-      username: yourLoginName
-      host: www.yourexternaldomain.com
-      port: 1234
-      local_port: 5678
