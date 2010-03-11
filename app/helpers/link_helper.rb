@@ -3,6 +3,10 @@ module LinkHelper
     ["Text", "link"]
   ]
 
+  def event_link(event)
+    "http://www.facebook.com/event.php?eid=#{event.eid}"
+  end
+
   def navigation_menu current_tab = ""
     links = MENU_ITEMS.map{|m|
       %Q{
@@ -13,5 +17,13 @@ module LinkHelper
     }
 
     return "<ul>#{links.join}</ul>"
+  end
+
+  def book_ticket_url
+    "dummy for now"
+  end
+
+  def download_guide_url
+    "dummy for now"
   end
 end

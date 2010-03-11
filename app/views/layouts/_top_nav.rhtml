@@ -1,0 +1,13 @@
+<%= link_to "Blog" %>
+|
+<%= link_to "Media" %>
+|
+<%= link_to "News" %>
+|
+<%= link_to "Help" %>
+|
+<%= link_to "Contact us" %>
+<% if is_admin? %>
+  |
+  <%= link_to "Admin", :controller => "admin" %>
+<% end %>

@@ -2,5 +2,13 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  before_filter :require_facebook_login
+  helper :all
+  
+  before_filter :require_facebook_login  
+  before_filter :get_current_uid
+
+  private
+  def get_current_uid
+    @uid = fbsession.users_getLoggedInUser
+  end
 end

@@ -8,28 +8,28 @@
 </head>
 
 <body>
-        <div id="topWrapper">
-		<div id="top">
-			<div id="topleft"><a href="#"><img src="/images/logo.gif" alt="GB Coconut" /></a></div><!-- end of #logo -->			
-			<div id="topright">
+      <div id="topWrapper">
+        <div id="top">
+            <div id="topleft">
+              <a href="#">Logo goes here</a>
+            </div><!-- end of #logo -->
+            <div id="topright">
+                <%= render :partial => "layouts/top_nav" %>
+            </div><!-- end of #topright -->
+            <br class="clr" />
+            <div id="nav">
+                <%= render :partial => "layouts/nav"%>
+            </div><!-- end of #nav -->
+        </div><!-- end of #top -->
+      </div><!-- end of #topWrapper -->
 
-				<div id="login">Hi <%= @username%>, <%= link_to "logout", :action => :logout%></div>
-				
-				<div id="nav">
-					<%= render :partial => "layouts/nav"%>
-				</div><!-- end of #nav -->
-			</div><!-- end of #topright -->
-			<br class="clr" />
-		</div><!-- end of #top -->
-	</div><!-- end of #topWrapper -->
-	
-	<div id="main">
-		<%= yield%>
-	</div><!-- end of #main -->
+      <div id="main">
+              <%= yield%>
+      </div><!-- end of #main -->
 
 
-      <div id="footer">
-              Copyright &copy; 2008-2009 Gourmet House Ltd. All rights reserved.
-      </div><!-- end of #footer -->
+    <div id="footer">
+            Copyright &copy; 2010 Youth Asia. All rights reserved.
+    </div><!-- end of #footer -->
 </body>
 </html>

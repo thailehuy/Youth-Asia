@@ -1,0 +1,10 @@
+<table>
+  <tr>
+    <td><%= link_to image_tag(event.pic), event_link(event) %></td>
+    <td>
+      <%= link_to event.name, event_link(event) %><br/>
+      <%= event.location %><br/>
+      <%= event.start_time %><%= " - " + event.end_time unless event.end_time.blank? %>
+    </td>
+  </tr>
+</table>

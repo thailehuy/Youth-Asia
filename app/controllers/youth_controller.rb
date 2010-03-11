@@ -19,5 +19,4 @@ class YouthController < ApplicationController
 
   def giveaway
   end
-
 end
