@@ -4,7 +4,7 @@
     <td>
       <%= link_to event.name, event_link(event) %><br/>
       <%= event.location %><br/>
-      <%= event.start_time %><%= " - " + event.end_time unless event.end_time.blank? %>
+      <%= display_time(event.start_time.to_s) %><%= " - " + display_time(event.end_time.to_s) unless event.end_time.blank? %>
     </td>
   </tr>
 </table>

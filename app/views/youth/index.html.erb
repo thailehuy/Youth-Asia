@@ -36,7 +36,18 @@
   </div>
 
   <div id="events_panel">
-    Event loading here
+    <%= render :partial => "event", :collection => @featured_events %>
+  </div>
+</div>
+
+<div id="gatherings">
+  <h1>Featured gatherings</h1>
+  <div id="see_all_gatherings">
+    <%= link_to "See all", :action => "see_all_gatherings", :class => "seeAll" %>
+  </div>
+
+  <div id="gatherings_panel">
+    <%= render :partial => "event", :collection => @featured_gatherings %>
   </div>
 </div>
 
@@ -47,7 +58,7 @@
   </div>
 
   <div id="friends_panel">
-    Friend loading here
+    <%= render :partial => "friend", :collection => @friends %>
   </div>
 </div>
 

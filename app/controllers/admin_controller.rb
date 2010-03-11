@@ -18,8 +18,9 @@ class AdminController < ApplicationController
   end
 
   def make_feature
-    uri = Addressable::URI.parse(params[:feature][:event_link])
-    eid = uri.query_values["eid"]
+    link = params[:feature][:event_link].split("?").last
+    uri = CGI::parse(link)
+    eid = uri["eid"].first
 
     unless eid.blank? || Feature.find_by_eid(eid)
       feature = Feature.new(params[:feature])

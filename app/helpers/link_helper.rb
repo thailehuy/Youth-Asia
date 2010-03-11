@@ -20,7 +20,7 @@ module LinkHelper
   end
 
   def book_ticket_url
-    "dummy for now"
+    url_for(:controller => "youth", :action => "booking")
   end
 
   def download_guide_url

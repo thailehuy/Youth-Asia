@@ -1,6 +1,9 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
+<% form_for :feature, :url => {:action => "make_feature"} do |f| %>
+  <p>
+    <%= f.label :event_link %>
+    <%= f.text_field :event_link %>
 
-<%= "event_list" %>
+    <%= f.hidden_field :f_type, :value => "event" %>
+  </p>
+  <%= submit_tag "Create feature" %>
+<% end %>
