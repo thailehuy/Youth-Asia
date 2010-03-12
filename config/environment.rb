@@ -65,6 +65,6 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
-AJAX_BASE_URL = "http://sharp-fog-22.heroku.com"
-ActionController::Base.asset_host = "http://sharp-fog-22.heroku.com"
-ActionController::AbstractRequest.relative_url_root = "http://apps.facebook.com/youthasia"
+#AJAX_BASE_URL = "http://sharp-fog-22.heroku.com"
+#ActionController::Base.asset_host = "http://sharp-fog-22.heroku.com"
+#ActionController::AbstractRequest.relative_url_root = "http://apps.facebook.com/youthasia"

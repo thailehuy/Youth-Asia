@@ -34,4 +34,30 @@ module LinkHelper
   def download_guide_url
     "dummy for now"
   end
+
+  def loading_image
+    image_tag("/images/loading.gif", :alt => "Loading ...")
+  end
+
+  def ajax_paging_js
+    %Q{
+      function show_more(div_id, url, page)
+      {
+        document.getElementById(div_id).setInnerHTML("#{loading_image}");
+        var ajax = new Ajax();
+        ajax.ondone = function(data)
+        {
+          document.getElementById(div_id).setInnerHTML(data);
+        }
+
+        var ajax_param = "?page=" + page;
+
+        ajax.post(url + ajax_param);
+      }
+    }
+  end
+
+  def ajax_next_link(text, div_id, url, page)
+    link_to_function text, :onclick => "show_more('#{div_id}', '#{url}', '#{page}'); return false"
+  end
 end
