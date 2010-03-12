@@ -65,4 +65,40 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
+
+
+if RAILS_ENV != "test"
+    module ActionController
+      class Base
+        cattr_accessor :asset_domain   # The server name portion of the asset host, w/o the protocol.
+      end
+    end
+
+    module ActionView
+      module Helpers
+        module AssetTagHelper
+          private
+          def compute_public_path(source, dir, ext)
+            source = source.dup
+            source << ".#{ext}" if File.extname(source).blank? and !ext.blank?
+            unless source =~ %r{^[-a-z]+://}
+              source = "/#{dir}/#{source}" unless source[0] == ?/
+              asset_id = rails_asset_id(source)
+              source << '?' + asset_id if defined?(RAILS_ROOT) and !asset_id.blank?
+              host = ActionController::Base.asset_domain
+              if host
+                host = request.protocol + host
+              else
+                host = ActionController::Base.asset_host
+              end
+              source = "#{host}#{request.relative_url_root}#{source}"
+            end
+            source
+          end
+        end
+      end
+    end
+end
+
+ActionController::Base.asset_domain = "sharp-fog-22.heroku.com"
 ActionController::AbstractRequest.relative_url_root = "http://apps.facebook.com/youthasia"
