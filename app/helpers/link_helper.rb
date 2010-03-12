@@ -2,12 +2,12 @@ module LinkHelper
   def menu_items
   [
     ["Home", "/"],
-    ["About", url_for(:controller => "youth", :action => "about")],
-    ["Festival Guide", url_for(:controller => "youth", :action => "guide")],
-    ["Youth Gatherings", url_for(:controller => "youth", :action => "gathering")],
-    ["Volunteer", url_for(:controller => "youth", :action => "volunteer")],
-    ["Book ticket", url_for(:controller => "youth", :action => "booking")],
-    ["RM50,000 Giveaway", url_for(:controller => "youth", :action => "giveaway")]
+    ["About", {:controller => "youth", :action => "about"}],
+    ["Festival Guide", {:controller => "youth", :action => "guide"}],
+    ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
+    ["Volunteer", {:controller => "youth", :action => "volunteer"}],
+    ["Book ticket", {:controller => "youth", :action => "booking"}],
+    ["RM50,000 Giveaway", {:controller => "youth", :action => "giveaway"}]
   ]
   end
 
@@ -19,7 +19,7 @@ module LinkHelper
     links = menu_items.map{|m|
       %Q{
         <li class="#{current_tab == m[0] ? "current" : ""}">
-          #{link_to(m[0], m[1], :class => "navlink")}
+          #{link_to(m[0], m[1], :class => "navlink") }
         </li>
       }
     }
@@ -28,7 +28,7 @@ module LinkHelper
   end
 
   def book_ticket_url
-    url_for(:controller => "youth", :action => "booking")
+    {:controller => "youth", :action => "booking"}
   end
 
   def download_guide_url
