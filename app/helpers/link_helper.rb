@@ -1,6 +1,12 @@
 module LinkHelper
   MENU_ITEMS = [
-    ["Text", "link"]
+    ["Home", "/"],
+    ["About", url_for(:controller => "youth", :action => "about")],
+    ["Festival Guide", url_for(:controller => "youth", :action => "guide")],
+    ["Youth Gatherings", url_for(:controller => "youth", :action => "gathering")],
+    ["Volunteer", url_for(:controller => "youth", :action => "volunteer")],
+    ["Book ticket", url_for(:controller => "youth", :action => "booking")],
+    ["RM50,000 Giveaway", url_for(:controller => "youth", :action => "giveaway")]
   ]
 
   def event_link(event)

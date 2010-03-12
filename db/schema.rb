@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20100311000241) do
     t.string   "race"
     t.string   "ic_number"
     t.string   "event_link"
+    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
