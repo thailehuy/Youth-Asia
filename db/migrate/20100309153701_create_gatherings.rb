@@ -10,6 +10,7 @@ class CreateGatherings < ActiveRecord::Migration
       t.string :race
       t.string :ic_number
       t.string :event_link
+      t.string :uid
 
       t.timestamps
     end

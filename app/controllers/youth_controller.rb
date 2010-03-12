@@ -26,6 +26,18 @@ class YouthController < ApplicationController
   end
 
   def gathering
+    @gatherings = Gathering.find(:all, :conditions => {:uid => @uid})
+  end
+
+  def create_gathering
+    eid = Utils.get_event_eid
+    unless eid.blank?
+      gathering = Gathering.new(params[:gathering])
+      gathering.uid = @uid
+      gathering.save!
+    end
+
+    redirect_to :action => "gathering"
   end
 
   def volunteer

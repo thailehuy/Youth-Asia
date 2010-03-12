@@ -18,9 +18,7 @@ class AdminController < ApplicationController
   end
 
   def make_feature
-    link = params[:feature][:event_link].split("?").last
-    uri = CGI::parse(link)
-    eid = uri["eid"].first
+    eid = Utils.get_event_eid
 
     unless eid.blank? || Feature.find_by_eid(eid)
       feature = Feature.new(params[:feature])
