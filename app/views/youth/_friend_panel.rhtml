@@ -1,0 +1,7 @@
+<div>
+  <%= render :partial => "friend", :collection => @friends %>
+</div>
+<div>
+  <%= ajax_next_link("More", "friends_panel",
+    url_for(:controller => "youth", :action => "show_friend_page"), @page) %>
+</div>

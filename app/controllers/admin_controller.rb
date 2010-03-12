@@ -7,14 +7,14 @@ class AdminController < ApplicationController
 
   def event_list
     page = params[:page] || 1
-    @events = Feature.paginate(:all, :conditions => {:f_type => "event"},
-      :page => page, :per_page => PER_PAGE)
+    @events = Feature.find(:all, :conditions => {:f_type => "event"},
+      :limit => PER_PAGE)
   end
 
   def gathering_list
     page = params[:page] || 1
-    @gatherings = Feature.paginate(:all, :conditions => {:f_type => "gathering"},
-      :page => page, :per_page => PER_PAGE)
+    @gatherings = Feature.find(:all, :conditions => {:f_type => "gathering"},
+      :limit => PER_PAGE)
   end
 
   def make_feature
