@@ -58,6 +58,6 @@ module LinkHelper
   end
 
   def ajax_next_link(text, div_id, url, page)
-    link_to_function text, :onclick => "show_more('#{div_id}', '#{url}', '#{page}'); return false"
+    link_to_remote text, :url => url, :update => div_id, :page => page
   end
 end
