@@ -28,7 +28,7 @@ module LinkHelper
   end
 
   def book_ticket_url
-    {:controller => "youth", :action => "booking"}
+    "/youth/booking"
   end
 
   def download_guide_url
