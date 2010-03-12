@@ -36,7 +36,7 @@ module LinkHelper
   end
 
   def loading_image
-    image_tag("/images/loading.png", :alt => "Loading ...")
+    image_tag("/images/loading.gif", :alt => "Loading ...")
   end
 
   def ajax_paging_js
