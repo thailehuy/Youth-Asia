@@ -27,7 +27,8 @@ class YouthController < ApplicationController
     @friend_uids = (fbsession.friends_get.friend_list)[p_start...p_end]
     @friends = fbsession.users_getInfo(:uids => @friend_uids,
             :fields => ["first_name", "pic_square", "profile_url"]).user_list
-    render :partial => "youth/friend_panel"
+#    render :partial => "youth/friend_panel"
+    render :text => "Done"
   end
 
   def about

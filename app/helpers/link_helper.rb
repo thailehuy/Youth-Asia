@@ -57,7 +57,9 @@ module LinkHelper
     }
   end
 
-  def ajax_next_link(text, div_id, url, page)
-    link_to_remote text, :url => url, :update => div_id, :page => page
+  def ajax_next_link(text, div_id, url)
+    link_to_remote text, :url => url, :update => div_id,
+      :before => "$('#{div_id}').innerHTML='#{loading_image}'"
+
   end
 end
