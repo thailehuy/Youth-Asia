@@ -59,6 +59,8 @@ module LinkHelper
   end
 
   def ajax_next_link(text, div_id, url, page)
-    link_to_function text, :onclick => "show_more('#{div_id}', '#{url}', '#{page}'); return false"
+    %Q{
+      <a href="#" onclick="show_more('#{div_id}', '#{url}', '#{page}'); return false">#{text}</a>
+    }
   end
 end
