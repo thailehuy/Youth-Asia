@@ -53,13 +53,26 @@
 
 <div id="events">
   <h1>Friends coming to Youth'10</h1>
-  <div id="see_all_events">
+  <div id="see_all_friends">
     <%= link_to "See all", :action => "see_all_friends_coming", :class => "seeAll" %>
   </div>
 
   <div id="friends_panel">
     <%= render :partial => "friend_panel" %>
   </div>
+  <script><!--
+    function more_friend(page) {
+      document.getElementById("friends_panel").setInnerFBML("<img src='<%= AJAX_BASE_URL %>/images/loading.gif' alt='loading' />");
+      var ajax = new Ajax();
+      ajax.responseType = Ajax.FBML;
+
+      ajax.ondone = function(data) {
+        document.getElementById('friends_panel').setInnerFBML(data);
+      }
+      var ajax_param = "?page=" + page;
+      ajax.post("<%= AJAX_BASE_URL %>/youth/show_friend_page" + ajax_param);
+    }
+  //--></script>
 </div>
 
 <div id="tickets_info">

@@ -1,7 +1,4 @@
 <div>
   <%= render :partial => "friend", :collection => @friends %>
 </div>
-<div>
-  <%= ajax_next_link("More", "friends_panel",
-    AJAX_BASE_URL + "/youth/show_friend_page", @page) %>
-</div>
+<a href="#" onclick="more_friend(<%= @page %>); return false;">More</a>
