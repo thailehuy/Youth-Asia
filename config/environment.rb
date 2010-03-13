@@ -26,6 +26,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "rfacebook", :version => "0.9.8"
+  config.gem "json"
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -65,6 +66,9 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
+require 'json'
+FACEBOOK_API_KEY = 'e6888d5e9df5989ebdf6407343ed69c1'
+SERVER_URL = "http://localhost:3000"
 #AJAX_BASE_URL = "http://sharp-fog-22.heroku.com"
 #ActionController::Base.asset_host = "http://sharp-fog-22.heroku.com"
 #ActionController::AbstractRequest.relative_url_root = "http://apps.facebook.com/youthasia"

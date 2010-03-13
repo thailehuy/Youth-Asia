@@ -5,6 +5,13 @@
 <div id="top_info">
   <div id="video_holder">
     Video goes here
+    <script type="text/javascript">
+function callPublish(msg, attachment, action_link)
+{  FB.ensureInit(function ()
+{    FB.Connect.streamPublish(msg, attachment, action_link);  });
+}
+</script>
+<input type="button" onclick="<%= status_publisher %>" value="Preview Dialog" />
   </div>
 
   <div id="info_panel">

@@ -2,7 +2,7 @@ class CreateInvitationCounts < ActiveRecord::Migration
   def self.up
     create_table :invitation_counts do |t|
       t.string :uid
-      t.integer :counter
+      t.integer :counter, :default => 0
 
       t.timestamps
     end
