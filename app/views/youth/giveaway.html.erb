@@ -10,26 +10,28 @@
   </ul>
 
   <%= link_to "Join Youth gathering", url_for(:action => "gathering"), :class => "bigButton" %>
+
+  <fb:serverfbml style="width: 650px;">
+      <fb:fbml>
+          <fb:request-form
+                  action="<%= url_for(:controller => "youth", :action => "landing") %>"
+                  method="POST"
+                  invite="true"
+                  type="My App"
+                  content="Try out my app!
+                          <fb:req-choice url='http://apps.facebook.com/youthasia/'
+                          label='Checkout Youth 10!!'
+                          />
+                  " >
+                  <fb:multi-friend-selector
+                          showborder="false"
+                          actiontext="Invite your friends to try My App."
+                          exclude_ids="<%= @exclude_friend_ids.join(",") %>"
+                          rows="4"
+                  />
+          </fb:request-form>
+      </fb:fbml>
+  </fb:serverfbml>
+
+  <fb:login-button></fb:login-button>
 </div>
-<fb:login-button></fb:login-button>
-<fb:serverfbml style="width: 650px;">
-    <fb:fbml>
-        <fb:request-form
-                action="<%= url_for(:controller => "youth", :action => "landing") %>"
-                method="POST"
-                invite="true"
-                type="My App"
-                content="Try out my app!
-                        <fb:req-choice url='http://apps.facebook.com/youthasia/'
-                        label='Checkout Youth 10!!'
-                        />
-                " >
-                <fb:multi-friend-selector
-                        showborder="false"
-                        actiontext="Invite your friends to try My App."
-                        exclude_ids="<%= @exclude_friend_ids.join(",") %>"
-                        rows="4"
-                />
-        </fb:request-form>
-    </fb:fbml>
-</fb:serverfbml>
