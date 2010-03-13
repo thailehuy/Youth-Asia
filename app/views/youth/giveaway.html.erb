@@ -12,20 +12,26 @@
   <%= link_to "Join Youth gathering", url_for(:action => "gathering"), :class => "bigButton" %>
 </div>
 
-<fb:request-form
-    action="<%= url_for(:controller => "youth", :action => "landing") %>"
-    method="POST"
-    invite="true"
-    type="Youth Asia"
-    content="This network is the best place on Facebook for viewing, sharing and giving
-             friends the highest quality stuff.  Join me on this network!
-	     <fb:req-choice url='http://www.facebook.com/login.php?api_key=e6888d5e9df5989ebdf6407343ed69c1'
-             label='Check out this network!' />
-    ">
-
-	<fb:multi-friend-selector
-		showborder="false"
-		actiontext="Invite your friends to this network."
-		exclude_ids="<%= @exclude_friend_ids.join(",") %>"
-		max="20" />
-</fb:request-form>
+<fb:serverfbml style="width: 650px;">
+<script type="text/fbml">
+    <fb:fbml>
+        <fb:request-form
+                action="<%= url_for(:controller => "youth", :action => "landing") %>"
+                method="POST"
+                invite="true"
+                type="My App"
+                content="Try out my app!
+                        <fb:req-choice url='http://apps.facebook.com/youthasia/'
+                        label='Checkout Youth 10!!'
+                        />
+                " >
+                <fb:multi-friend-selector
+                        showborder="false"
+                        actiontext="Invite your friends to try My App."
+                        exclude_ids="<%= @exclude_friend_ids.join(",") %>"
+                        rows="4"
+                />
+        </fb:request-form>
+    </fb:fbml>
+</script>
+</fb:serverfbml>
