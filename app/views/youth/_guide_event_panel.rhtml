@@ -2,6 +2,17 @@
   <%= render :partial => "guide_event", :collection => @events %>
 </div>
 <div>
-  <%= ajax_next_link("More", "guide_event_panel",
+  <% if @page > 1 %>
+    <%= ajax_next_link("Previous", "guide_event_panel",
+    url_for(:controller => "youth", :action => "show_guide_event_page", :page => @page - 1)) %>
+  <% else %>
+    Previous
+  <% end %>
+  |
+  <% if @have_next_event_page %>
+    <%= ajax_next_link("Next", "guide_event_panel",
     url_for(:controller => "youth", :action => "show_guide_event_page", :page => @page + 1)) %>
+  <% else %>
+    Next
+  <% end %>
 </div>

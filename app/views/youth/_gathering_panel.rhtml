@@ -3,7 +3,7 @@
 </div>
 <div>
   <% if @page > 1 %>
-    <%= ajax_next_link("Next", "gatherings_panel",
+    <%= ajax_next_link("Previous", "gatherings_panel",
       url_for(:controller => "youth", :action => "show_event_page", :page => @page - 1)) %>
   <% else %>
     Previous

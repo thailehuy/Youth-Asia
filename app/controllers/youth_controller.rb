@@ -82,6 +82,19 @@ class YouthController < ApplicationController
     @events = fbsession.events_get(:eids => event_eids, :start_time => Date.today, :end_time => Date.today + 3).event_list
   end
 
+  def show_guide_event_page
+    @events = []
+    @page = params[:page] || 1
+    p_start = (@page.to_i - 1) * PER_PAGE
+
+    featured_event_eids = Event.find(:all, :limit => PER_PAGE, :offset => p_start).map{|e| e.eid.to_s}
+    @have_next_event_page = Feature.count(:conditions => {:f_type => "event"}) > featured_event_eids.size
+    unless featured_event_eids.empty?
+      @events = fbsession.events_get(:eids => featured_event_eids).event_list
+    end
+    render :partial => "youth/event_panel"
+  end
+
   def gathering
     @gatherings = Gathering.find(:all, :conditions => {:uid => @uid})
   end
