@@ -66,7 +66,7 @@ module LinkHelper
     fb_user = fbsession.users_getInfo(:uids => @uid,
             :fields => ["first_name"]).user_list.first
     %Q{
-      callPublish('',{'name':'Youth 10','href':'http://apps.facebook.com/youthasia/','description':'#{fb_user.first_name} has just successfully secured a spot in Youth 2010 - Malaysia largest youth festival','media':[{'type':'image','src':'http://www.i-tich.net/facebook/mood/images/mood9.gif','href':'http://apps.facebook.com/youthasia/'}]},null);return false;
+      callPublish('',{'name':'Youth 10','href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}','description':'#{fb_user.first_name} has just successfully secured a spot in Youth 2010 - Malaysia largest youth festival','media':[{'type':'image','src':'http://www.i-tich.net/facebook/mood/images/mood9.gif','href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'}]},null);return false;
     }
   end
 end

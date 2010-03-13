@@ -40,8 +40,27 @@
 
 <div id="guide_events">
   <h3>All events</h3>
-  <div id="guide_event_links">
-
+  <div id="date_filters">
+    See only events on:
+    <% (1..3).to_a.each do |index| %>
+      <% date = (Date.today + (index - 1).days) %>
+      <% date_param = (index == params[:date].to_i ? nil : index) %>
+      <% class_name = (index == params[:date].to_i ? "active" : "passive") %>
+      <%= link_to date.strftime("%a %b %d"), url_for(:action => "guide",
+        :cat => params[:cat], :date => date_param), :class => class_name %>
+        &nbsp;
+    <% end %>
+  </div>
+  <div id="cat_filters">
+    See only events about:
+    <% (1..4).to_a.each do |index| %>
+      <% cat = Event::CATEGORIES[index - 1] %>
+      <% cat_param = (index == params[:cat].to_i ? nil : index) %>
+      <% class_name = (index == params[:cat].to_i ? "active" : "passive") %>
+      <%= link_to cat, url_for(:action => "guide",
+        :cat => cat_param, :date => params[:date]), :class => class_name %>
+        &nbsp;
+    <% end %>
   </div>
   <div id="guide_event_panel">
     <%= render :partial => "guide_event_panel" %>

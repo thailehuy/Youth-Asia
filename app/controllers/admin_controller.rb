@@ -33,4 +33,16 @@ class AdminController < ApplicationController
       redirect_to :action => "gathering_list"
     end
   end
+
+  def remove_feature
+    feature = Feature.find_by_id(params[:id])
+    f_type = "event"
+    if feature
+      if feature.f_type == "gathering"
+        f_type = "gathering"
+      end
+      feature.destroy
+    end
+    redirect_to :action => "#{f_type}_list"
+  end
 end

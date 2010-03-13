@@ -2,9 +2,7 @@ class YouthController < ApplicationController
   PER_PAGE = 4
 
   def landing
-    ic = InvitationCount.find_or_create_by_uid(params[:from_ref])
-    ic.counter = ic.counter.to_i + 1
-    ic.save
+    InvitationCount.find_or_create_by_uid_and_invited_uid(params[:from_ref], @uid) unless @uid.to_s == params[:from_ref].to_s
     redirect_to :action => "index"
   end
 
@@ -36,8 +34,9 @@ class YouthController < ApplicationController
 
   def show_friend_page
     @page = params[:page] || 1
-    p_start = (@page.to_i - 1) * PER_PAGE
-    p_end = @page.to_i * PER_PAGE
+    @page = @page.to_i
+    p_start = (@page - 1) * PER_PAGE
+    p_end = @page * PER_PAGE
     uids = fbsession.friends_get.friend_list
     @friend_uids = uids[p_start...p_end]
     @have_next_friend_page = uids.size > @friend_uids.size
@@ -49,7 +48,8 @@ class YouthController < ApplicationController
   def show_event_page
     @featured_events = []
     @page = params[:page] || 1
-    p_start = (@page.to_i - 1) * PER_PAGE
+    @page = @page.to_i
+    p_start = (@page - 1) * PER_PAGE
     
     featured_event_eids = Feature.find(:all,
       :conditions => {:f_type => "event"}, :limit => PER_PAGE, :offset => p_start).map{|e| e.eid.to_s}
@@ -63,7 +63,8 @@ class YouthController < ApplicationController
   def show_gathering_page
     @featured_gatherings = []
     @page = params[:page] || 1
-    p_start = (@page.to_i - 1) * PER_PAGE
+    @page = @page.to_i
+    p_start = (@page - 1) * PER_PAGE
 
     featured_gathering_eids = Feature.find(:all,
       :conditions => {:f_type => "gathering"}, :limit => PER_PAGE, :offset => p_start).map{|e| e.eid.to_s}
@@ -76,23 +77,34 @@ class YouthController < ApplicationController
 
   def about
   end
-
+  #filter
+  # date 1-2-3 = today +1 +2
+  # cat 1-2-3-4 = category
   def guide
-    event_eids = Event.find(:all, :limit => PER_PAGE).map{|e| e.eid.to_s}
-    @events = fbsession.events_get(:eids => event_eids, :start_time => Date.today, :end_time => Date.today + 3).event_list
-  end
-
-  def show_guide_event_page
-    @events = []
-    @page = params[:page] || 1
-    p_start = (@page.to_i - 1) * PER_PAGE
-
-    featured_event_eids = Event.find(:all, :limit => PER_PAGE, :offset => p_start).map{|e| e.eid.to_s}
-    @have_next_event_page = Feature.count(:conditions => {:f_type => "event"}) > featured_event_eids.size
-    unless featured_event_eids.empty?
-      @events = fbsession.events_get(:eids => featured_event_eids).event_list
+    @cat = params[:cat].to_i
+    if @cat > 0 && @cat < 5
+      events = Event.find(:all, :condition => {:category => Event::CATEGORIES[@cat - 1]})
+    else
+      events = Event.find(:all)
     end
-    render :partial => "youth/event_panel"
+    event_eids = events.map{|e| e.eid.to_s}
+
+    @date = params[:date].to_i
+    if @date > 0 && @date < 4
+      date_offset = @date - 1
+    else
+      date_offset = 0
+    end
+    start_date = (Date.today + date_offset.days).to_time.to_i
+    @page = params[:page] || 1
+    @page = @page.to_i
+    p_start = (@page - 1) * PER_PAGE
+    p_end = @page * PER_PAGE
+    event_list = []
+    event_list = fbsession.events_get(:eids => event_eids, :start_time => start_date).event_list unless event_eids.blank?
+    @events = event_list[p_start...p_end]
+
+    @have_next_event_page = event_list.size >= p_end
   end
 
   def gathering
@@ -132,12 +144,5 @@ class YouthController < ApplicationController
   def giveaway
     @friend_uids = (fbsession.friends_get.friend_list)
     @exclude_friends = fbsession.users_getInfo(:uids => @friend_uids, :fields => ["uid"]).user_list.collect{|f| f.uid}
-  end
-
-  def publish_feed
-    fbsession.stream_publish(:message => params[:message])
-    render :update do |page|
-      page.alert "Your status has been published"
-    end
   end
 end

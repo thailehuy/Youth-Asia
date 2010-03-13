@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   before_filter :require_facebook_login  
   before_filter :get_current_uid
 
+  rescue_from RFacebook::FacebookSession::ExpiredSessionStandardError do
+    redirect_to :controller => "youth", :action => "index"
+  end
+
   private
   def get_current_uid
     @uid = fbsession.users_getLoggedInUser
