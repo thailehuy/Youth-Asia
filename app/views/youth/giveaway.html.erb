@@ -1,2 +1,31 @@
-<h1>Youth#giveaway</h1>
-<p>Find me in app/views/youth/giveaway.html.erb</p>
+<div id="giveaway_info">
+  We give out RM50000 for those who help promoting Youth'10 to other youths.
+  <ul>
+    <li>
+      RM5000 for 20 largest youth gatherings.
+    </li>
+    <li>
+      RM40000 worth of products and cash on other contests.
+    </li>
+  </ul>
+
+  <%= link_to "Join Youth gathering", :action => "gathering", :class => "bigButton" %>
+</div>
+
+<fb:request-form
+    action="<%= url_for(:controller => "youth", :action => "landing") %>"
+    method="POST"
+    invite="true"
+    type="Youth Asia"
+    content="This network is the best place on Facebook for viewing, sharing and giving
+             friends the highest quality stuff.  Join me on this network!
+	     <fb:req-choice url='http://www.facebook.com/login.php?api_key=e6888d5e9df5989ebdf6407343ed69c1'
+             label='Check out this network!' />
+    ">
+
+	<fb:multi-friend-selector
+		showborder="false"
+		actiontext="Invite your friends to this network."
+		exclude_ids="<%= @exclude_friend_ids.join(",") %>"
+		max="20" />
+</fb:request-form>

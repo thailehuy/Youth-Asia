@@ -1,2 +1,49 @@
-<h1>Youth#guide</h1>
-<p>Find me in app/views/youth/guide.html.erb</p>
+<div id="guide_intro">
+  Youth Festival is an annual event held by Youth Asia based on Malaysia, YouthSays.com community
+  Youth '09 attracted more than 36000 youths from all over Malaysia with 13 events.
+  This year Youth '10 expects to see more than 70000 youths with a lot more exciting events.
+
+  <div id="guide_links">
+    <%= link_to "Download festival guide", download_guide_url, :class => "bigButton" %><br/>
+    <%= link_to "Learn how", "dummy url", :class => "helpLink" %>
+  </div>
+</div>
+
+<div id="must_know">
+  <div id="must_know_links">
+    <%= link_to "How to get there?", "dummy url", :class => "helpLink" %>
+    <%= link_to "Who should be there?", "dummy url", :class => "helpLink" %>
+    <%= link_to "What to bring?", "dummy url", :class => "helpLink" %>
+    <%= link_to "Who to contact?", "dummy url", :class => "helpLink" %>
+  </div>
+
+  <div id="guide_info">
+    <div>
+      <strong>What?</strong><br/>
+      Youth'10 - Malaysia largest youths festival
+    </div>
+    <div>
+      <strong>When?</strong><br/>
+      8pm - 10pm<br/>
+      Friday - Sunday May 28 - 30, 2010
+    </div>
+    <div>
+      <strong>Where?</strong><br/>
+      PWTC (Putrajaya World Trade Center)
+    </div>
+    <div>
+      <strong>who?</strong><br/>
+      70000 youths and much more
+    </div>
+  </div>
+</div>
+
+<div id="guide_events">
+  <h3>All events</h3>
+  <div id="guide_event_links">
+
+  </div>
+  <div id="guide_event_panel">
+    <%= render :partial => "guide_event_panel" %>
+  </div>
+</div>

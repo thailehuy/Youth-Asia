@@ -1,0 +1,7 @@
+<div>
+  <%= render :partial => "event", :collection => @featured_gatherings %>
+</div>
+<div>
+  <%= ajax_next_link("More", "gatherings_panel",
+    url_for(:controller => "youth", :action => "show_event_page", :page => @page + 1)) %>
+</div>
