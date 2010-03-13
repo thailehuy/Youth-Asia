@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100311000241) do
+ActiveRecord::Schema.define(:version => 20100312125058) do
 
   create_table "events", :force => true do |t|
     t.string   "link"
@@ -37,6 +37,28 @@ ActiveRecord::Schema.define(:version => 20100311000241) do
     t.string   "ic_number"
     t.string   "event_link"
     t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invitation_counts", :force => true do |t|
+    t.string   "uid"
+    t.integer  "counter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "volunteers", :force => true do |t|
+    t.string   "uid"
+    t.string   "name"
+    t.string   "affiliation"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "date_of_birth"
+    t.string   "address"
+    t.string   "race"
+    t.string   "ic_number"
+    t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
