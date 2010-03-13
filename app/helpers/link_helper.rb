@@ -3,11 +3,11 @@ module LinkHelper
   [
     ["Home", {:controller => "youth", :action => "index"}],
     ["About", {:controller => "youth", :action => "about"}],
-    ["Festival Guide", {:controller => "youth", :action => "guide"}],
-    ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
+    ["Guide", {:controller => "youth", :action => "guide"}],
+    ["Gatherings", {:controller => "youth", :action => "gathering"}],
     ["Volunteer", {:controller => "youth", :action => "volunteer"}],
     ["Book ticket", {:controller => "youth", :action => "booking"}],
-    ["RM50,000 Giveaway", {:controller => "youth", :action => "giveaway"}]
+    ["Giveaway", {:controller => "youth", :action => "giveaway"}]
   ]
   end
 
