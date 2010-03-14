@@ -25,7 +25,7 @@
 
 <div id="your_gathering">
   <% @your_gathering_events.each do |event| %>
-    <%= render :partial => "event" %>
+    <%= render :partial => "event", :locals => {:event => event} %>
   <% end %>
   <%= will_paginate @your_gatherings, :page_param => 'page_your' %>
 </div>

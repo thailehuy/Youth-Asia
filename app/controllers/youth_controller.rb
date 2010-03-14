@@ -113,7 +113,7 @@ class YouthController < ApplicationController
     @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},
       :per_page => 2, :page => params[:page_your])
     @your_gathering_events = []
-    event_eids = @your_gatherings.map{|e| e.eid.to_s}
+    event_eids = @your_gatherings.map{|e| Utils.get_event_eid e.event_link}
     unless event_eids.empty?
       @your_gathering_events = fbsession.events_get(:eids => event_eids).event_list
     end
