@@ -183,10 +183,68 @@ class YouthController < ApplicationController
   end
 
   def booking
+    @ticket = Ticket.new
+    @page = 1
+    uids = fbsession.friends_get.friend_list
+    @friend_uids = uids[0...PER_PAGE]
+    @have_next_friend_page = uids.size > @friend_uids.size
+
+    @friends = fbsession.users_getInfo(:uids => @friend_uids,
+            :fields => ["first_name", "pic_square", "profile_url"]).user_list
+  end
+
+  def create_ticket
+    unless Ticket.find_by_uid(@uid)
+      @ticket = Ticket.new(params[:ticket])
+      @ticket.uid = @uid
+      @ticket.save!
+      flash[:notice] = "Your ticket has been reserved"
+    end
+    redirect_to :action => "volunteer"
+  rescue
+    @page = 1
+    uids = fbsession.friends_get.friend_list
+    @friend_uids = uids[0...PER_PAGE]
+    @have_next_friend_page = uids.size > @friend_uids.size
+
+    @friends = fbsession.users_getInfo(:uids => @friend_uids,
+            :fields => ["first_name", "pic_square", "profile_url"]).user_list
+    render :action => "booking"
   end
 
   def giveaway
     @friend_uids = (fbsession.friends_get.friend_list)
     @exclude_friends = fbsession.users_getInfo(:uids => @friend_uids, :fields => ["uid"]).user_list.collect{|f| f.uid}
+  end
+
+  def event_list
+    @events = Event.paginate(:all,
+      :per_page => PER_PAGE, :page => params[:page])
+
+    @event_infos = []
+    event_eids = @events.map{|e| e.eid.to_s}
+    unless event_eids.empty?
+      @event_infos = fbsession.events_get(:eids => event_eids).event_list
+    end
+  end
+
+  def gathering_list
+    @gatherings = Gathering.paginate(:all,
+      :per_page => PER_PAGE, :page => params[:page])
+
+    @gathering_infos = []
+    event_eids = @gatherings.map{|e| Utils.get_event_eid(e.event_link)}
+    unless event_eids.empty?
+      @gathering_infos = fbsession.events_get(:eids => event_eids).event_list
+    end
+  end
+
+  def friend_list
+    @uids = fbsession.friends_get.friend_list.paginate(params[:page], 10)
+    @friend_uids = @uids
+    @have_next_friend_page = @uids.size > @friend_uids.size
+
+    @friends = fbsession.users_getInfo(:uids => @friend_uids,
+            :fields => ["first_name", "pic_square", "profile_url"]).user_list
   end
 end

@@ -1,0 +1,9 @@
+<p>
+  Your friends coming to Youth '10
+</p>
+
+<div id="friend_list">
+  <%= render :partial => "friend", :collection => @friends %>
+</div>
+
+<%= will_paginate @uids %>

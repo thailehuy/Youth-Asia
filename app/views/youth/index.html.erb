@@ -39,7 +39,7 @@ function callPublish(msg, attachment, action_link)
 <div id="events">
   <h1>Featured events</h1>
   <div id="see_all_events">
-    <%= link_to "See all", :action => "see_all_events", :class => "seeAll" %>
+    <%= link_to "See all", :action => "event_list", :class => "seeAll" %>
   </div>
 
   <div id="events_panel">
@@ -50,7 +50,7 @@ function callPublish(msg, attachment, action_link)
 <div id="gatherings">
   <h1>Featured gatherings</h1>
   <div id="see_all_gatherings">
-    <%= link_to "See all", :action => "see_all_gatherings", :class => "seeAll" %>
+    <%= link_to "See all", :action => "gathering_list", :class => "seeAll" %>
   </div>
 
   <div id="gatherings_panel">
@@ -60,8 +60,8 @@ function callPublish(msg, attachment, action_link)
 
 <div id="events">
   <h1>Friends coming to Youth'10</h1>
-  <div id="see_all_events">
-    <%= link_to "See all", :action => "see_all_friends_coming", :class => "seeAll" %>
+  <div id="see_all_friends">
+    <%= link_to "See all", :action => "friend_list", :class => "seeAll" %>
   </div>
 
   <div id="friends_panel">

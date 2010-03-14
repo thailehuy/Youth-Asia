@@ -1,2 +1,55 @@
-<h1>Youth#booking</h1>
-<p>Find me in app/views/youth/booking.html.erb</p>
+<%= error_messages_for :ticket %>
+
+<div id="tickets_info">
+  <h1>Your ticket information</h1>
+
+  <div id="ticket_signup">
+    <%= render :partial => "ticket_signup" %>
+  </div>
+</div>
+
+<div>
+  <h3>About YouthSays.com</h3>
+  something about youthsays
+  <%= link_to "Go to YouthSay.com", "http://www.youthsays.com", :target => "_blank" %>
+</div>
+
+<div>
+  <h3>About Youth'10</h3>
+  something about youth 10
+  <%= link_to "Download Youth'10 Guide", download_guide_url, :target => "_blank" %>
+</div>
+
+<div id="events">
+  <h1>Friends coming to Youth'10</h1>
+  <div id="see_all_events">
+    <%= link_to "See all", :action => "friend_list", :class => "seeAll" %>
+  </div>
+
+  <div id="friends_panel">
+    <%= render :partial => "friend_panel" %>
+  </div>
+</div>
+
+<div id="next_move">
+  <h3>Your next move</h3>
+
+  <table id="next_move_table">
+    <tr>
+      <td>Get a ticket</td>
+      <td><%= link_to "Book here for free", :action => "booking", :class => "soft_link" %></td>
+    </tr>
+    <tr>
+      <td>Share the opportunities with your friends and get rewarded</td>
+      <td><%= link_to "Invite your friends", :action => "invite", :class => "soft_link" %></td>
+    </tr>
+    <tr>
+      <td>RSVP for an event</td>
+      <td><%= link_to "See list of events", :action => "view_events", :class => "soft_link" %></td>
+    </tr>
+    <tr>
+      <td>Lend us a hand</td>
+      <td><%= link_to "Become a volunteer", :action => "volunteer", :class => "soft_link" %></td>
+    </tr>
+  </table>
+</div>

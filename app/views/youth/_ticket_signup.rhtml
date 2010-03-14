@@ -1,1 +1,22 @@
-Ticket signup partial here
+<%= form_for :ticket, @ticket, url_for(:action => "create_ticket") do |f| %>
+  <p>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br/>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :phone %><br/>
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.label :ic_number %><br/>
+    <%= f.text_field :ic_number %>
+  </p>
+  <p>
+    <%= f.check_box :agreement %>
+    I have read and agree with Terms &amp; Conditions
+  </p>
+<% end %>
