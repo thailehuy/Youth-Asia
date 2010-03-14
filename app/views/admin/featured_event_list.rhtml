@@ -1,3 +1,13 @@
+<% form_for :feature, :url => {:action => "make_feature"} do |f| %>
+  <p>
+    <%= f.label :event_link %>
+    <%= text_field_tag :event_link %>
+
+    <%= hidden_field_tag :f_type, :value => "event" %>
+  </p>
+  <%= submit_tag "Create feature" %>
+<% end %>
+
 <% @event_infos.each do |event| %>
   <table>
   <tr>
@@ -9,9 +19,7 @@
     </td>
   </tr>
   <tr>
-    <td><%= link_to "Make feature",
-              url_for(:action => "make_feature", :eid => event.eid,
-              :f_type => "event", :event_link => event_link(event)) %></td>
+    <td><%= link_to "Remove", url_for(:action => "remove_feature", :eid => event.eid) %></td>
   </tr>
 </table>
 <% end %>

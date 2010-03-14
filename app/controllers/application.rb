@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
 
   private
   def get_current_uid
-    @uid = fbsession.users_getLoggedInUser
+    @uid = fbsession.users_getLoggedInUser.to_s
   end
 end

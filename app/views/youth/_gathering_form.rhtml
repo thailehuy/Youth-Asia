@@ -1,4 +1,5 @@
-<% form_for :gathering, :url => {:action => "create_gathering"} do |f| %>
+<%= error_messages_for :gathering %>
+<% remote_form_for :gathering, @gathering, :url => {:action => "create_gathering"} do |f| %>
   <p>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -34,8 +35,12 @@
   <p>
     <%= f.label :event_link %>
     <%= f.text_field :event_link %>
-
-    <%= f.hidden_field :f_type, :value => "event" %>
   </p>
-  <%= submit_tag "Create gathering" %>
+  <p>
+    <%= f.check_box :agreement %>
+    I have read and agree with Terms &amp; Conditions
+  </p>
+  <p>
+    <%= submit_tag "Create gathering" %>
+  </p>
 <% end %>

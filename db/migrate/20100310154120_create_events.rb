@@ -3,7 +3,7 @@ class CreateEvents < ActiveRecord::Migration
     create_table :events do |t|
       t.string :link
       t.string :eid
-      t.category :string
+      t.string :category
       t.timestamps
     end
   end

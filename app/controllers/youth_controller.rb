@@ -108,34 +108,78 @@ class YouthController < ApplicationController
   end
 
   def gathering
-    @gatherings = Gathering.find(:all, :conditions => {:uid => @uid})
+    @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},
+      :per_page => 2, :page => params[:page_your])
+    @your_gathering_events = []
+    event_eids = @your_gatherings.map{|e| e.eid.to_s}
+    unless event_eids.empty?
+      @your_gathering_events = fbsession.events_get(:eids => event_eids).event_list
+    end
+
+    @all_gatherings = Gathering.paginate(:all, :conditions => ["uid <> ?", @uid],
+      :per_page => PER_PAGE, :page => params[:page_your])
+    @all_gathering_events = []
+    event_eids = @all_gatherings.map{|e| e.eid.to_s}
+    unless event_eids.empty?
+      @all_gathering_events = fbsession.events_get(:eids => event_eids).event_list
+    end
   end
 
   def create_gathering
-    eid = Utils.get_event_eid
+    eid = Utils.get_event_eid(params[:gathering][:event_link])
     if !eid.blank?
       gathering = Gathering.new(params[:gathering])
       gathering.uid = @uid
       if gathering.save
-        flash[:notice] = "Gathering created"
+        render :update do |page|
+          page["gathering_form"].replace_html :partial => "gathering_form"
+          page.alert("Your gathering has been created")
+        end
       else
-        flash[:error] = "Fail to create gathering, please try again"
+        render :update do |page|
+          @gathering = gathering
+          page.alert("Please check your information again")
+          page["gathering_form"].replace_html :partial => "gathering_form"
+        end
       end
     end
-
-    redirect_to :action => "gathering"
   end
 
   def volunteer
-
+    @volunteer_uids = Volunteer.find(:all, :limit => PER_PAGE).collect{|v| v.uid}
+    @page = 1
+    @volunteers = fbsession.users_getInfo(:uids => @volunteer_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list
+    @have_next_volunteer_page = Volunteer.count > PER_PAGE
+    @volunteer = Volunteer.new
+    @already_applied = Volunteer.find_by_uid(@uid)
   end
 
   def create_volunteer
-    volunteer = Volunteer.new(params[:volunteer])
-    volunteer.uid = @uid
-    volunteer.save!
-
+    unless Volunteer.find_by_uid(@uid)
+      @volunteer = Volunteer.new(params[:volunteer])
+      @volunteer.uid = @uid
+      @volunteer.save!
+      flash[:notice] = "Your application has been submitted"
+    end
     redirect_to :action => "volunteer"
+#  rescue
+#    @volunteer_uids = Volunteer.find(:all, :limit => PER_PAGE).collect{|v| v.uid}
+#    @page = 1
+#    @volunteers = fbsession.users_getInfo(:uids => @volunteer_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list
+#    @have_next_volunteer_page = Volunteer.count > PER_PAGE
+#    render :action => "volunteer"
+  end
+
+  def show_volunteer_page
+    @page = params[:page] || 1
+    @page = @page.to_i
+    p_start = (@page - 1) * PER_PAGE
+
+    @volunteer_uids = Volunteer.find(:all, :limit => PER_PAGE, :offset => p_start).collect{|v| v.uid}
+
+    @volunteers = fbsession.users_getInfo(:uids => @volunteer_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list
+    @have_next_volunteer_page = Volunteer.count > p_start + PER_PAGE
+    render :partial => "youth/volunteer_panel"
   end
 
   def booking

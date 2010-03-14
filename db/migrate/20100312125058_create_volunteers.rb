@@ -10,7 +10,16 @@ class CreateVolunteers < ActiveRecord::Migration
       t.string :address
       t.string :race
       t.string :ic_number
+      t.string :position_1
+      t.string :position_2
+      t.string :position_3
       t.text :reason
+      t.column :content_type, :string
+      t.column :filename, :string
+      t.column :thumbnail, :string
+      t.column :size, :integer
+      t.column :width, :integer
+      t.column :height, :integer
 
       t.timestamps
     end

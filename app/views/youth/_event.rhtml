@@ -4,7 +4,9 @@
     <td>
       <%= link_to event.name, event_link(event) %><br/>
       <%= event.location %><br/>
-      <%= display_time(event.start_time.to_s) %><%= " - " + display_time(event.end_time.to_s) unless event.end_time.blank? %>
+      <%= display_time(event.start_time.to_s) %>
+      <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %><br/>
+      <%= fbsession.events_getMembers(:eid => event.eid).attending.size %> attendants so far
     </td>
   </tr>
 </table>

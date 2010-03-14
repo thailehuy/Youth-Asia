@@ -1,0 +1,19 @@
+<% @volunteers.each do |volunteer| %>
+  <div>
+    Name: <%= volunteer.name %>
+    Affiliation: <%= volunteer.affiliation %>
+    Email: <%= volunteer.email %>
+    Phone: <%= volunteer.phone %>
+    Date of Birth: <%= volunteer.date_of_birth %>
+    Address: <%= volunteer.address %>
+    Race: <%= volunteer.race %>
+    IC number: <%= volunteer.ic_number %>
+    Position 1: <%= volunteer.position_1 %>
+    Position 2: <%= volunteer.position_2 %>
+    Position 3: <%= volunteer.position_3 %>
+    Reason: <%= volunteer.reason %>
+    CV: <%= link_to "Download", url_for(volunteer.public_filename) %>
+  </div>
+<% end %>
+
+<%= will_paginate @volunteers %>

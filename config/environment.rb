@@ -69,6 +69,12 @@ end
 require 'json'
 FACEBOOK_API_KEY = 'e6888d5e9df5989ebdf6407343ed69c1'
 SERVER_URL = "http://localhost:3000"
+
+class Hpricot::Doc
+  def self.yaml_tag_subclasses?
+    false
+  end
+end
 #AJAX_BASE_URL = "http://sharp-fog-22.heroku.com"
 #ActionController::Base.asset_host = "http://sharp-fog-22.heroku.com"
 #ActionController::AbstractRequest.relative_url_root = "http://apps.facebook.com/youthasia"
