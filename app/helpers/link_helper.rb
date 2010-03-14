@@ -15,6 +15,10 @@ module LinkHelper
     "http://www.facebook.com/event.php?eid=#{event.eid}"
   end
 
+  def display_attendant(event)
+    fbsession.events_getMembers(:eid => event.eid).attending.split("\n").size
+  end
+
   def navigation_menu current_tab = ""
     links = menu_items.map{|m|
       %Q{
@@ -39,24 +43,6 @@ module LinkHelper
     image_tag("/images/loading.gif", :alt => "Loading ...")
   end
 
-  def ajax_paging_js
-    %Q{
-      function show_more(div_id, url, page)
-      {
-        document.getElementById(div_id).setInnerHTML("#{loading_image}");
-        var ajax = new Ajax();
-        ajax.ondone = function(data)
-        {
-          document.getElementById(div_id).setInnerHTML(data);
-        }
-
-        var ajax_param = "?page=" + page;
-
-        ajax.post(url + ajax_param);
-      }
-    }
-  end
-
   def ajax_next_link(text, div_id, url)
     link_to_remote text, :url => url, :update => div_id,
       :before => "$('#{div_id}').innerHTML='#{loading_image}'"
@@ -66,7 +52,19 @@ module LinkHelper
     fb_user = fbsession.users_getInfo(:uids => @uid,
             :fields => ["first_name"]).user_list.first
     %Q{
-      callPublish('',{'name':'Youth 10','href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}','description':'#{fb_user.first_name} has just successfully secured a spot in Youth 2010 - Malaysia largest youth festival','media':[{'type':'image','src':'http://www.i-tich.net/facebook/mood/images/mood9.gif','href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'}]},null);return false;
+      callPublish('',
+        {'name':'Youth 10','href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}',
+        'description':'#{fb_user.first_name} has just successfully secured a spot in Youth 2010 - Malaysia largest youth festival',
+        'media':
+          [
+            {
+            'type':'image','src':'http://www.i-tich.net/facebook/mood/images/mood9.gif',
+            'href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'
+            }
+          ]
+        },
+        [{ 'text': 'Book ticket', 'href': 'http://apps.facebook.com/youthasia/youth/booking'}]);
+        return false;
     }
   end
 end

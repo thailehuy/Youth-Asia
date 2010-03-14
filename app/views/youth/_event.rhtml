@@ -1,12 +1,12 @@
 <table>
   <tr>
-    <td><%= link_to image_tag(event.pic), event_link(event) %></td>
+    <td><%= link_to image_tag(event.pic), event_link(event), :target => "_blank" %></td>
     <td>
-      <%= link_to event.name, event_link(event) %><br/>
+      <%= link_to event.name, event_link(event), :target => "_blank" %><br/>
       <%= event.location %><br/>
       <%= display_time(event.start_time.to_s) %>
       <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %><br/>
-      <%= fbsession.events_getMembers(:eid => event.eid).attending.size %> attendants so far
+      <%= display_attendant(event) %> attendants so far
     </td>
   </tr>
 </table>

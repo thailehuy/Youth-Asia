@@ -1,53 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title><%= @page_title%></title>
-  <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
-  <%= javascript_include_tag :defaults, :defer => "defer"%>
+<%= render :partial => "layouts/header" %>
+<div id="topWrapper">
+  <div id="top">
+      <div id="topleft">
+        <%= link_to "logo goes here", url_for(:controller => "youth", :action => "index") %>
+      </div><!-- end of #logo -->
 
-  <script type="text/javascript">
-  function callPublish(msg, attachment, action_link)
-  {  FB.ensureInit(function ()
-  {    FB.Connect.streamPublish(msg, attachment, action_link);  });
-  }
-  </script>
-</head>
+      <div id="topright">
+          <%= render :partial => "layouts/top_nav" %>
+      </div><!-- end of #topright -->
+      <br class="clr" />
+      <p style="color: green"><%= flash[:notice] %></p>
+      <div id="nav">
+          <%= render :partial => "layouts/nav"%>
+      </div><!-- end of #nav -->
+  </div><!-- end of #top -->
+</div><!-- end of #topWrapper -->
 
-<body>
-  <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US" type="text/javascript"></script>
-  <script type="text/javascript" src="http://static.ak.connect.facebook.com/connect.php/en_US/js/Api/CanvasUtil/Connect/XFBML"></script>
-      <div id="topWrapper">
-        <div id="top">
-            <div id="topleft">
-              <%= link_to "logo goes here", url_for(:controller => "youth", :action => "index") %>
-            </div><!-- end of #logo -->
-            <div id="topright">
-                <%= render :partial => "layouts/top_nav" %>
-            </div><!-- end of #topright -->
-            <br class="clr" />
-            <p style="color: green"><%= flash[:notice] %></p>
-            <div id="nav">
-                <%= render :partial => "layouts/nav"%>
-            </div><!-- end of #nav -->
-        </div><!-- end of #top -->
-      </div><!-- end of #topWrapper -->
-
-      <div id="main">
-              <%= yield%>
-      </div><!-- end of #main -->
-    <!-- Note: Include this div markup as a workaround for a known bug in this release on IE where you may get a "operation aborted" error --> <div id="FB_HiddenIFrameContainer" style="display:none; position:absolute; left:-100px; top:-100px; width:0px; height: 0px;"></div>
-    <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
-    <script type="text/javascript">
-      FB_RequireFeatures(["CanvasUtil"], function(){
-        FB.XdComm.Server.init("<%= SERVER_URL %>/xd_receiver.htm"); FB.CanvasClient.startTimerToSizeToContent();
-        FB.XFBML.Host.get_areElementsReady().waitUntilReady(function() {
-          document.getElementById("main").style.visibility = "visible";
-        });
-      });
-    </script>
-    <div id="footer">
-            Copyright &copy; 2010 Youth Asia. All rights reserved.
-    </div><!-- end of #footer -->
-</body>
-</html>
+<div id="main">
+        <%= yield%>
+</div><!-- end of #main -->
+<%= render :partial => "layouts/footer" %>

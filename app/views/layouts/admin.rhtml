@@ -1,26 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title><%= @page_title%></title>
-  <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
-  <%= javascript_include_tag :defaults, :defer => "defer"%>
-
-  <script type="text/javascript">
-    window.onload = function() {
-      FB_RequireFeatures(["XFBML"], function() {
-        FB.Facebook.init("<%= FACEBOOK_API_KEY %>", "<%= SERVER_URL %>/xd_receiver.htm");
-        FB.XFBML.Host.get_areElementsReady().waitUntilReady(function() {
-          document.getElementById("main").style.visibility = "visible";
-        });
-      });
-    };
-  </script>
-</head>
-
-<body>
-  <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US" type="text/javascript"></script>
-  <script type="text/javascript" src="http://static.ak.connect.facebook.com/connect.php/en_US/js/Api/CanvasUtil/Connect/XFBML"></script>
+<%= render :partial => "layouts/header" %>
       <div id="topWrapper">
         <div id="top">
             <div id="topleft">
@@ -40,10 +18,4 @@
       <div id="main">
               <%= yield%>
       </div><!-- end of #main -->
-
-
-    <div id="footer">
-            Copyright &copy; 2010 Youth Asia. All rights reserved.
-    </div><!-- end of #footer -->
-</body>
-</html>
+<%= render :partial => "layouts/footer" %>

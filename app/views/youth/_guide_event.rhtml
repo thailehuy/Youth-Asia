@@ -1,8 +1,8 @@
 <table>
   <tr>
-    <td><%= link_to image_tag(guide_event.pic), event_link(guide_event) %></td>
+    <td><%= link_to image_tag(guide_event.pic), event_link(guide_event), :target => "_blank" %></td>
     <td>
-      <%= link_to guide_event.name, event_link(guide_event) %><br/>
+      <%= link_to guide_event.name, event_link(guide_event), :target => "_blank" %><br/>
       <%= guide_event.location %><br/>
       <%= display_time(guide_event.start_time.to_s) %><%= " - " + display_time(guide_event.end_time.to_s) unless guide_event.end_time.blank? %>
     </td>
