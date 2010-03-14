@@ -144,6 +144,12 @@ class YouthController < ApplicationController
           page["gathering_form"].replace_html :partial => "gathering_form"
         end
       end
+    else
+      render :update do |page|
+        @gathering = gathering
+        page.alert("Please check your information again")
+        page["gathering_form"].replace_html :partial => "gathering_form"
+      end
     end
   end
 
@@ -164,12 +170,12 @@ class YouthController < ApplicationController
       flash[:notice] = "Your application has been submitted"
     end
     redirect_to :action => "volunteer"
-#  rescue
-#    @volunteer_uids = Volunteer.find(:all, :limit => PER_PAGE).collect{|v| v.uid}
-#    @page = 1
-#    @volunteers = fbsession.users_getInfo(:uids => @volunteer_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list
-#    @have_next_volunteer_page = Volunteer.count > PER_PAGE
-#    render :action => "volunteer"
+  rescue
+    @volunteer_uids = Volunteer.find(:all, :limit => PER_PAGE).collect{|v| v.uid}
+    @page = 1
+    @volunteers = fbsession.users_getInfo(:uids => @volunteer_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list
+    @have_next_volunteer_page = Volunteer.count > PER_PAGE
+    render :action => "volunteer"
   end
 
   def show_volunteer_page
