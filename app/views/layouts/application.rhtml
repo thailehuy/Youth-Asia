@@ -16,6 +16,12 @@
       });
     };
   </script>
+  <script type="text/javascript">
+  function callPublish(msg, attachment, action_link)
+  {  FB.ensureInit(function ()
+  {    FB.Connect.streamPublish(msg, attachment, action_link);  });
+  }
+  </script>
 </head>
 
 <body>

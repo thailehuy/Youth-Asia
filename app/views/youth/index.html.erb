@@ -5,13 +5,6 @@
 <div id="top_info">
   <div id="video_holder">
     Video goes here
-    <script type="text/javascript">
-function callPublish(msg, attachment, action_link)
-{  FB.ensureInit(function ()
-{    FB.Connect.streamPublish(msg, attachment, action_link);  });
-}
-</script>
-<input type="button" onclick="<%= status_publisher %>" value="Preview Dialog" />
   </div>
 
   <div id="info_panel">
@@ -71,10 +64,13 @@ function callPublish(msg, attachment, action_link)
 
 <div id="tickets_info">
   <h1>Your ticket information</h1>
-
-  <div id="ticket_signup">
-    <%= render :partial => "ticket_signup" %>
-  </div>
+  <% if @ticket_rsvp %>
+    <%= render :partial => "ticket_info" %>
+  <% else %>
+    <div id="ticket_signup">
+      <%= render :partial => "ticket_signup" %>
+    </div>
+  <% end %>
 </div>
 
 <div id="next_move">

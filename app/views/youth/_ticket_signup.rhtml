@@ -1,4 +1,6 @@
-<%= form_for :ticket, @ticket, url_for(:action => "create_ticket") do |f| %>
+<%= error_messages_for :ticket %>
+
+<% form_for :ticket, @ticket, :url => url_for(:action => "create_ticket") do |f| %>
   <p>
     <%= f.label :name %><br/>
     <%= f.text_field :name %>
@@ -19,4 +21,5 @@
     <%= f.check_box :agreement %>
     I have read and agree with Terms &amp; Conditions
   </p>
+  <%= submit_tag "Book ticket" %>
 <% end %>

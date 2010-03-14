@@ -3,9 +3,13 @@
 <div id="tickets_info">
   <h1>Your ticket information</h1>
 
-  <div id="ticket_signup">
-    <%= render :partial => "ticket_signup" %>
-  </div>
+  <% if @ticket_rsvp %>
+    <%= render :partial => "ticket_info" %>
+  <% else %>
+    <div id="ticket_signup">
+      <%= render :partial => "ticket_signup" %>
+    </div>
+  <% end %>
 </div>
 
 <div>

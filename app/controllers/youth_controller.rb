@@ -30,6 +30,8 @@ class YouthController < ApplicationController
     unless featured_gathering_eids.empty?
       @featured_gatherings = fbsession.events_get(:eids => featured_gathering_eids).event_list
     end
+
+    @ticket_rsvp = Ticket.find_by_uid(@uid)
   end
 
   def show_friend_page
@@ -183,6 +185,7 @@ class YouthController < ApplicationController
   end
 
   def booking
+    @ticket_rsvp = Ticket.find_by_uid(@uid)
     @ticket = Ticket.new
     @page = 1
     uids = fbsession.friends_get.friend_list
@@ -200,7 +203,7 @@ class YouthController < ApplicationController
       @ticket.save!
       flash[:notice] = "Your ticket has been reserved"
     end
-    redirect_to :action => "volunteer"
+    redirect_to :action => "booking"
   rescue
     @page = 1
     uids = fbsession.friends_get.friend_list
