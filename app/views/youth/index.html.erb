@@ -9,7 +9,7 @@
   <h1>
     Featured events
     <span class="see_all">
-      <%= link_to "See all", :action => "event_list", :class => "seeAll" %>
+      <%= link_to "See all", { :action => "event_list" }, :class => "seeAll" %>
     </span>
   </h1>
 
@@ -21,7 +21,7 @@
 <div id="gatherings" class="box">
   <h1>
     Featured gatherings
-    <span class="see_all"><%= link_to "See all", :action => "gathering_list", :class => "seeAll" %></span>
+    <span class="see_all"><%= link_to "See all", { :action => "gathering_list" }, :class => "seeAll" %></span>
   </h1>
 
   <div id="gatherings_panel">
@@ -33,7 +33,7 @@
   <h1>
     Friends coming to Youth'10
     <span class="see_all">
-      <%= link_to "See all", :action => "friend_list", :class => "seeAll" %>
+      <%= link_to "See all", { :action => "friend_list" }, :class => "seeAll" %>
     </span>
   </h1>
   
