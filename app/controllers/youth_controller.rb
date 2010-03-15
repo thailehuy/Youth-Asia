@@ -7,6 +7,7 @@ class YouthController < ApplicationController
   end
 
   def index
+    @current_tab = "Home"
     @page = 1
     @featured_events = []
     @featured_gatherings = []
@@ -78,11 +79,13 @@ class YouthController < ApplicationController
   end
 
   def about
+    @current_tab = "About"
   end
   #filter
   # date 1-2-3 = today +1 +2
   # cat 1-2-3-4 = category
   def guide
+    @current_tab = "Guide"
     @cat = params[:cat].to_i
     if @cat > 0 && @cat < 5
       events = Event.find(:all, :condition => {:category => Event::CATEGORIES[@cat - 1]})
@@ -110,6 +113,7 @@ class YouthController < ApplicationController
   end
 
   def gathering
+    @current_tab = "Gatherings"
     @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},
       :per_page => 2, :page => params[:page_your])
     @your_gathering_events = []
@@ -154,6 +158,7 @@ class YouthController < ApplicationController
   end
 
   def volunteer
+    @current_tab = "Volunteer"
     @volunteer_uids = Volunteer.find(:all, :limit => PER_PAGE).collect{|v| v.uid}
     @page = 1
     @volunteers = fbsession.users_getInfo(:uids => @volunteer_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list
@@ -191,6 +196,7 @@ class YouthController < ApplicationController
   end
 
   def booking
+    @current_tab = "Book ticket"
     @ticket_rsvp = Ticket.find_by_uid(@uid)
     @ticket = Ticket.new
     @page = 1
@@ -222,6 +228,7 @@ class YouthController < ApplicationController
   end
 
   def giveaway
+    @current_tab = "Giveaway"
     @friend_uids = (fbsession.friends_get.friend_list)
     @exclude_friends = fbsession.users_getInfo(:uids => @friend_uids, :fields => ["uid"]).user_list.collect{|f| f.uid}
   end

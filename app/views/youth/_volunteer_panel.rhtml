@@ -1,7 +1,7 @@
 <div>
   <%= render :partial => "volunteer", :collection => @volunteers %>
 </div>
-<div>
+<div class="page_link">
   <% if @page > 1 %>
     <%= ajax_next_link("Previous", "volunteers_panel",
     url_for(:controller => "youth", :action => "show_volunteer_page", :page => @page - 1)) %>

@@ -1,7 +1,7 @@
 <div>
   <%= render :partial => "guide_event", :collection => @events %>
 </div>
-<div>
+<div class="page_link">
   <% if @page > 1 %>
     <%= link_to("Previous", url_for(:controller => "youth", :action => "guide",
         :page => @page - 1, :category => params[:category], :date => params[:date])) %>
