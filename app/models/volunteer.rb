@@ -29,4 +29,5 @@ class Volunteer < ActiveRecord::Base
   validates_presence_of :ic_number, :message => "Please enter your IC number"
   validates_presence_of :position_1, :message => "Please choose your first preferred position"
   validates_presence_of :reason, :message => "Please tell us why you want to v"
+  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 end
