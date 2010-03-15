@@ -1,46 +1,49 @@
-<div id="top_header">
-  <h1>Malaysia's largest youth festival is back</h1>
-</div>
 
-<div id="top_info">
+<div id="top_info" class="box">
+  <h1>Malaysia's largest youth festival is back</h1>
   Place holder (Munirah)
   <br class="clr"/>
 </div>
 
-<div id="events">
-  <h1>Featured events</h1>
-  <div class="see_all">
-    <%= link_to "See all", :action => "event_list", :class => "seeAll" %>
-  </div>
+<div id="events" class="box">
+  <h1>
+    Featured events
+    <span class="see_all">
+      <%= link_to "See all", :action => "event_list", :class => "seeAll" %>
+    </span>
+  </h1>
 
   <div id="events_panel">
     <%= render :partial => "event_panel" %>
   </div>
 </div>
 
-<div id="gatherings">
-  <h1>Featured gatherings</h1>
-  <div class="see_all">
-    <%= link_to "See all", :action => "gathering_list", :class => "seeAll" %>
-  </div>
+<div id="gatherings" class="box">
+  <h1>
+    Featured gatherings
+    <span class="see_all"><%= link_to "See all", :action => "gathering_list", :class => "seeAll" %></span>
+  </h1>
 
   <div id="gatherings_panel">
     <%= render :partial => "gathering_panel" %>
   </div>
 </div>
 
-<div id="events">
-  <h1>Friends coming to Youth'10</h1>
-  <div class="see_all">
-    <%= link_to "See all", :action => "friend_list", :class => "seeAll" %>
-  </div>
+<div id="events" class="box">
+  <h1>
+    Friends coming to Youth'10
+    <span class="see_all">
+      <%= link_to "See all", :action => "friend_list", :class => "seeAll" %>
+    </span>
+  </h1>
+  
 
   <div id="friends_panel">
     <%= render :partial => "friend_panel" %>
   </div>
 </div>
 
-<div id="tickets_info">
+<div id="tickets_info" class="box">
   <h1>Your ticket information</h1>
   <% if @ticket_rsvp %>
     <%= render :partial => "ticket_info" %>
@@ -51,33 +54,25 @@
   <% end %>
 </div>
 
-<div id="next_move">
-  <h3>Your next move</h3>
+<div id="next_move" class="box">
+  <h2>Your next move</h2>
 
   <table id="next_move_table">
     <tr>
       <td>Get a ticket</td>
-      <td><%= link_to "Book here for free", :action => "booking", :class => "soft_link" %></td>
+      <td><%= link_to "Book here for free", url_for(:action => "booking"), :class => "softLink" %></td>
     </tr>
     <tr>
       <td>Share the opportunities with your friends and get rewarded</td>
-      <td><%= link_to "Invite your friends", :action => "invite", :class => "soft_link" %></td>
+      <td><%= link_to "Invite your friends", url_for(:action => "giveaway"), :class => "softLink" %></td>
     </tr>
     <tr>
       <td>RSVP for an event</td>
-      <td><%= link_to "See list of events", :action => "view_events", :class => "soft_link" %></td>
+      <td><%= link_to "See list of events", url_for(:action => "guide"), :class => "softLink" %></td>
     </tr>
     <tr>
       <td>Lend us a hand</td>
-      <td><%= link_to "Become a volunteer", :action => "volunteer", :class => "soft_link" %></td>
+      <td><%= link_to "Become a volunteer", url_for(:action => "volunteer"), :class => "softLink" %></td>
     </tr>
   </table>
-</div>
-
-<div id="tickets_info">
-  <h3>Partners logos</h3>
-
-  <div id="logo_list">
-    Logo is loaded here
-  </div>
 </div>

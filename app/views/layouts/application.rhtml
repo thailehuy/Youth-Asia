@@ -4,19 +4,18 @@
       <div id="topleft">
         <%= link_to "logo goes here", url_for(:controller => "youth", :action => "index") %>
       </div><!-- end of #logo -->
-
       <div id="topright">
           <%= render :partial => "layouts/top_nav" %>
       </div><!-- end of #topright -->
       <br class="clr" />
-      <p style="color: green"><%= flash[:notice] %></p>
-      <div id="nav">
-          <%= render :partial => "layouts/nav"%>
-      </div><!-- end of #nav -->
   </div><!-- end of #top -->
 </div><!-- end of #topWrapper -->
 
 <div id="main">
-        <%= yield%>
+  <div id="nav">
+      <%= render :partial => "layouts/nav"%>
+  </div><!-- end of #nav -->
+  <br class="clr" />
+  <%= yield%>
 </div><!-- end of #main -->
 <%= render :partial => "layouts/footer" %>

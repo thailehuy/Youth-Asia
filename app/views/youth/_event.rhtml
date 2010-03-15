@@ -4,7 +4,7 @@
   </tr>
   <tr>
     <td>
-      <%= link_to truncate(event.name, :length => 20, :omission => "..."),
+      <%= link_to truncate(event.name, :length => 25, :omission => "..."),
                                             event_link(event), :target => "_blank" %><br/>
       <%= event.location %><br/>
       <%= display_time(event.start_time.to_s) %>

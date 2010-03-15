@@ -1,13 +1,20 @@
 <div id="rsvp">
-  <p>
-    Name: <%= @ticket_rsvp.name %>
-  </p>
-  <p>
-    Email: <%= @ticket_rsvp.email %>
-  </p>
-  <p>
-    Phone: <%= @ticket_rsvp.phone %>
-  </p>
+  <table class="ticket">
+    <tr>
+      <td>
+        <p>
+          Name: <%= @ticket_rsvp.name %>
+        </p>
+        <p>
+          Email: <%= @ticket_rsvp.email %>
+        </p>
+        <p>
+          Phone: <%= @ticket_rsvp.phone %>
+        </p>
+      </td>
+      <td class="centerView">
+        <input type="button" onclick="<%= status_publisher %>" value="Post to wall" class="green" />
+      </td>
+    </tr>
+  </table>
 </div>
-
-<input type="button" onclick="<%= status_publisher %>" value="Post to wall" />

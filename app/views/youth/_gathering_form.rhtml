@@ -1,46 +1,54 @@
 <%= error_messages_for :gathering %>
 <% remote_form_for :gathering, @gathering, :url => {:action => "create_gathering"} do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :affiliation %>
-    <%= f.text_field :affiliation %>
-  </p>
-  <p>
-    <%= f.label :date_of_birth %>
-    <%= f.text_field :date_of_birth %>
-  </p>
-  <p>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
-  </p>
-  <p>
-    <%= f.label :race %>
-    <%= f.text_field :race %>
-  </p>
-  <p>
-    <%= f.label :ic_number %>
-    <%= f.text_field :ic_number %>
-  </p>
-  <p>
-    <%= f.label :event_link %>
-    <%= f.text_field :event_link %>
-  </p>
-  <p>
-    <%= f.check_box :agreement %>
-    I have read and agree with Terms &amp; Conditions
-  </p>
-  <p>
-    <%= submit_tag "Create gathering" %>
-  </p>
+<table>
+  <tr>
+    <td>
+      <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </p>
+      <p>
+        <%= f.label :date_of_birth %>
+        <%= f.text_field :date_of_birth %>
+      </p>
+      <p>
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <%= f.label :event_link %>
+        <%= f.text_field :event_link %>
+      </p>
+      <p>
+        <%= f.check_box :agreement %>
+        <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </p>
+      <p>
+        <%= f.label :phone %>
+        <%= f.text_field :phone %>
+      </p>
+    </td>
+    <td>
+      <p>
+        <%= f.label :race %>
+        <%= f.text_field :race %>
+      </p>
+      <p>
+        <%= f.label :ic_number %>
+        <%= f.text_field :ic_number %>
+      </p>
+      <%= submit_tag "Create gathering" %>
+    </td>
+  </tr>
+</table>
 <% end %>
