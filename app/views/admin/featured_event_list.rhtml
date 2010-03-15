@@ -3,7 +3,7 @@
     <%= f.label :event_link %>
     <%= text_field_tag :event_link %>
 
-    <%= hidden_field_tag :f_type, :value => "event" %>
+    <%= hidden_field_tag :f_type, "event" %>
   </p>
   <%= submit_tag "Create feature" %>
 <% end %>
@@ -11,9 +11,9 @@
 <% @event_infos.each do |event| %>
   <table>
   <tr>
-    <td><%= link_to image_tag(event.pic), event_link(event) %></td>
+    <td><%= link_to image_tag(event.pic), event_link(event), :target => '_blank' %></td>
     <td>
-      <%= link_to event.name, event_link(event) %><br/>
+      <%= link_to event.name, event_link(event), :target => '_blank' %><br/>
       <%= event.location %><br/>
       <%= display_time(event.start_time.to_s) %><%= " - " + display_time(event.end_time.to_s) unless event.end_time.blank? %>
     </td>
