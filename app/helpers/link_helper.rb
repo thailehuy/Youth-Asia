@@ -20,6 +20,7 @@ module LinkHelper
   end
 
   def navigation_menu current_tab = ""
+    puts current_tab
     links = menu_items.map{|m|
       %Q{
         <li class="#{current_tab == m[0] ? "current" : ""}">
