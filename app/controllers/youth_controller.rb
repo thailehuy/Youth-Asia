@@ -140,6 +140,7 @@ class YouthController < ApplicationController
         render :update do |page|
           page["gathering_form"].replace_html :partial => "gathering_form"
           page.alert("Your gathering has been created")
+          page << gathering_publisher(gathering)
         end
       else
         render :update do |page|

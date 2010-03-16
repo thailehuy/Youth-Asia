@@ -68,4 +68,25 @@ module LinkHelper
         return false;
     }
   end
+
+  def gathering_publisher(gathering)
+    fb_user = fbsession.users_getInfo(:uids => @uid, :fields => ["first_name"]).user_list.first
+    js = <<-JS
+      callPublish('', {
+        'name' : 'Youth 10',
+        'href' : 'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}',
+        'description' : '#{fb_user.first_name} has just submitted a gathering in Youth 2010 - Malaysia largest youth festival',
+        'media' : [ {
+            'type' : 'image',
+            'src' : 'http://www.i-tich.net/facebook/mood/images/mood9.gif',
+            'href' : 'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'
+          }
+        ]
+      }, [ {
+          'text' : 'Join #{fb_user.first_name} gathering',
+          'href' : '#{gathering.event_link}'
+        }
+      ]);
+    JS
+  end
 end
