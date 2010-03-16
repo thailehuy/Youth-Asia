@@ -93,6 +93,24 @@ class AdminController < ApplicationController
     end
   end
 
+  def cms
+    @content = Content.first
+    unless @content
+      @content = Content.create
+    end
+  end
+
+  def update_content
+    @content = Content.first
+    if @content.update_attributes(params[:content])
+      flash[:notice] = "Content updated"
+      redirect_to :action => "cms"
+    else
+      flash[:error] = "Error updating content"
+      render :action => "cms"
+    end
+  end
+
   private
   def check_admin
     true

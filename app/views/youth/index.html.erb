@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<div id="events" class="box">
+<div id="friends" class="box">
   <h1>
     Friends coming to Youth'10
     <span class="see_all">
@@ -37,7 +37,6 @@
     </span>
   </h1>
   
-
   <div id="friends_panel">
     <%= render :partial => "friend_panel" %>
   </div>
@@ -56,23 +55,24 @@
 
 <div id="next_move" class="box">
   <h2>Your next move</h2>
-
-  <table id="next_move_table">
-    <tr>
-      <td>Get a ticket</td>
-      <td><%= link_to "Book here for free", url_for(:action => "booking"), :class => "softLink" %></td>
-    </tr>
-    <tr>
-      <td>Share the opportunities with your friends and get rewarded</td>
-      <td><%= link_to "Invite your friends", url_for(:action => "giveaway"), :class => "softLink" %></td>
-    </tr>
-    <tr>
-      <td>RSVP for an event</td>
-      <td><%= link_to "See list of events", url_for(:action => "guide"), :class => "softLink" %></td>
-    </tr>
-    <tr>
-      <td>Lend us a hand</td>
-      <td><%= link_to "Become a volunteer", url_for(:action => "volunteer"), :class => "softLink" %></td>
-    </tr>
-  </table>
+  <div>
+    <table id="next_move_table">
+      <tr>
+        <td>Get a ticket</td>
+        <td><%= link_to "Book here for free", url_for(:action => "booking"), :class => "softLink" %></td>
+      </tr>
+      <tr>
+        <td>Share the opportunities with your friends and get rewarded</td>
+        <td><%= link_to "Invite your friends", url_for(:action => "giveaway"), :class => "softLink" %></td>
+      </tr>
+      <tr>
+        <td>RSVP for an event</td>
+        <td><%= link_to "See list of events", url_for(:action => "guide"), :class => "softLink" %></td>
+      </tr>
+      <tr>
+        <td>Lend us a hand</td>
+        <td><%= link_to "Become a volunteer", url_for(:action => "volunteer"), :class => "softLink" %></td>
+      </tr>
+    </table>
+  </div>
 </div>

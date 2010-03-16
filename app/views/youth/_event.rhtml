@@ -6,7 +6,7 @@
     <td>
       <%= link_to truncate(event.name, :length => 25, :omission => "..."),
                                             event_link(event), :target => "_blank" %><br/>
-      <%= event.location %><br/>
+      <%= truncate(event.location, :length => 25, :omission => "...") %><br/>
       <%= display_time(event.start_time.to_s) %>
       <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %><br/>
       <%= display_attendant(event) %> attendants so far

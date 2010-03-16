@@ -1,17 +1,1 @@
-<div class="box boxLeft">
-  <h2>About YouthSays.com</h2>
-  <div>
-    something about youthsays<br/>
-    <%= link_to "Go to YouthSay.com", "http://www.youthsays.com", :target => "_blank", :class => "green" %>
-  </div>
-</div>
-
-<div class="box boxRight">
-  <h2>About Youth'10</h2>
-  <div>
-    something about youth 10<br/>
-    <%= link_to "Download Youth'10 Guide", download_guide_url, :target => "_blank", :class => "green" %>
-  </div>
-</div>
-
-<br class="clr"/>
+<%= render :partial => "about_info" %>

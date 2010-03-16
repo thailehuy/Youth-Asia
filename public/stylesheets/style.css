@@ -1,7 +1,7 @@
 /* GENERAL */
 * { padding:0; margin:0; }
 
-body { font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; color:#333; }
+body { font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; color:#333; background-color: lightblue}
 .clr { clear:both; font-size:0; line-height:0; }
 hr { border:0; border-top:1px solid #2B6096; height:0px; padding:10px 0; }
 
@@ -22,14 +22,13 @@ h3 {}
 input.btn { width:90px; }
 input.actionBtn { width:130px; }
 
+/* LIST */
+li { margin-left: 15px;}
+
 /* IMAGES */
 img { border:0; }
 img { behavior:url(iepngfix.htc); }
 img.alignV { vertical-align:middle; }
-
-/* LIST */
-ul {}
-li { list-style:none; }
 
 /* TABLE */
 table { border-collapse:collapse; }
@@ -40,8 +39,8 @@ table { border-collapse:collapse; }
 		#topleft { width:270px; float:left; padding:15px 0 0 0; margin-right:30px; }
 		#topright { width:600px; float:right; }
 #nav ul { float:right; }
-#nav ul li { display:inline; }
-#nav ul li a { display:block; float:left; height:34px; line-height:34px; padding:0 15px; background:#eee; color:#000000; border:1px solid #eee; border-bottom:none; margin-left:3px; text-decoration:none; font-size:14px; }
+#nav ul li { display:inline; list-style:none;}
+#nav ul li a { display:block; float:left; height:34px; line-height:34px; padding:0 10px; background:#eee; color:#000000; border:1px solid #eee; border-bottom:none; margin-left:2px; text-decoration:none; font-size:14px; }
 #nav ul li a:hover { border-color:#ddd; background:#dfe4ee; color:#000000; }
 #nav ul li.active a, #nav ul li.active a:hover { border-color:#97B7D4; background-color:#dfe4ee; color:#000000; font-weight:bold; }
 body{	font-family:"Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
@@ -82,6 +81,11 @@ div.box h1 {
         margin-bottom: 10px
 }
 h1 a {
+	font-size:12px;
+        text-decoration: none;
+}
+
+h2 a {
 	font-size:12px;
         text-decoration: none;
 }
@@ -166,7 +170,10 @@ li.current {
     float:right;
     margin-top: -12px;
 }
-
+.event_table {
+    float:left;
+    margin-left: 10px;
+}
 .event_table tr td {
     text-align: center;
 }
@@ -185,9 +192,26 @@ li.current {
     text-align: center;
 }
 
+.boxLeft {
+    float:left;
+    width: 49%;
+}
+.boxRight {
+    float: right;
+    width: 49%;
+}
+
 #partners {
-    padding: 5px;
-    margin: 5px;
+    margin: 0px 5px 5px 5px;
+}
+
+.middle {
+    text-align: center;
+}
+
+.friend {
+    float:left;
+    margin-left: 5px;
 }
 
 /* opacity:0.7; filter:alpha(opacity=50); */

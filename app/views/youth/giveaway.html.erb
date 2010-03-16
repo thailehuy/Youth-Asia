@@ -1,15 +1,32 @@
-<div id="giveaway_info">
-  We give out RM50000 for those who help promoting Youth'10 to other youths.
-  <ul>
-    <li>
-      RM5000 for 20 largest youth gatherings.
-    </li>
-    <li>
-      RM40000 worth of products and cash on other contests.
-    </li>
-  </ul>
+<div id="giveaway_info" class="box">
+  <div>
+    <p>
+      We give out RM50000 for those who help promoting Youth'10 to other youths.
+      <ul>
+        <li>
+          RM5000 for 20 largest youth gatherings.
+        </li>
+        <li>
+          RM40000 worth of products and cash on other contests.
+        </li>
+      </ul>
+    </p>
+    <br/>
+    <p class="middle">
+      <%= link_to "Join Youth gathering", url_for(:action => "gathering"), :class => "bigButton" %>
+    </p>
+  </div>
+</div>
 
-  <%= link_to "Join Youth gathering", url_for(:action => "gathering"), :class => "bigButton" %>
+<div class="box">
+  <h2>Invite your friends to YouthSays</h2>
+  <div>
+    Youth '10 is presented by YouthSays.com.<br/>
+    Find Youth '10 interesting? Share more interesting opportunities with your friends by inviting them to YouthSays.com and get rewarded.
+    <p class="middle">
+      <%= link_to "Join YouthSays.com", "http://www.youthsays.com", :class => "bigButton", :target => "_blank" %>
+    </p>
+  </div>
 </div>
 
 <fb:serverfbml>
@@ -23,4 +40,8 @@
       </fb:request-form>
     </fb:fbml>
 </script>
-</fb:serverfbml> 
+</fb:serverfbml>
+
+<br class="clr"/>
+
+<br class="clr"/>

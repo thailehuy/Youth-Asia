@@ -1,75 +1,106 @@
 <%= error_messages_for :volunteer %>
 
-<div id="why_volnteer">
-  Some reasons go here
+<div id="why_volunteer" class="box">
+  <h2>Why volunteer at Youth '10?</h2>
+  <div>
+    Some reasons go here
+  </div>
 </div>
+
 <% if !@already_applied %>
-<div id="volunteer_form">
+<div id="volunteer_form" class="box">
+  <h2>Apply to become a volunteer</h2>
   <% form_for :volunteer, @volunteer, 
     :url => {:action => "create_volunteer"}, :html => {:multipart => true} do |f| %>
-  <p>
-    <%= f.label :name %>(*)<br/>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :affiliation %><br/>
-    <%= f.text_field :affiliation %>
-  </p>
-  <p>
-    <%= f.label :email %>(*)<br/>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :phone %>(*)<br/>
-    <%= f.text_field :phone %>
-  </p>
-  <p>
-    <%= f.label :date_of_birth %><br/>
-    <%= f.text_field :date_of_birth %>
-  </p>
-  <p>
-    <%= f.label :address %>(*)<br/>
-    <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.label :race %><br/>
-    <%= f.text_field :race %>
-  </p>
-  <p>
-    <%= f.label :ic_number %>(*)<br/>
-    <%= f.text_field :ic_number %>
-  </p>
-  <p>
-    <%= f.label :reason %>(*)<br/>
-    <%= f.text_area :reason %>
-  </p>
-  <p>
-    <%= f.label :position_1 %><br/>
-    <%= f.select :position_1, Volunteer::POSITION %>
-  </p>
-  <p>
-    <%= f.label :position_2 %><br/>
-    <%= f.select :position_2, Volunteer::POSITION %>
-  </p>
-  <p>
-    <%= f.label :position_3 %><br/>
-    <%= f.select :position_3, Volunteer::POSITION %>
-  </p>
+  <div>
+    <table>
+      <tr>
+        <td>
+          <p>
+            <%= f.label :name %>(*)<br/>
+            <%= f.text_field :name %>
+          </p>
+          <p>
+            <%= f.label :email %>(*)<br/>
+            <%= f.text_field :email %>
+          </p>
+          <p>
+            <%= f.label :phone %>(*)<br/>
+            <%= f.text_field :phone %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <%= f.label :date_of_birth %><br/>
+            <%= f.text_field :date_of_birth %>
+          </p>
+          <p>
+            <%= f.label :address %>(*)<br/>
+            <%= f.text_field :address %>
+          </p>
+          <p>
+            <%= f.label :race %><br/>
+            <%= f.text_field :race %>
+          </p>
+          <p>
+            <%= f.label :ic_number %>(*)<br/>
+            <%= f.text_field :ic_number %>
+          </p>
+        </td>
+        <td>
+          Choose position(s) you are interested in:
+          <p>
+            <%= f.label :position_1 %><br/>
+            <%= f.select :position_1, Volunteer::POSITION %>
+          </p>
+          <p>
+            <%= f.label :position_2 %><br/>
+            <%= f.select :position_2, Volunteer::POSITION %>
+          </p>
+          <p>
+            <%= f.label :position_3 %><br/>
+            <%= f.select :position_3, Volunteer::POSITION %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <p>
+            <%= f.label :reason %>(*)<br/>
+            <%= f.text_area :reason %>
+          </p>
+        </td>
+        <td>
+          <p>
+            Upload your CV: <%= f.file_field :uploaded_data %>
+          </p>
 
-  <p>
-    Upload your CV: <%= f.file_field :uploaded_data %>
-  </p>
-
-  <p>
-    <%= submit_tag "Submit" %>
-  </p>
+          <p>
+            <%= submit_tag "Submit" %>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
   <% end %>
 </div>
 <% end %>
-<div id="volunteer_opp">
-  Explanation goes here
+
+<div id="volunteer_opp" class="box">
+  <h2>
+    Volunteers Opportunities
+  </h2>
+  <div>
+    <%= Content.first ? Content.first.volunteer_opp : "" %>
+  </div>
 </div>
 
-<div id="volunteer_list">
+<div id="volunteer_list" class="box">
+  <h2>
+    Volunteers at Youth '10
+    <span class="see_all">
+      <%= link_to "See all", { :action => "volunteer_list" }, :class => "seeAll" %>
+    </span>
+  </h2>
   <%= render :partial => "volunteer_panel" %>
 </div>

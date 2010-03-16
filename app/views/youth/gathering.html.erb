@@ -1,21 +1,34 @@
-<div id="top_info">
-  In the past two years hundres of groups have gathered to come to Youth '08 and '09.
-  This year we want to reward youths who organize the largest gathering at Youth '10.
-  RM50000 will be given away to 20 groups with largest number of RSVPs on Facebook.<br/>
-  <%= link_to_function "Learn more about the contest", :onclick => "show_more_info_popup" %>
-  <div id="create_button">
-    <%= link_to "Create your own gathering", "#create_form" %>
-    <br/>
-    <%= link_to "Learn how" %>
+<script type="text/javascript">
+  function show_more_info_popup(){
+    alert("Who? What? Where? When? Why?");
+  }
+</script>
+
+<div id="top_info" class="box">
+  <div>
+    In the past two years hundres of groups have gathered to come to Youth '08 and '09.
+    This year we want to reward youths who organize the largest gathering at Youth '10.
+    RM50000 will be given away to 20 groups with largest number of RSVPs on Facebook.
+  </div>
+  <div id="create_button" class="middle">
+    <p>
+      <%= link_to_function "Learn more about the contest", :onclick => "show_more_info_popup", :class => "bigButton" %>
+    </p>
+    <p>
+      <%= link_to "Create your own gathering", "#create_form", :class => "bigButton" %>
+    </p>
+    <p>
+      <%= link_to "Learn how", "", :class => "bigButton" %>
+    </p>
   </div>
 </div>
 
-<div id="steps">
+<div id="steps" class="box">
   <h2>4 simple steps to your gathering</h2>
 
 </div>
 
-<div id="gathering">
+<div id="gathering" class="box">
   <a name="#create_form"></a>
   <h2>Submit your gathering</h2>
   <div id="gathering_form">
@@ -23,16 +36,24 @@
   </div>
 </div>
 
-<div id="your_gathering">
+<div id="your_gathering" class="box">
+  <h2>Gatherings you have submitted</h2>
   <% @your_gathering_events.each do |event| %>
     <%= render :partial => "event", :locals => {:event => event} %>
   <% end %>
-  <%= will_paginate @your_gatherings, :page_param => 'page_your' %>
+  <br class="clr"/>
+  <div>
+    <%= will_paginate @your_gatherings, :page_param => 'page_your' %>
+  </div>
 </div>
 
-<div id="all_gathering">
+<div id="all_gathering" class="box">
+  <h2>All gatherings at Youth '10</h2>
   <% @all_gathering_events.each do |event| %>
     <%= render :partial => "event" %>
   <% end %>
-  <%= will_paginate @all_gatherings, :page_param => 'page_all' %>
+  <br class="clr"/>
+  <div>
+    <%= will_paginate @all_gatherings, :page_param => 'page_all' %>
+  </div>
 </div>

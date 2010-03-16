@@ -3,51 +3,51 @@
 <table>
   <tr>
     <td>
-      <p>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      </p>
-      <p>
-        <%= f.label :date_of_birth %>
-        <%= f.text_field :date_of_birth %>
-      </p>
-      <p>
-        <%= f.label :address %>
-        <%= f.text_field :address %>
-      </p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
     </td>
     <td>
-      <p>
-        <%= f.label :event_link %>
-        <%= f.text_field :event_link %>
-      </p>
-      <p>
-        <%= f.check_box :agreement %>
-        <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
-      </p>
+      <%= f.label :event_link %>
+      <%= f.text_field :event_link %>
     </td>
   </tr>
   <tr>
     <td>
-      <p>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-      </p>
-      <p>
-        <%= f.label :phone %>
-        <%= f.text_field :phone %>
-      </p>
+      <%= f.label :date_of_birth %>
+      <%= f.text_field :date_of_birth %>
     </td>
     <td>
-      <p>
-        <%= f.label :race %>
-        <%= f.text_field :race %>
-      </p>
-      <p>
-        <%= f.label :ic_number %>
-        <%= f.text_field :ic_number %>
-      </p>
-      <%= submit_tag "Create gathering" %>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </td>
+    <td>
+      <%= f.label :ic_number %>
+      <%= f.text_field :ic_number %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.label :race %>
+      <%= f.text_field :race %>
+    </td>
+    <td>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="checkbox" id="gathering[agreement]" name="gathering[agreement]" />
+      <label for="agreement">I have read and agree with Terms &amp; Conditions</label>
+    </td>
+    <td>
+      <%= submit_tag "Create gathering", :class => "bigButton" %>
     </td>
   </tr>
 </table>

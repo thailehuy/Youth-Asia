@@ -263,4 +263,11 @@ class YouthController < ApplicationController
     @friends = fbsession.users_getInfo(:uids => @friend_uids,
             :fields => ["first_name", "pic_square", "profile_url"]).user_list
   end
+
+  def volunteer_list
+    @uids = Volunteer.paginate(:all, :page => params[:page], :per_page => 20).map{|v| v.uid}
+
+    @volunteers = fbsession.users_getInfo(:uids => @uids,
+            :fields => ["first_name", "pic_square", "profile_url"]).user_list
+  end
 end

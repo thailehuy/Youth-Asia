@@ -1,0 +1,15 @@
+<div class="box">
+  <h1>
+    Volunteers at Youth '10
+  </h1>
+
+  <div id="volunteer_list">
+    <% @volunteers.each_with_index do |v, index| %>
+      <%= render :partial => "friend", :object => v %>
+      <%= "<br class='clr'/>"  if index % 4 == 3 %>
+    <% end %>
+  </div>
+  <div class="page_link">
+    <%= will_paginate @uids %>
+  </div>
+</div>
