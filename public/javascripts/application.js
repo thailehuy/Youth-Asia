@@ -10,3 +10,15 @@ function htmlentities(txt) {
   }
   return ret;
 }
+
+function show_more_info_popup(){
+    alert("Who? What? Where? When? Why?");
+}
+
+function show_info(index){
+    $('must_know_1').hide();
+    $('must_know_2').hide();
+    $('must_know_3').hide();
+    $('must_know_4').hide();
+    $('must_know_' + index).show();
+}

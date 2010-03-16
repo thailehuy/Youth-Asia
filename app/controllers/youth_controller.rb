@@ -82,8 +82,6 @@ class YouthController < ApplicationController
     @current_tab = "About"
   end
   #filter
-  # date 1-2-3 = today +1 +2
-  # cat 1-2-3-4 = category
   def guide
     @current_tab = "Guide"
     @cat = params[:cat].to_i
@@ -110,6 +108,21 @@ class YouthController < ApplicationController
     @events = event_list[p_start...p_end]
 
     @have_next_event_page = event_list.size >= p_end
+  end
+
+  def view_event_panel
+    event = event.find_by_id(params[:id])
+    if event
+      @event = fbsession.events_get(:eids => [event.eids], :start_time => start_date).event_list.first
+    end
+
+    render :update do |page|
+      if @event
+        page["guide_event_box"].replace_html :partial => "youth/guide_event", :object => @event
+      else
+        page["guide_event_box"].replace_html "Please choose an event on the left side"
+      end
+    end
   end
 
   def gathering

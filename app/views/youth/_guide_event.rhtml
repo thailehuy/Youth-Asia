@@ -1,10 +1,38 @@
-<table>
-  <tr>
-    <td><%= link_to image_tag(guide_event.pic), event_link(guide_event), :target => "_blank" %></td>
-    <td>
-      <%= link_to guide_event.name, event_link(guide_event), :target => "_blank" %><br/>
-      <%= guide_event.location %><br/>
-      <%= display_time(guide_event.start_time.to_s) %><%= " - " + display_time(guide_event.end_time.to_s) unless guide_event.end_time.blank? %>
-    </td>
-  </tr>
-</table>
+<div class="box">
+  <h2><%= guide_event.name %></h2>
+  <div>
+    <table>
+      <tr>
+        <td>
+          Type: <%= guide_event.event_type %><br/>
+          Start time: <%= display_time(guide_event.start_time.to_s) %><br/>
+          End time: <%= display_time(guide_event.end_time.to_s) %><br/>
+          Location: <%= guide_event.location %>
+        </td>
+        <td><%= link_to image_tag(guide_event.pic), event_link(guide_event), :target => "_blank" %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= guide_event.description %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="box">
+  <h2>Confirmed guess</h2>
+  <div>
+    <% member_uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.scan(/<uid>(.+?)<\/uid>/)[0..5] %>
+    <% members = fbsession.users_getInfo(:uids => member_uids, :fields => ["pic_square", "first_name"]) %>
+
+    <% members.each do |member| %>
+      <%= render "friend", :friend => member %>
+    <% end %>
+  </div>
+</div>
+
+<div class="box">
+  <h2>Share the event</h2>
+  <div>
+    
+  </div>
+</div>

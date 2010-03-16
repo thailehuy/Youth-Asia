@@ -1,66 +1,157 @@
-<div id="guide_intro">
-  Youth Festival is an annual event held by Youth Asia based on Malaysia, YouthSays.com community
-  Youth '09 attracted more than 36000 youths from all over Malaysia with 13 events.
-  This year Youth '10 expects to see more than 70000 youths with a lot more exciting events.
-
-  <div id="guide_links">
-    <%= link_to "Download festival guide", download_guide_url, :class => "bigButton" %><br/>
-    <%= link_to "Learn how", "dummy url", :class => "helpLink" %>
+<div id="guide_intro" class="box">
+  <div>
+  <table>
+    <tr>
+      <td>
+        Youth Festival is an annual event held by Youth Asia based on Malaysia, YouthSays.com community
+        Youth '09 attracted more than 36000 youths from all over Malaysia with 13 events.
+        This year Youth '10 expects to see more than 70000 youths with a lot more exciting events.
+        <%= link_to_function "Learn how", :onclick => "show_more_info_popup" %>
+      </td>
+      <td width="25%">
+        <%= link_to "Download festival guide", download_guide_url, :class => "green" %>
+      </td>
+    </tr>
+  </table>
   </div>
 </div>
 
-<div id="must_know">
-  <div id="must_know_links">
-    <%= link_to "How to get there?", "dummy url", :class => "helpLink" %>
-    <%= link_to "Who should be there?", "dummy url", :class => "helpLink" %>
-    <%= link_to "What to bring?", "dummy url", :class => "helpLink" %>
-    <%= link_to "Who to contact?", "dummy url", :class => "helpLink" %>
-  </div>
-
-  <div id="guide_info">
-    <div>
-      <strong>What?</strong><br/>
-      Youth'10 - Malaysia largest youths festival
-    </div>
-    <div>
-      <strong>When?</strong><br/>
-      8pm - 10pm<br/>
-      Friday - Sunday May 28 - 30, 2010
-    </div>
-    <div>
-      <strong>Where?</strong><br/>
-      PWTC (Putrajaya World Trade Center)
-    </div>
-    <div>
-      <strong>who?</strong><br/>
-      70000 youths and much more
-    </div>
+<div id="must_know" class="box">
+  <h2>Youth '10 must know information</h2>
+  <div>
+    <table>
+      <tr>
+        <td>
+          <%= button_to_function "How to get there?", :onclick => "show_info(1)", :class => "actionBtn bigButton" %><br/>
+          <%= button_to_function "Who should be there?", :onclick => "show_info(2)", :class => "actionBtn bigButton" %><br/>
+          <%= button_to_function "What to bring?", :onclick => "show_info(3)", :class => "actionBtn bigButton" %><br/>
+          <%= button_to_function "Who to contact?", :onclick => "show_info(4)", :class => "actionBtn bigButton" %><br/>
+        </td>
+        <td>
+          <div id="must_know_1" class="must_know_info">
+            <strong>What?</strong><br/>
+            Youth'10 - Malaysia largest youths festival
+          </div>
+          <div id="must_know_2" class="must_know_info" style="display:none">
+            <strong>When?</strong><br/>
+            8pm - 10pm<br/>
+            Friday - Sunday May 28 - 30, 2010
+          </div>
+          <div id="must_know_3" class="must_know_info" style="display:none">
+            <strong>Where?</strong><br/>
+            PWTC (Putrajaya World Trade Center)
+          </div>
+          <div id="must_know_4" class="must_know_info" style="display:none">
+            <strong>Who?</strong><br/>
+            70000 youths and much more
+          </div>
+        </td>
+        <td>
+          Gallery here
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
 
-<div id="guide_events">
-  <h3>All events</h3>
+<div id="guide_events" class="box">
+  <h2>All events</h2>
   <div id="date_filters">
     See only events on:
-    <% (1..3).to_a.each do |index| %>
-      <% date = (Date.today + (index - 1).days) %>
-      <% date_param = (index == params[:date].to_i ? nil : index) %>
-      <% class_name = (index == params[:date].to_i ? "active" : "passive") %>
-      <%= link_to date.strftime("%a %b %d"), url_for(:action => "guide",
-        :cat => params[:cat], :date => date_param), :class => class_name %>
-        &nbsp;
-    <% end %>
+    
+    <% date_param = (params[:date1].to_i == 1 ? 0 : 1) %>
+    <% class_name = (params[:date1].to_i == 1 ? "light" : "green") %>
+    <%= link_to "Friday May 28", {:action => "guide",
+      :date1 => date_param,
+      :date2 => params[:date2],
+      :date3 => params[:date3],
+      :cat1 => params[:cat1],
+      :cat2 => params[:cat2],
+      :cat3 => params[:cat3],
+      :cat4 => params[:cat4],
+    }, :class => class_name %>
+      &nbsp;
+    
+    <% date_param = (params[:date2].to_i == 1 ? 0 : 1) %>
+    <% class_name = (params[:date2].to_i == 1 ? "light" : "green") %>
+    <%= link_to "Friday May 29", {:action => "guide",
+      :date1 => params[:date1],
+      :date2 => date_param,
+      :date3 => params[:date3],
+      :cat1 => params[:cat1],
+      :cat2 => params[:cat2],
+      :cat3 => params[:cat3],
+      :cat4 => params[:cat4],
+    }, :class => class_name %>
+      &nbsp;
+    
+    <% date_param = (params[:date3].to_i == 1 ? 0 : 1) %>
+    <% class_name = (params[:date3].to_i == 1 ? "light" : "green") %>
+    <%= link_to "Friday May 30", {:action => "guide",
+      :date1 => params[:date1],
+      :date2 => params[:date2],
+      :date3 => date_param,
+      :cat1 => params[:cat1],
+      :cat2 => params[:cat2],
+      :cat3 => params[:cat3],
+      :cat4 => params[:cat4],
+    }, :class => class_name %>
+      &nbsp;
   </div>
   <div id="cat_filters">
     See only events about:
-    <% (1..4).to_a.each do |index| %>
-      <% cat = Event::CATEGORIES[index - 1] %>
-      <% cat_param = (index == params[:cat].to_i ? nil : index) %>
-      <% class_name = (index == params[:cat].to_i ? "active" : "passive") %>
-      <%= link_to cat, url_for(:action => "guide",
-        :cat => cat_param, :date => params[:date]), :class => class_name %>
-        &nbsp;
-    <% end %>
+    
+    <% cat_param = (params[:cat1].to_i == 1 ? 0 : 1) %>
+    <% class_name = (params[:cat1].to_i == 1 ? "light" : "green") %>
+    <%= link_to "Lifestyle", {:action => "guide",
+      :date1 => params[:date1],
+      :date2 => params[:date2],
+      :date3 => params[:date3],
+      :cat1 => cat_param,
+      :cat2 => params[:cat2],
+      :cat3 => params[:cat3],
+      :cat4 => params[:cat4],
+    }, :class => class_name %>
+      &nbsp;
+    
+    <% cat_param = (params[:cat2].to_i == 1 ? 0 : 1) %>
+    <% class_name = (params[:cat2].to_i == 1 ? "light" : "green") %>
+    <%= link_to "Sport", {:action => "guide",
+      :date1 => params[:date1],
+      :date2 => params[:date2],
+      :date3 => params[:date3],
+      :cat1 => params[:cat1],
+      :cat2 => cat_param,
+      :cat3 => params[:cat3],
+      :cat4 => params[:cat4],
+    }, :class => class_name %>
+      &nbsp;
+    
+    <% cat_param = (params[:cat3].to_i == 1 ? 0 : 1) %>
+    <% class_name = (params[:cat3].to_i == 1 ? "light" : "green") %>
+    <%= link_to "Music", {:action => "guide",
+      :date1 => params[:date1],
+      :date2 => params[:date2],
+      :date3 => params[:date3],
+      :cat1 => params[:cat1],
+      :cat2 => params[:cat2],
+      :cat3 => cat_param,
+      :cat4 => params[:cat4],
+    }, :class => class_name %>
+      &nbsp;
+    
+    <% cat_param = (params[:cat4].to_i == 1 ? 0 : 1) %>
+    <% class_name = (params[:cat4].to_i == 1 ? "light" : "green") %>
+    <%= link_to "Fashion", {:action => "guide",
+      :date1 => params[:date1],
+      :date2 => params[:date2],
+      :date3 => params[:date3],
+      :cat1 => params[:cat1],
+      :cat2 => params[:cat2],
+      :cat3 => params[:cat3],
+      :cat4 => cat_param,
+    }, :class => class_name %>
+      &nbsp;
   </div>
   <div id="guide_event_panel">
     <%= render :partial => "guide_event_panel" %>
