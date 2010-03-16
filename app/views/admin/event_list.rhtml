@@ -1,3 +1,16 @@
+<% form_for :event, :url => {:action => "make_event"} do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :link, "Event link" %>
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :category %>
+    <%= f.select :category, Event::CATEGORIES %>
+  </p>
+  <%= submit_tag "Create Event" %>
+<% end %>
+
 <% @event_infos.each do |event| %>
   <table>
   <tr>
