@@ -119,6 +119,11 @@ class YouthController < ApplicationController
     @event_slice_3 = @events.select{|e|
       Time.at(e.start_time.to_i) < DateTime.parse("May 31").to_time && Time.at(e.start_time.to_i) > DateTime.parse("May 30").to_time
     }
+
+    flickr = Flickr.new("#{Rails.root}/config/flickr.yml")
+    # @photos = flickr.photos.search(:user_id => '91188732@N00', :photoset_id => '72157602116489467', :per_page => 10)
+    @photoset = flickr.photosets.get_list(:user_id => FLICKR_USER_ID).detect{ |set| set.id == FLICKR_PHOTOSET_ID }
+    @photos = @photoset.get_photos(:per_page => 10)
   end
 
   def update_attendant_panel
