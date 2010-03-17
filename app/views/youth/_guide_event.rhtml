@@ -1,33 +1,35 @@
 <div class="box">
-  <h2><%= guide_event.name %></h2>
+  <h2 id="e_name"><%= guide_event.name %></h2>
   <div>
-    <table>
+    <table width="100%">
       <tr>
         <td>
-          Type: <%= guide_event.event_type %><br/>
-          Start time: <%= display_time(guide_event.start_time.to_s) %><br/>
-          End time: <%= display_time(guide_event.end_time.to_s) %><br/>
-          Location: <%= guide_event.location %>
+          <strong>Type:</strong> <span id="e_type"><%= guide_event.event_type %></span><br/>
+          <strong>Start time:</strong> <span id="e_start"><%= display_time(guide_event.start_time.to_s) %></span><br/>
+          <strong>End time:</strong> <span id="e_end"><%= display_time(guide_event.end_time.to_s) %></span><br/>
+          <strong>Location:</strong> <span id="e_location"><%= guide_event.location %></span>
         </td>
-        <td><%= link_to image_tag(guide_event.pic), event_link(guide_event), :target => "_blank" %></td>
+        <td>
+          <a id="e_link" href="<%= "http://www.facebook.com/event.php?eid=#{guide_event.eid}" %>" target="_blank">
+            <img src="<%= guide_event.pic %>" alt="Event picture" id="e_pic"/>
+          </a>
+        </td>
       </tr>
       <tr>
-        <td colspan="2"><%= guide_event.description %></td>
+        <td colspan="2" id="e_desc"><%= guide_event.description %></td>
       </tr>
     </table>
   </div>
 </div>
 
 <div class="box">
-  <h2>Confirmed guess</h2>
-  <div>
-    <% member_uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.scan(/<uid>(.+?)<\/uid>/)[0..5] %>
-    <% members = fbsession.users_getInfo(:uids => member_uids, :fields => ["pic_square", "first_name"]) %>
-
-    <% members.each do |member| %>
-      <%= render "friend", :friend => member %>
-    <% end %>
+  <h2>Confirmed guests</h2>
+  <% member_uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.scan(/<uid>(.+?)<\/uid>/).flatten[0..5] %>
+  <% members = fbsession.users_getInfo(:uids => member_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list %>
+  <div id="attendant_panel">
+    <%= render :partial => "friend", :collection => members %>
   </div>
+  <br class="clr" />
 </div>
 
 <div class="box">

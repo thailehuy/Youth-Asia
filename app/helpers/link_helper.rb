@@ -35,13 +35,13 @@ module LinkHelper
     "dummy for now"
   end
 
-  def loading_image
-    image_tag("/images/loading.gif", :alt => "Loading ...")
+  def loading_image(width = 100, height = 50)
+    image_tag("/images/loading.gif", :alt => "Loading ...", :width => width, :height => height)
   end
 
   def ajax_next_link(text, div_id, url)
     link_to_remote text, :url => url, :update => div_id,
-      :before => "$('#{div_id}').innerHTML='#{loading_image}'"
+      :before => "$('#{div_id}').innerHTML='#{loading_image("100%", "150")}'"
   end
 
   def status_publisher

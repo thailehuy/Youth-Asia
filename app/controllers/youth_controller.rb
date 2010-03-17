@@ -88,7 +88,7 @@ class YouthController < ApplicationController
 
     (1..4).to_a.each do |index|
       if params["cat#{index}".to_sym].to_i == 0
-        events.delete_if?{|e| e.category == Event::CATEGORIES[index]}
+        events.delete_if{|e| e.category == Event::CATEGORIES[index]}
       end
     end
 
@@ -102,35 +102,45 @@ class YouthController < ApplicationController
       end
     end
 
-    start_date = (DateTime.parse("Friday May 28") + start_date_offset.days).to_time.to_i
-    end_date = (DateTime.parse("Friday May 28") + end_date_offset.days).to_time.to_i
-    @events = fbsession.events_get(:eids => events.collect{|e| e.eid},
+    start_date = (DateTime.parse("May 28") + start_date_offset.days).to_time.to_i
+    end_date = (DateTime.parse("May 28") + end_date_offset.days).to_time.to_i
+    @events = []
+    unless events.blank?
+      @events = fbsession.events_get(:eids => events.collect{|e| e.eid},
                 :start_time => start_date, :end_time => end_date).event_list
-    @event_slice_1 = @events.collect{|e| 
-      Time.at(e.start_time.to_i) < DateTime.parse("Friday May 29").to_time
+    end
+    @first_event = @events.first
+    @event_slice_1 = @events.select{|e|
+      Time.at(e.start_time.to_i) < DateTime.parse("May 29").to_time
     }
-    @event_slice_2 = @events.collect{|e|
-      Time.at(e.start_time.to_i) < DateTime.parse("Saturday May 30").to_time && Time.at(e.start_time.to_i) > DateTime.parse("Saturday May 29").to_time
+    @event_slice_2 = @events.select{|e|
+      Time.at(e.start_time.to_i) < DateTime.parse("May 30").to_time && Time.at(e.start_time.to_i) > DateTime.parse("May 29").to_time
     }
-    @event_slice_3 = @events.collect{|e|
-      Time.at(e.start_time.to_i) < DateTime.parse("Sunday May 31").to_time && Time.at(e.start_time.to_i) > DateTime.parse("Saturday May 30").to_time
+    @event_slice_3 = @events.select{|e|
+      Time.at(e.start_time.to_i) < DateTime.parse("May 31").to_time && Time.at(e.start_time.to_i) > DateTime.parse("May 30").to_time
     }
   end
 
-  def view_event_panel
-    event = event.find_by_id(params[:id])
-    if event
-      @event = fbsession.events_get(:eids => [event.eid]).event_list.first
-    end
+  def update_attendant_panel
+    event = fbsession.events_get(:eids => [params[:eid]]).event_list.first
 
-    render :update do |page|
-      if @event
-        page["guide_event_box"].replace_html :partial => "youth/guide_event", :object => @event
-      else
-        page["guide_event_box"].replace_html "Please choose an event on the left side"
-      end
-    end
+    render :partial => "guide_event", :object => event
   end
+
+#  def view_event_panel
+#    event = event.find_by_id(params[:id])
+#    if event
+#      @event = fbsession.events_get(:eids => [event.eid]).event_list.first
+#    end
+#
+#    render :update do |page|
+#      if @event
+#        page["guide_event_box"].replace_html :partial => "youth/guide_event", :object => @event
+#      else
+#        page["guide_event_box"].replace_html "Please choose an event on the left side"
+#      end
+#    end
+#  end
 
   def gathering
     @current_tab = "Gatherings"
