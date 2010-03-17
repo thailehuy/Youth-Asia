@@ -3,11 +3,11 @@
 <% form_for :ticket, @ticket, :url => url_for(:action => "create_ticket") do |f| %>
 <table>
   <tr>
-    <td>
+    <td width="450px">
         <%= f.label :name %><br/>
         <%= f.text_field :name %>
     </td>
-    <td>
+    <td width="450px">
       <%= f.check_box :agreement %>
       <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
     </td>
