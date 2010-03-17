@@ -286,4 +286,17 @@ class YouthController < ApplicationController
     @volunteers = fbsession.users_getInfo(:uids => @uids,
             :fields => ["first_name", "pic_square", "profile_url"]).user_list
   end
+
+  def invite_fb_friends
+    friend_uids = fbsession.friends_get.friend_list
+    success = fbsession.events_invite(:eid => params[:eid], :uids => friend_uids)
+
+    render :update do |page|
+      if success
+        page.alert("Invitations sent to all your friends in Youth '10")
+      else
+        page.alert("Something went wrong, please try again")
+      end
+    end
+  end
 end
