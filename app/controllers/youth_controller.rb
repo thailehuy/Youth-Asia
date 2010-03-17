@@ -127,21 +127,6 @@ class YouthController < ApplicationController
     render :partial => "guide_event", :object => event
   end
 
-#  def view_event_panel
-#    event = event.find_by_id(params[:id])
-#    if event
-#      @event = fbsession.events_get(:eids => [event.eid]).event_list.first
-#    end
-#
-#    render :update do |page|
-#      if @event
-#        page["guide_event_box"].replace_html :partial => "youth/guide_event", :object => @event
-#      else
-#        page["guide_event_box"].replace_html "Please choose an event on the left side"
-#      end
-#    end
-#  end
-
   def gathering
     @current_tab = "Gatherings"
     @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},

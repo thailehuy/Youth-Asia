@@ -225,4 +225,8 @@ li.current {
     float:left;
     margin-left: 5px;
 }
+
+.no_decor {
+    text-decoration: none;
+}
 /* opacity:0.7; filter:alpha(opacity=50); */
