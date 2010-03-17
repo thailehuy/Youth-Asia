@@ -15,12 +15,7 @@ module LinkHelper
     "http://www.facebook.com/event.php?eid=#{event.eid}"
   end
 
-  def display_attendant(event)
-    fbsession.events_getMembers(:eid => event.eid).attending.split("\n").size
-  end
-
   def navigation_menu current_tab = ""
-    puts current_tab
     links = menu_items.map{|m|
       %Q{
         <li class="#{current_tab == m[0] ? "current" : ""}">
@@ -83,7 +78,7 @@ module LinkHelper
           }
         ]
       }, [ {
-          'text' : 'Join #{fb_user.first_name} gathering',
+          'text' : 'Join #{fb_user.first_name}\'s gathering',
           'href' : '#{gathering.event_link}'
         }
       ]);

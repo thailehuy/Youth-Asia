@@ -84,36 +84,43 @@ class YouthController < ApplicationController
   #filter
   def guide
     @current_tab = "Guide"
-    @cat = params[:cat].to_i
-    if @cat > 0 && @cat < 5
-      events = Event.find(:all, :condition => {:category => Event::CATEGORIES[@cat - 1]})
-    else
-      events = Event.find(:all)
-    end
-    event_eids = events.map{|e| e.eid.to_s}
+    events = Event.find(:all)
 
-    @date = params[:date].to_i
-    if @date > 0 && @date < 4
-      date_offset = @date - 1
-    else
-      date_offset = 0
+    (1..4).to_a.each do |index|
+      if params["cat#{index}".to_sym].to_i == 0
+        events.delete_if?{|e| e.category == Event::CATEGORIES[index]}
+      end
     end
-    start_date = (Date.today + date_offset.days).to_time.to_i
-    @page = params[:page] || 1
-    @page = @page.to_i
-    p_start = (@page - 1) * PER_PAGE
-    p_end = @page * PER_PAGE
-    event_list = []
-    event_list = fbsession.events_get(:eids => event_eids, :start_time => start_date).event_list unless event_eids.blank?
-    @events = event_list[p_start...p_end]
 
-    @have_next_event_page = event_list.size >= p_end
+    start_date_offset = 0
+    end_date_offset = 0
+
+    (1..3).to_a.each do |index|
+      if params["date#{index}".to_sym].to_i == 1
+        start_date_offset += (index - 1) unless start_date_offset > 0
+        end_date_offset += (index - 1)
+      end
+    end
+
+    start_date = (DateTime.parse("Friday May 28") + start_date_offset.days).to_time.to_i
+    end_date = (DateTime.parse("Friday May 28") + end_date_offset.days).to_time.to_i
+    @events = fbsession.events_get(:eids => events.collect{|e| e.eid},
+                :start_time => start_date, :end_time => end_date).event_list
+    @event_slice_1 = @events.collect{|e| 
+      Time.at(e.start_time.to_i) < DateTime.parse("Friday May 29").to_time
+    }
+    @event_slice_2 = @events.collect{|e|
+      Time.at(e.start_time.to_i) < DateTime.parse("Saturday May 30").to_time && Time.at(e.start_time.to_i) > DateTime.parse("Saturday May 29").to_time
+    }
+    @event_slice_3 = @events.collect{|e|
+      Time.at(e.start_time.to_i) < DateTime.parse("Sunday May 31").to_time && Time.at(e.start_time.to_i) > DateTime.parse("Saturday May 30").to_time
+    }
   end
 
   def view_event_panel
     event = event.find_by_id(params[:id])
     if event
-      @event = fbsession.events_get(:eids => [event.eids], :start_time => start_date).event_list.first
+      @event = fbsession.events_get(:eids => [event.eid]).event_list.first
     end
 
     render :update do |page|
