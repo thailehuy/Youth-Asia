@@ -72,6 +72,17 @@ class AdminController < ApplicationController
     end
   end
 
+  def make_event
+    eid = !params[:event][:link].blank? && Utils.get_event_eid(params[:event][:link])
+    @event = Event.find_or_create_by_eid(eid)
+    if @event.update_attributes(params[:event])
+      redirect_to :action => "event_list"
+    else
+      event_list
+      render :action => "event_list"
+    end
+  end
+
   def remove_feature
     feature = Feature.find_by_eid(params[:eid])
     f_type = "event"
