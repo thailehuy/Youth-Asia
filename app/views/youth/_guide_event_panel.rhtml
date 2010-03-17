@@ -36,6 +36,18 @@
         <td>
           <% if !@event_slice_2.blank? %>
             <h3>Friday May 29</h3>
+            <% @event_slice_2.each do |event| %>
+            <div>
+              <%= link_to_remote truncate(event.name, :length => 30, :omission => "..."),
+                {
+                  :url => {:action => "update_attendant_panel", :eid => event.eid},
+                  :update => "guide_event_box",
+                  :before => "$('guide_event_box').innerHTML = '#{loading_image("100%", "275")}'"
+                },
+                {:class => "green"}
+              %>
+            </div>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -43,6 +55,18 @@
         <td>
           <% if !@event_slice_3.blank? %>
             <h3>Friday May 30</h3>
+            <% @event_slice_3.each do |event| %>
+            <div>
+              <%= link_to_remote truncate(event.name, :length => 30, :omission => "..."),
+                {
+                  :url => {:action => "update_attendant_panel", :eid => event.eid},
+                  :update => "guide_event_box",
+                  :before => "$('guide_event_box').innerHTML = '#{loading_image("100%", "275")}'"
+                },
+                {:class => "green"}
+              %>
+            </div>
+            <% end %>
           <% end %>
         </td>
       </tr>
