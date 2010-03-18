@@ -65,7 +65,7 @@ class AdminController < ApplicationController
       feature.save!
     end
 
-    if [:f_type] == "event"
+    if params[:f_type] == "event"
       redirect_to :action => "event_list"
     else
       redirect_to :action => "gathering_list"

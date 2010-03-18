@@ -84,11 +84,16 @@ class YouthController < ApplicationController
   #filter
   def guide
     @current_tab = "Guide"
-    events = Event.find(:all)
+    all_events = Event.all
 
-    (1..4).to_a.each do |index|
-      if params["cat#{index}".to_sym].to_i == 0
-        events.delete_if{|e| e.category == Event::CATEGORIES[index]}
+    events = []
+    if params["cat1".to_sym].to_i == 0 && params["cat2".to_sym].to_i == 0 && params["cat3".to_sym].to_i == 0 && params["cat4".to_sym].to_i == 0
+      events = all_events
+    else
+      (1..4).to_a.each do |index|
+        if params["cat#{index}".to_sym].to_i == 1
+          events += all_events.select{|e| e.category == Event::CATEGORIES[index - 1]}
+        end
       end
     end
 
@@ -103,12 +108,13 @@ class YouthController < ApplicationController
     end
 
     start_date = (DateTime.parse("May 28") + start_date_offset.days).to_time.to_i
-    end_date = (DateTime.parse("May 28") + end_date_offset.days).to_time.to_i
+    end_date = (DateTime.parse("May 29") + end_date_offset.days).to_time.to_i
     @events = []
     unless events.blank?
       @events = fbsession.events_get(:eids => events.collect{|e| e.eid},
                 :start_time => start_date, :end_time => end_date).event_list
     end
+
     @first_event = @events.first
     @event_slice_1 = @events.select{|e|
       Time.at(e.start_time.to_i) < DateTime.parse("May 29").to_time
@@ -123,7 +129,7 @@ class YouthController < ApplicationController
     flickr = Flickr.new("#{Rails.root}/config/flickr.yml")
     # @photos = flickr.photos.search(:user_id => '91188732@N00', :photoset_id => '72157602116489467', :per_page => 10)
     @photoset = flickr.photosets.get_list(:user_id => FLICKR_USER_ID).detect{ |set| set.id == FLICKR_PHOTOSET_ID }
-    @photos = @photoset.get_photos(:per_page => 10)
+    @photos = @photoset.get_photos(:per_page => 8)
   end
 
   def update_attendant_panel
