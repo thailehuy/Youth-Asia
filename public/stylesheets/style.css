@@ -110,12 +110,10 @@ div.box input .input-text{
 }
 
 div.box label{
-	display:block;
 	color:#555555;
 }
 
 div.box label span{
-	display:block;
 	float:left;
 	padding-right:6px;
 	width:70px;
