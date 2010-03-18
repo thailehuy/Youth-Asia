@@ -1,32 +1,40 @@
-<% form_for :event, :url => {:action => "make_event"} do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :link, "Event link" %>
-    <%= f.text_field :link %>
-  </p>
-  <p>
-    <%= f.label :category %>
-    <%= f.select :category, Event::CATEGORIES %>
-  </p>
-  <%= submit_tag "Create Event" %>
-<% end %>
+<div class="box">
+  <h2>Create event</h2>
+  <% form_for :event, :url => {:action => "make_event"} do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :link, "Event link" %>
+      <%= f.text_field :link %>
+    </p>
+    <p>
+      <%= f.label :category %>
+      <%= f.select :category, Event::CATEGORIES %>
+    </p>
+    <%= submit_tag "Create Event" %>
+  <% end %>
+</div>
 
-<% @event_infos.each do |event| %>
-  <table>
-  <tr>
-    <td><%= link_to image_tag(event.pic), event_link(event) %></td>
-    <td>
-      <%= link_to event.name, event_link(event) %><br/>
-      <%= event.location %><br/>
-      <%= display_time(event.start_time.to_s) %><%= " - " + display_time(event.end_time.to_s) unless event.end_time.blank? %>
-    </td>
-  </tr>
-  <tr>
-    <td><%= link_to "Make feature",
-              url_for(:action => "make_feature", :eid => event.eid,
-              :f_type => "event", :event_link => event_link(event)) %></td>
-  </tr>
-</table>
-<% end %>
+<div class="box">
+  <h2>All events</h2>
+  <div>
+    <% @event_infos.each do |event| %>
+      <table>
+      <tr>
+        <td><%= link_to image_tag(event.pic), event_link(event) %></td>
+        <td>
+          <%= link_to event.name, event_link(event) %><br/>
+          <%= event.location %><br/>
+          <%= display_time(event.start_time.to_s) %><%= " - " + display_time(event.end_time.to_s) unless event.end_time.blank? %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= link_to "Make feature",
+                  url_for(:action => "make_feature", :eid => event.eid,
+                  :f_type => "event", :event_link => event_link(event)) %></td>
+      </tr>
+    </table>
+    <% end %>
 
-<%= will_paginate @events %>
+    <%= will_paginate @events %>
+  </div>
+</div>
