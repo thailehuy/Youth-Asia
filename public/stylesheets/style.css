@@ -230,4 +230,8 @@ li.current {
 table.ticket_table td{
     padding: 10px;
 }
+
+.wide {
+    width:150px;
+}
 /* opacity:0.7; filter:alpha(opacity=50); */
