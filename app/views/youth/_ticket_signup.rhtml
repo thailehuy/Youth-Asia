@@ -1,30 +1,31 @@
 <%= error_messages_for :ticket %>
 
 <% form_for :ticket, @ticket, :url => url_for(:action => "create_ticket") do |f| %>
-<table>
+<table class="ticket_table">
   <tr>
     <td>
       <p>
-        <%= f.label :name %><br/>
+        <%= f.label :name %>
         <%= f.text_field :name %>
       </p>
     </td>
     <td>
-      <%= f.check_box :agreement, :label => "I have read and agree with Terms &amp; Conditions" %>
+      <%= f.check_box :agreement %>
+      <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
     </td>
   </tr>
   <tr>
     <td>
       <p>
-        <%= f.label :email %><br/>
+        <%= f.label :email %>
         <%= f.text_field :email %>
       </p>
       <p>
-        <%= f.label :phone %><br/>
+        <%= f.label :phone %>
         <%= f.text_field :phone %>
       </p>
       <p>
-        <%= f.label :ic_number %><br/>
+        <%= f.label :ic_number %>
         <%= f.text_field :ic_number %>
       </p>
     </td>

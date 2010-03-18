@@ -228,4 +228,8 @@ li.current {
 .no_decor {
     text-decoration: none;
 }
+
+.ticket_table td{
+    padding: 10px;
+}
 /* opacity:0.7; filter:alpha(opacity=50); */
