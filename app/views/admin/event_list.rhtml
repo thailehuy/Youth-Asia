@@ -1,17 +1,19 @@
 <div class="box">
   <h2>Create event</h2>
-  <% form_for :event, :url => {:action => "make_event"} do |f| %>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :link, "Event link" %>
-      <%= f.text_field :link %>
-    </p>
-    <p>
-      <%= f.label :category %>
-      <%= f.select :category, Event::CATEGORIES %>
-    </p>
-    <%= submit_tag "Create Event" %>
-  <% end %>
+  <div>
+    <% form_for :event, :url => {:action => "make_event"} do |f| %>
+      <%= f.error_messages %>
+      <p>
+        <%= f.label :link, "Event link" %>
+        <%= f.text_field :link %>
+      </p>
+      <p>
+        <%= f.label :category %>
+        <%= f.select :category, Event::CATEGORIES %>
+      </p>
+      <%= submit_tag "Create Event" %>
+    <% end %>
+  </div>
 </div>
 
 <div class="box">
