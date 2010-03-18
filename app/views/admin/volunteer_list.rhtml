@@ -3,18 +3,17 @@
   <div>
     <% @volunteers.each do |volunteer| %>
       <div>
-        Name: <%= volunteer.name %>
-        Affiliation: <%= volunteer.affiliation %>
-        Email: <%= volunteer.email %>
-        Phone: <%= volunteer.phone %>
-        Date of Birth: <%= volunteer.date_of_birth %>
-        Address: <%= volunteer.address %>
-        Race: <%= volunteer.race %>
-        IC number: <%= volunteer.ic_number %>
-        Position 1: <%= volunteer.position_1 %>
-        Position 2: <%= volunteer.position_2 %>
-        Position 3: <%= volunteer.position_3 %>
-        Reason: <%= volunteer.reason %>
+        Name: <%= volunteer.name %><br/>
+        Email: <%= volunteer.email %><br/>
+        Phone: <%= volunteer.phone %><br/>
+        Date of Birth: <%= volunteer.date_of_birth %><br/>
+        Address: <%= volunteer.address %><br/>
+        Race: <%= volunteer.race %><br/>
+        IC number: <%= volunteer.ic_number %><br/>
+        Position 1: <%= volunteer.position_1 %><br/>
+        Position 2: <%= volunteer.position_2 %><br/>
+        Position 3: <%= volunteer.position_3 %><br/>
+        Reason: <%= volunteer.reason %><br/>
         CV: <%= link_to "Download", url_for(volunteer.public_filename) %>
       </div>
     <% end %>

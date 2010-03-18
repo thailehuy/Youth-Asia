@@ -19,26 +19,25 @@
 <div class="box">
   <h2>All events</h2>
   <div>
-    <% @event_infos.each do |event| %>
-      <table>
-      <tr>
-        <td><%= link_to image_tag(event.pic, :size => "100x75"), event_link(event), :target => "_blank" %></td>
-      </tr>
-      <tr>
-        <td>
-          <%= link_to truncate(event.name, :length => 25, :omission => "..."),
-                                                event_link(event), :target => "_blank" %><br/>
-          <%= truncate(event.location, :length => 25, :omission => "...") %><br/>
-          <%= display_time(event.start_time.to_s) %>
-          <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %>
-        </td>
-      </tr>
-      <tr>
-        <td><%= link_to "Make feature",
-                  url_for(:action => "make_feature", :eid => event.eid,
-                  :f_type => "event", :event_link => event_link(event)) %></td>
-      </tr>
-    </table>
+    <% @event_infos.each_with_index do |event, index| %>
+      <table class="ticket_table">
+        <tr>
+          <td>
+            <%= link_to image_tag(event.pic, :size => "100x75"), event_link(event), :target => "_blank" %><br/>
+            <%= link_to truncate(event.name, :length => 25, :omission => "..."),
+                                                  event_link(event), :target => "_blank" %><br/>
+            <%= truncate(event.location, :length => 25, :omission => "...") %><br/>
+            <%= display_time(event.start_time.to_s) %>
+            <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %>
+          </td>
+          <td>
+            Category: <%= @events[index].category %><br/>
+            <%= link_to "Make feature",
+                    url_for(:action => "make_feature", :eid => event.eid,
+                    :f_type => "event", :event_link => event_link(event)) %>
+          </td>
+        </tr>
+      </table>
     <% end %>
 
     <%= will_paginate @events %>
