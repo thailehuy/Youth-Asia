@@ -1,15 +1,16 @@
 <table class="event_table">
   <tr>
-    <td><%= link_to image_tag(event.pic, :size => "100x75"), event_link(event), :target => "_blank" %></td>
-  </tr>
-  <tr>
+    <td><%= link_to image_tag(event.pic, :size => "90x90"), event_link(event), :target => "_blank" %></td>
     <td>
       <%= link_to truncate(event.name, :length => 25, :omission => "..."),
-                                            event_link(event), :target => "_blank" %><br/>
-      <%= truncate(event.location, :length => 25, :omission => "...") %><br/>
-      <%= display_time(event.start_time.to_s) %>
-      <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %><br/>
-      <%= display_attendant(event) %> attendants so far
+                                      event_link(event), :target => "_blank", :class => "event_link" %>
+      <div>
+        <%= truncate(event.location, :length => 25, :omission => "...") %><br/>
+        <%= display_time(event.start_time.to_s) %>
+        <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %><br/>
+        <strong><%= display_attendant(event) %> attendees so far</strong>
+      </div>
+      <%= link_to "See details", event_link(event), :target => "_blank" %>
     </td>
   </tr>
 </table>

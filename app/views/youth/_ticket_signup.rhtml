@@ -4,34 +4,30 @@
 <table class="ticket_table">
   <tr>
     <td>
-      <p>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      </p>
+        <%= f.text_field :name, :value => @ticket.name || "Name", :onclick => "this.value='';" %>
     </td>
-    <td width="500px">
-      <%= f.check_box :agreement %>
-      <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
+    <td>
+        <%= f.check_box :agreement %>
+        <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
     </td>
   </tr>
   <tr>
     <td>
-      <p>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-      </p>
-      <p>
-        <%= f.label :phone %>
-        <%= f.text_field :phone %>
-      </p>
-      <p>
-        <%= f.label :ic_number %>
-        <%= f.text_field :ic_number %>
-      </p>
+        <%= f.text_field :ic_number, :value => @ticket.ic_number || "IC number", :onclick => "this.value='';" %>
     </td>
+    <td rowspan="3">
+      <%= image_submit_tag "/images/have_account.jpg" %><br/><br/>
+      <%= link_to image_tag("/images/no_account.jpg"), "http://www.youthsays.com", :target => "_blank" %>
+    </td>
+  </tr>
+  <tr>
     <td>
-      <%= submit_tag "Book ticket", :class => "bigButton wide" %><br/><br/>
-      <%= link_to "Visit YouthSays.com", "http://www.youthsays.com", :class => "green" %>
+        <%= f.text_field :email, :value => @ticket.email || "Email", :onclick => "this.value='';" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <%= f.text_field :phone, :value => @ticket.phone || "Phone", :onclick => "this.value='';" %>
     </td>
   </tr>
 </table>

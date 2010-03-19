@@ -1,8 +1,10 @@
-
-<div id="top_info" class="box">
-  <h1>Malaysia's largest youth festival is back</h1>
-  Place holder (Munirah)
-  <br class="clr"/>
+<div id="top_info" class="intro">
+  <div class="get_ticket">
+    <%= link_to image_tag("/images/get_ticket.jpg"), url_for(:action => "booking") %>
+  </div>
+  <div class="learn_more">
+    <%= link_to image_tag("/images/learn_more.jpg"), url_for(:action => "guide") %>
+  </div>
 </div>
 
 <div id="events" class="box">
@@ -15,17 +17,6 @@
 
   <div id="events_panel">
     <%= render :partial => "event_panel" %>
-  </div>
-</div>
-
-<div id="gatherings" class="box">
-  <h1>
-    Featured gatherings
-    <span class="see_all"><%= link_to "See all", { :action => "gathering_list" }, :class => "seeAll" %></span>
-  </h1>
-
-  <div id="gatherings_panel">
-    <%= render :partial => "gathering_panel" %>
   </div>
 </div>
 
@@ -54,7 +45,7 @@
 </div>
 
 <div id="next_move" class="box">
-  <h2>Your next move</h2>
+  <h1>Your next move</h1>
   <div>
     <table id="next_move_table">
       <tr>
