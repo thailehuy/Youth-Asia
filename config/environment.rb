@@ -68,8 +68,6 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
 end
 require 'json'
-FACEBOOK_API_KEY = 'e6888d5e9df5989ebdf6407343ed69c1'
-SERVER_URL = "http://localhost:3000"
 
 class Hpricot::Doc
   def self.yaml_tag_subclasses?

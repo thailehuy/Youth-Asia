@@ -30,3 +30,6 @@ config.action_mailer.raise_delivery_errors = false
 #
 #CACHE = MemCache.new memcache_options
 #CACHE.servers = 'localhost:11211'
+
+FACEBOOK_API_KEY = 'e6888d5e9df5989ebdf6407343ed69c1'
+SERVER_URL = "http://localhost:3000"

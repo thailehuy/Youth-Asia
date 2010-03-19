@@ -3,11 +3,11 @@ module LinkHelper
   [
     ["Home", {:controller => "youth", :action => "index"}],
     ["About", {:controller => "youth", :action => "about"}],
-    ["Guide", {:controller => "youth", :action => "guide"}],
-    ["Gatherings", {:controller => "youth", :action => "gathering"}],
+    ["Festival Guide", {:controller => "youth", :action => "guide"}],
+    ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
     ["Volunteer", {:controller => "youth", :action => "volunteer"}],
     ["Book ticket", {:controller => "youth", :action => "booking"}],
-    ["Giveaway", {:controller => "youth", :action => "giveaway"}]
+    ["RM50,000 Giveaway", {:controller => "youth", :action => "giveaway"}]
   ]
   end
 
@@ -18,7 +18,7 @@ module LinkHelper
   def navigation_menu current_tab = ""
     links = menu_items.map{|m|
       %Q{
-        <li class="#{current_tab == m[0] ? "current" : ""}">
+        <li class="#{current_tab == m[0] ? "active" : ""}">
           #{link_to(m[0], m[1], :class => "navlink") }
         </li>
       }

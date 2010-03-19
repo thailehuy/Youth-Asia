@@ -1,53 +1,34 @@
 <%= error_messages_for :gathering %>
 <% remote_form_for :gathering, @gathering, :url => {:action => "create_gathering"} do |f| %>
-<table>
+<table class="ticket_table">
   <tr>
     <td>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+        <%= f.text_field :name, :value => @gathering.name || "Name", :onclick => "this.value='';" %>
     </td>
     <td>
-      <%= f.label :event_link %>
-      <%= f.text_field :event_link %>
+        <%= f.text_field :event_link, :value => @gathering.event_link || "Event Link", :onclick => "this.value='';" %>
     </td>
   </tr>
   <tr>
     <td>
-      <%= f.label :date_of_birth %>
-      <%= f.text_field :date_of_birth %>
+        <%= f.text_field :ic_number, :value => @gathering.ic_number || "IC number", :onclick => "this.value='';" %>
     </td>
     <td>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-    </td>
-    <td>
-      <%= f.label :ic_number %>
-      <%= f.text_field :ic_number %>
+      <%= f.check_box :agreement %>
+      <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
     </td>
   </tr>
   <tr>
     <td>
-      <%= f.label :race %>
-      <%= f.text_field :race %>
+        <%= f.text_field :email, :value => @gathering.email || "Email", :onclick => "this.value='';" %>
     </td>
-    <td>
-      <%= f.label :phone %>
-      <%= f.text_field :phone %>
+    <td rowspan="2">
+      <%= image_submit_tag "/images/submit_gathering.jpg" %>
     </td>
   </tr>
   <tr>
     <td>
-      <input type="checkbox" id="gathering[agreement]" name="gathering[agreement]" />
-      <label for="agreement">I have read and agree with Terms &amp; Conditions</label>
-    </td>
-    <td>
-      <%= submit_tag "Create gathering", :class => "bigButton" %>
+        <%= f.text_field :phone, :value => @gathering.phone || "Phone", :onclick => "this.value='';" %>
     </td>
   </tr>
 </table>
