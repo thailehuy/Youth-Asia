@@ -152,7 +152,7 @@ class YouthController < ApplicationController
     end
 
     @all_gatherings = Gathering.paginate(:all, :conditions => ["uid <> ?", @uid],
-      :per_page => PER_PAGE, :page => params[:page_your])
+      :per_page => PER_PAGE, :page => params[:page_all])
     @all_gathering_events = []
     event_eids = @all_gatherings.map{|e| e.eid.to_s}
     unless event_eids.empty?
@@ -164,25 +164,16 @@ class YouthController < ApplicationController
 
   def create_gathering
     eid = Utils.get_event_eid(params[:gathering][:event_link])
-    if !eid.blank?
-      gathering = Gathering.new(params[:gathering])
-      gathering.uid = @uid
-      if gathering.save
-        render :update do |page|
-          page["gathering_form"].replace_html :partial => "gathering_form"
-          page.alert("Your gathering has been created")
-          page << gathering_publisher(gathering)
-        end
-      else
-        render :update do |page|
-          @gathering = gathering
-          page.alert("Please check your information again")
-          page["gathering_form"].replace_html :partial => "gathering_form"
-        end
+    gathering = Gathering.find_or_create_by_eid_and_uid(eid, @uid)
+    if gathering.update_attributes(params[:gathering])
+      render :update do |page|
+        page["gathering_form"].replace_html :partial => "gathering_form"
+        page.alert("Your gathering has been created")
+        page << gathering_publisher(gathering)
       end
     else
+      @gathering = gathering
       render :update do |page|
-        @gathering = gathering
         page.alert("Please check your information again")
         page["gathering_form"].replace_html :partial => "gathering_form"
       end

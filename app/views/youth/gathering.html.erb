@@ -33,7 +33,7 @@
   <% end %>
   <br class="clr"/>
   <div>
-    <%= will_paginate @your_gatherings, :page_param => 'page_your' %>
+    <%= will_paginate @your_gatherings, :param_name => 'page_your' %>
   </div>
 </div>
 
@@ -44,6 +44,6 @@
   <% end %>
   <br class="clr"/>
   <div>
-    <%= will_paginate @all_gatherings, :page_param => 'page_all' %>
+    <%= will_paginate @all_gatherings, :param_name => 'page_all' %>
   </div>
 </div>
