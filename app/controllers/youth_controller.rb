@@ -149,7 +149,7 @@ class YouthController < ApplicationController
     end
 
     @all_gatherings = Gathering.paginate(:all, :conditions => ["uid <> ?", @uid],
-      :per_page => PER_PAGE, :page => params[:page_your])
+      :per_page => PER_PAGE, :page => params[:page_all])
     @all_gathering_events = []
     event_eids = @all_gatherings.map{|e| e.eid.to_s}
     unless event_eids.empty?
