@@ -19,6 +19,6 @@ config.action_controller.perform_caching             = false
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
-FACEBOOK_API_KEY = 'e6888d5e9df5989ebdf6407343ed69c1'
+FACEBOOK_API_KEY = 'f6bd3de2d88563f4da1245b0cc4d3a7f'
 SERVER_URL = "http://apps.facebook.com/youthsays"
 ActionController::AbstractRequest.relative_url_root = "http://apps.facebook.com/youthsays"

@@ -12,7 +12,7 @@ test:
     callback_path: /path/to/your/callback/
 
 production:
-    key: e6888d5e9df5989ebdf6407343ed69c1
-    secret: beb70cf8a5aa0150110fc4aca6ac12db
+    key: f6bd3de2d88563f4da1245b0cc4d3a7f
+    secret: 3c278956b8afccd5cfc0c007f4657b46
     canvas_path: /youthasia/
     callback_path: /path/to/your/callback/
