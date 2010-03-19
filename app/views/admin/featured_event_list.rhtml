@@ -28,7 +28,7 @@
             <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %>
           </td>
           <td>
-            Category: <%= @events[index].category %><br/>
+            Category: <%= @event_infos[index].category %><br/>
             <%= link_to "Remove", url_for(:action => "remove_feature", :eid => event.eid) %>
           </td>
         </tr>

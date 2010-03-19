@@ -279,7 +279,7 @@ class YouthController < ApplicationController
   end
 
   def friend_list
-    @uids = fbsession.friends_get.friend_list.paginate(params[:page], 10)
+    @uids = fbsession.friends_get.friend_list.paginate(:page => params[:page], :per_page => 10)
     @friend_uids = @uids
     @have_next_friend_page = @uids.size > @friend_uids.size
 
