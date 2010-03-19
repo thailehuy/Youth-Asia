@@ -78,7 +78,7 @@ module LinkHelper
           }
         ]
       }, [ {
-          'text' : 'Join #{fb_user.first_name}\'s gathering',
+          'text' : 'Join #{fb_user.first_name}\\\'s gathering',
           'href' : '#{gathering.event_link}'
         }
       ]);
