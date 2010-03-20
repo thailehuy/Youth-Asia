@@ -162,8 +162,20 @@ class YouthController < ApplicationController
 
   def gathering
     @current_tab = "Youth Gatherings"
-    get_your_gathering
-    get_all_gathering
+    @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},
+      :per_page => 2, :page => params[:page_your])
+    @your_gathering_events = []
+    event_eids = @your_gatherings.map{|e| Utils.get_event_eid e.event_link}
+    unless event_eids.empty?
+      @your_gathering_events = fbsession.events_get(:eids => event_eids).event_list
+    end
+    @all_gatherings = Gathering.paginate(:all,
+      :per_page => PER_PAGE, :page => params[:page_all])
+    @all_gathering_events = []
+    event_eids = @all_gatherings.map{|e| e.eid.to_s}
+    unless event_eids.empty?
+      @all_gathering_events = fbsession.events_get(:eids => event_eids).event_list
+    end
 
     @gathering = Gathering.new
   end
@@ -191,7 +203,13 @@ class YouthController < ApplicationController
     @gathering.uid = @uid
     @gathering.eid = eid
     if !dup && @gathering.save
-      get_your_gathering
+      @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},
+        :per_page => 2, :page => params[:page_your])
+      @your_gathering_events = []
+      event_eids = @your_gatherings.map{|e| Utils.get_event_eid e.event_link}
+      unless event_eids.empty?
+        @your_gathering_events = fbsession.events_get(:eids => event_eids).event_list
+      end
       render :update do |page|
         page["gathering_form"].replace_html :partial => "gathering_form"
         page["your_gathering"].replace_html :partial => "your_gathering"
@@ -332,26 +350,6 @@ class YouthController < ApplicationController
   end
 
   protected
-  def get_your_gathering
-    @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},
-      :per_page => 2, :page => params[:page_your])
-    @your_gathering_events = []
-    event_eids = @your_gatherings.map{|e| Utils.get_event_eid e.event_link}
-    unless event_eids.empty?
-      @your_gathering_events = fbsession.events_get(:eids => event_eids).event_list
-    end
-  end
-
-  def get_all_gathering
-    @all_gatherings = Gathering.paginate(:all,
-      :per_page => PER_PAGE, :page => params[:page_all])
-    @all_gathering_events = []
-    event_eids = @all_gatherings.map{|e| e.eid.to_s}
-    unless event_eids.empty?
-      @all_gathering_events = fbsession.events_get(:eids => event_eids).event_list
-    end
-  end
-
   def paginate_volunteer
     @volunteer_uids = Volunteer.paginate(:all, :page => params[:page], :per_page => FRIEND_PER_PAGE)
     uids = @volunteer_uids.collect{|v| v.uid}
