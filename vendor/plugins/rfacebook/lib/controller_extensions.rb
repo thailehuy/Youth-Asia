@@ -452,9 +452,11 @@ module RFacebook
         if options.is_a? Hash
           fullCallback = (options[:full_callback] == true) ? true : false # TODO: is there already a Rails param for this?
           options.delete(:full_callback)
+          force_fbapp_url = options[:force_fbapp_url]
+          options.delete(:force_fbapp_url)
         end
           
-        if ((in_facebook_canvas? or in_mock_ajax? or in_ajax?) and !fullCallback) #TODO: do something separate for in_facebook_frame?
+        if ((force_fbapp_url or in_facebook_canvas? or in_mock_ajax? or in_ajax?) and !fullCallback) #TODO: do something separate for in_facebook_frame?
           
           if options.is_a? Hash
             options[:only_path] = true if options[:only_path].nil?
