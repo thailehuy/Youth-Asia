@@ -29,7 +29,7 @@
           </td>
           <td>
             Category: <%= @event_infos[index].category %><br/>
-            <%= link_to "Remove", url_for(:action => "remove_feature", :eid => event.eid) %>
+            <%= link_to "Remove", {:action => "remove_feature", :eid => event.eid} %>
           </td>
         </tr>
       </table>

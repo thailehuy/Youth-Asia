@@ -1,9 +1,9 @@
 <div id="top_info" class="intro">
   <div class="get_ticket">
-    <%= link_to image_tag("/images/get_ticket.jpg"), url_for(:action => "booking") %>
+    <%= link_to image_tag("/images/get_ticket.jpg"), {:action => "booking"} %>
   </div>
   <div class="learn_more">
-    <%= link_to image_tag("/images/learn_more.jpg"), url_for(:action => "guide") %>
+    <%= link_to image_tag("/images/learn_more.jpg"), {:action => "guide"} %>
   </div>
 </div>
 
@@ -50,19 +50,19 @@
     <table id="next_move_table">
       <tr>
         <td>Get a ticket</td>
-        <td><%= link_to "Book here for free", url_for(:action => "booking"), :class => "softLink" %></td>
+        <td><%= link_to "Book here for free", {:action => "booking"}, :class => "softLink" %></td>
       </tr>
       <tr>
         <td>Share the opportunities with your friends and get rewarded</td>
-        <td><%= link_to "Invite your friends", url_for(:action => "giveaway"), :class => "softLink" %></td>
+        <td><%= link_to "Invite your friends", {:action => "giveaway"}, :class => "softLink" %></td>
       </tr>
       <tr>
         <td>RSVP for an event</td>
-        <td><%= link_to "See list of events", url_for(:action => "guide"), :class => "softLink" %></td>
+        <td><%= link_to "See list of events", {:action => "guide"}, :class => "softLink" %></td>
       </tr>
       <tr>
         <td>Lend us a hand</td>
-        <td><%= link_to "Become a volunteer", url_for(:action => "volunteer"), :class => "softLink" %></td>
+        <td><%= link_to "Become a volunteer", {:action => "volunteer"}, :class => "softLink" %></td>
       </tr>
     </table>
   </div>

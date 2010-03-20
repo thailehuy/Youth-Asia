@@ -13,7 +13,7 @@
     </p>
     <br/>
     <p class="middle">
-      <%= link_to image_tag("/images/create_gathering.jpg"), url_for(:action => "gathering") %>
+      <%= link_to image_tag("/images/create_gathering.jpg"), {:action => "gathering"} %>
     </p>
   </div>
 </div>
@@ -32,7 +32,7 @@
 <fb:serverfbml>
 <script type="text/fbml">
     <fb:fbml>
-      <fb:request-form action="<%= SERVER_URL + url_for(:action => "index") %>"
+      <fb:request-form action="<%= SERVER_URL + {:action => "index"} %>"
           method="POST" invite="true" type="Youth Asia"
           content="This network is the best place on Facebook for viewing, sharing and giving friends the highest quality stuff.  Join me on this network! <fb:req-choice url='<%= SERVER_URL + url_for(:action => "landing", :from_ref => @uid) %>' label='Check out Youth 10!' />"
           exclude_ids="<%= @exclude_friends.join(',') %>" >

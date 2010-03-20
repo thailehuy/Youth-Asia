@@ -14,8 +14,8 @@
           </td>
           <td>
             <%= link_to "Make feature",
-                  url_for(:action => "make_feature", :eid => event.eid,
-                  :f_type => "gathering", :event_link => event_link(event)) %>
+                  {:action => "make_feature", :eid => event.eid,
+                  :f_type => "gathering", :event_link => event_link(event)} %>
           </td>
         </tr>
       </table>

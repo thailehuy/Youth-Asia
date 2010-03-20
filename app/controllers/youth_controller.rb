@@ -8,6 +8,15 @@ class YouthController < ApplicationController
     redirect_to :action => "index"
   end
 
+  def fix_data
+    Gathering.all.each do |gathering|
+      gathering.update_attribute(:eid, Utils.get_event_eid(gathering.event_link))
+    end
+    Event.all.each do |gathering|
+      gathering.update_attribute(:eid, Utils.get_event_eid(gathering.event_link))
+    end
+  end
+
   def index
     if request.xml_http_request?
       if params[:friend_page]
