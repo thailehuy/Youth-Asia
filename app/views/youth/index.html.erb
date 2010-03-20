@@ -1,9 +1,9 @@
 <div id="top_info" class="intro">
   <div class="get_ticket">
-    <%= link_to image_tag("/images/get_ticket.jpg"), {:action => "booking"} %>
+    <%= link_to image_tag("/images/get_ticket.jpg"), {:controller => 'youth', :action => "booking"} %>
   </div>
   <div class="learn_more">
-    <%= link_to image_tag("/images/learn_more.jpg"), {:action => "guide"} %>
+    <%= link_to image_tag("/images/learn_more.jpg"), {:controller => 'youth', :action => "guide"} %>
   </div>
 </div>
 
@@ -17,6 +17,19 @@
 
   <div id="events_panel">
     <%= render :partial => "event_panel" %>
+  </div>
+</div>
+
+<div id="gatherings" class="box">
+  <h1>
+    Featured gatherings
+    <span class="see_all">
+      <%= link_to "See all", { :action => "gathering" }, :class => "seeAll" %>
+    </span>
+  </h1>
+
+  <div id="gatherings_panel">
+    <%= render :partial => "gathering_panel" %>
   </div>
 </div>
 
@@ -50,19 +63,19 @@
     <table id="next_move_table">
       <tr>
         <td>Get a ticket</td>
-        <td><%= link_to "Book here for free", {:action => "booking"}, :class => "softLink" %></td>
+        <td><%= link_to "Book here for free", {:controller => 'youth', :action => "booking"}, :class => "softLink" %></td>
       </tr>
       <tr>
         <td>Share the opportunities with your friends and get rewarded</td>
-        <td><%= link_to "Invite your friends", {:action => "giveaway"}, :class => "softLink" %></td>
+        <td><%= link_to "Invite your friends", {:controller => 'youth', :action => "giveaway"}, :class => "softLink" %></td>
       </tr>
       <tr>
         <td>RSVP for an event</td>
-        <td><%= link_to "See list of events", {:action => "guide"}, :class => "softLink" %></td>
+        <td><%= link_to "See list of events", {:controller => 'youth', :action => "guide"}, :class => "softLink" %></td>
       </tr>
       <tr>
         <td>Lend us a hand</td>
-        <td><%= link_to "Become a volunteer", {:action => "volunteer"}, :class => "softLink" %></td>
+        <td><%= link_to "Become a volunteer", {:controller => 'youth', :action => "volunteer"}, :class => "softLink" %></td>
       </tr>
     </table>
   </div>

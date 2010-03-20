@@ -30,4 +30,9 @@ module FixFbAppUrlHelper
     end
   end
 
+  def fb_will_paginate(collection = nil, options = {})
+    options[:params] ||= {}
+    options[:params][:force_fbapp_url] = true
+    will_paginate collection, options
+  end
 end

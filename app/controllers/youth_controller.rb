@@ -11,7 +11,6 @@ class YouthController < ApplicationController
   def index
     if request.xml_http_request?
       if params[:friend_page]
-        @featured_gatherings = []
         uids = fbsession.friends_get.friend_list
         @friend_uids = uids.paginate(:page => params[:friend_page], :per_page => FRIEND_PER_PAGE)
         @friends = fbsession.users_getInfo(:uids => @friend_uids,
@@ -27,6 +26,15 @@ class YouthController < ApplicationController
           @featured_events = fbsession.events_get(:eids => @featured_event_eids).event_list
         end
         render :partial => "youth/event_panel"
+      elsif params[:gathering_page]
+        @featured_gatherings = []
+        @gatherings = Feature.paginate(:all,
+              :page => params[:event_page], :per_page => PER_PAGE,
+              :conditions => {:f_type => "gathering"})
+        @featured_gathering_eids = @gatherings.map{|e| e.eid.to_s}
+        unless @featured_gathering_eids.empty?
+          @featured_gatherings = fbsession.events_get(:eids => @featured_gathering_eids).event_list
+        end
       else
         render :nothing => true
       end
@@ -47,13 +55,15 @@ class YouthController < ApplicationController
       unless @featured_event_eids.empty?
         @featured_events = fbsession.events_get(:eids => @featured_event_eids).event_list
       end
-
-#      featured_gathering_eids = Feature.find(:all,
-#        :page => params[:page], :per_page => PER_PAGE,
-#        :conditions => {:f_type => "gathering"}).map{|e| e.eid.to_s}
-#      unless featured_gathering_eids.empty?
-#        @featured_gatherings = fbsession.events_get(:eids => featured_gathering_eids).event_list
-#      end
+      
+      @featured_gatherings = []
+      @gatherings = Feature.paginate(:all,
+            :page => params[:event_page], :per_page => PER_PAGE,
+            :conditions => {:f_type => "gathering"})
+      @featured_gathering_eids = @gatherings.map{|e| e.eid.to_s}
+      unless @featured_gathering_eids.empty?
+        @featured_gatherings = fbsession.events_get(:eids => @featured_gathering_eids).event_list
+      end
 
       @ticket_rsvp = Ticket.find_by_uid(@uid)
       unless @ticket_rsvp

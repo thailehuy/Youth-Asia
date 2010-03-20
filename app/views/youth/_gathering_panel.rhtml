@@ -3,17 +3,6 @@
   <br class="clr"/>
 </div>
 <div class="page_link">
-  <% if @page > 1 %>
-    <%= ajax_next_link("Previous", "gatherings_panel",
-      url_for(:controller => "youth", :action => "show_event_page", :page => @page - 1)) %>
-  <% else %>
-    Previous
-  <% end %>
-  |
-  <% if @have_next_gathering_page %>
-    <%= ajax_next_link("Next", "gatherings_panel",
-      url_for(:controller => "youth", :action => "show_event_page", :page => @page + 1)) %>
-  <% else %>
-    Next
-  <% end %>
+  <%= will_paginate @gatherings, :renderer => 'RemoteLinkRenderer',
+    :remote => {:update => "gatherings_panel"}, :param_name => "gathering_page" %>
 </div>
