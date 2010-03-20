@@ -332,7 +332,7 @@ module WillPaginate
           @url_params[param_name] = page_one ? 1 : 2
         end
 
-        url = @template.url_for(@url_params.merge(:force_fbapp_url => true))
+        url = @template.url_for(@url_params)
         return url if page_one
         
         if complex
@@ -341,7 +341,7 @@ module WillPaginate
         else
           @url_string = url
           @url_params[param_name] = 3
-          @template.url_for(@url_params.merge(:force_fbapp_url => true)).split(//).each_with_index do |char, i|
+          @template.url_for(@url_params).split(//).each_with_index do |char, i|
             if char == '3' and url[i, 1] == '2'
               @url_string[i] = "\0"
               break
