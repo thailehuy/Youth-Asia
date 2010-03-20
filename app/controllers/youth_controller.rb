@@ -161,6 +161,20 @@ class YouthController < ApplicationController
   end
 
   def gathering
+    if request.xml_http_request?
+      if params[:page_all]
+        get_all_gathering
+        render :partial => "youth/all_gathering"
+      elsif params[:page_your]
+        get_your_gathering
+        render :partial => "youth/your_gathering"
+      else
+        render :nothing => true
+      end
+      return
+    else
+
+    end
     @current_tab = "Youth Gatherings"
     get_your_gathering
     get_all_gathering
@@ -342,10 +356,10 @@ class YouthController < ApplicationController
   end
 
   def get_all_gathering
-    @all_gatherings = Gathering.paginate(:all,
+    @all_gatherings = Gathering.paginate(:all, :conditions => ["eid <> ''"],
       :per_page => PER_PAGE, :page => params[:page_all])
     @all_gathering_events = []
-    event_eids = @all_gatherings.map{|e| e.eid}.compact.delete_if{|eid| eid.blank?}
+    event_eids = @all_gatherings.map{|e| e.eid}.compact
     unless event_eids.empty?
       @all_gathering_events = fbsession.events_get(:eids => event_eids).event_list
     end
