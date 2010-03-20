@@ -1,0 +1,11 @@
+<h1>Gatherings you have submitted</h1>
+<div id="your_gatherings">
+  <% @your_gathering_events.each do |event| %>
+    <%= render :partial => "event", :locals => {:event => event} %>
+  <% end %>
+  <br class="clr"/>
+  <div>
+    <%= will_paginate @your_gatherings, :renderer => 'RemoteLinkRenderer',
+      :remote => {:update => "your_gatherings"}, :param_name => "page_your" %>
+  </div>
+</div>

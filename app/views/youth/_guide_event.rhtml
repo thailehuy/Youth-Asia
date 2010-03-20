@@ -1,49 +1,41 @@
-<div class="box">
-  <h2 id="e_name"><%= link_to guide_event.name, event_link(guide_event) %></h2>
-  <div>
-    <table width="100%">
+<div>
+    <table width="100%" class="guide_event_table">
       <tr>
-        <td>
-          <strong>Type:</strong> <span id="e_type"><%= guide_event.event_type %></span><br/>
-          <strong>Start time:</strong> <span id="e_start"><%= display_time(guide_event.start_time.to_s) %></span><br/>
-          <strong>End time:</strong> <span id="e_end"><%= display_time(guide_event.end_time.to_s) %></span><br/>
-          <strong>Location:</strong> <span id="e_location"><%= guide_event.location %></span>
-        </td>
-        <td>
+        <td width="20%">
           <a id="e_link" href="<%= "http://www.facebook.com/event.php?eid=#{guide_event.eid}" %>" target="_blank">
             <img src="<%= guide_event.pic %>" alt="Event picture" id="e_pic"/>
           </a>
         </td>
+        <td>
+          <%= link_to guide_event.name, event_link(guide_event), :class => "event_name" %>
+          <p>
+            Type: <span id="e_type"><%= guide_event.event_type %></span><br/>
+            Start time: <span id="e_start"><%= display_time(guide_event.start_time.to_s) %></span><br/>
+            End time: <span id="e_end"><%= display_time(guide_event.end_time.to_s) %></span><br/>
+            Location: <span id="e_location"><%= guide_event.location %></span>
+          </p>
+          <strong><%= display_attendant(guide_event) %> attendees so far</strong>
+        </td>
+        <td width="30%">
+          <div>+ Share this event:</div>
+          <div>
+            <%= link_to image_tag("/images/twitter-16x16.png", :class => "alignV") + " Tweet it!!!", "http://twitter.com/?status=Join me at http://www.facebook.com/event.php?eid=#{guide_event.eid}", :class => "no_decor" %>
+          </div>
+          <div id="invite_fb_link">
+            <%= link_to_remote image_tag("/images/facebook-16x16.png", :class => "alignV") + " Invite FB friends",
+                        {
+                          :url => {:action => "invite_fb_friends", :eid => guide_event.eid},
+                          :before => "$('invite_fb_link').hide(); $('please_wait').show();",
+                          :complete => "$('invite_fb_link').show(); $('please_wait').hide();"
+                        }, {:class => "no_decor"} %>
+          </div>
+          <div id="please_wait" style="display:none">Sending invites, please wait ...</div>
+        </td>
       </tr>
       <tr>
-        <td colspan="2" id="e_desc"><%= guide_event.description %></td>
+        <td colspan="3">
+          <%= truncate(guide_event.description, :length => 400, :omission => "...") %>
+        </td>
       </tr>
     </table>
-  </div>
-</div>
-
-<div class="box">
-  <h2>Confirmed guests</h2>
-  <% member_uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.scan(/<uid>(.+?)<\/uid>/).flatten[0..5] %>
-  <% members = fbsession.users_getInfo(:uids => member_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list %>
-  <div id="attendant_panel">
-    <%= render :partial => "friend", :collection => members %>
-  </div>
-  <br class="clr" />
-</div>
-
-<div class="box">
-  <h2>Share the event</h2>
-  <div>
-    <%= link_to image_tag("/images/twitter-16x16.png") + " Tweet it!!!", "http://twitter.com/?status=Join me at http://www.facebook.com/event.php?eid=#{guide_event.eid}", :class => "no_decor" %>
-  </div>
-  <div id="invite_fb_link">
-    <%= link_to_remote "Invite all your friends at Youth '10",
-                {
-                  :url => {:action => "invite_fb_friends", :eid => guide_event.eid},
-                  :before => "$('invite_fb_link').hide(); $('please_wait').show();",
-                  :complete => "$('invite_fb_link').show(); $('please_wait').hide();"
-                } %>
-  </div>
-  <div id="please_wait" style="display:none">Sending invites, please wait ...</div>
 </div>

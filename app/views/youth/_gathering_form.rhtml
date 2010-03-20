@@ -1,6 +1,11 @@
 <%= error_messages_for :gathering %>
-<% remote_form_for :gathering, @gathering, :url => {:action => "create_gathering"} do |f| %>
-<table class="ticket_table">
+<% remote_form_for :gathering, @gathering, :url => {:action => "create_gathering"},
+  :before => "$('ticket_booking_loading').show(); $('ticket_booking_table').hide()" do |f| %>
+
+<div id="ticket_booking_loading" style="display:none">
+  <%= loading_image("100%", "300") %>
+</div>
+<table class="ticket_table" id="ticket_booking_table">
   <tr>
     <td>
         <%= f.text_field :name, :value => @gathering.name || "Name", :onclick => "this.value='';" %>
@@ -14,7 +19,7 @@
         <%= f.text_field :ic_number, :value => @gathering.ic_number || "IC number", :onclick => "this.value='';" %>
     </td>
     <td>
-      <%= f.check_box :agreement %>
+      <%= f.check_box :agreement, {}, "on", "off" %>
       <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
     </td>
   </tr>

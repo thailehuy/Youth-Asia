@@ -1,0 +1,13 @@
+border: #c2c2c2
+
+background: #f2f3f3
+
+link: #3784b1
+
+top background: #e2e0e0
+
+splitter: #cfcfcf
+
+btn active: #819511
+
+btn passive: #abada2

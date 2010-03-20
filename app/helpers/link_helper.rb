@@ -1,14 +1,26 @@
+class RemoteLinkRenderer < WillPaginate::LinkRenderer
+  def prepare(collection, options, template)
+    @remote = options.delete(:remote) || {}
+    super
+  end
+
+  protected
+  def page_link(page, text, attributes = {})
+    @template.link_to_remote(text, {:url => url_for(page), :method => :get}.merge(@remote), attributes)
+  end
+end
+
 module LinkHelper
   def menu_items
-  [
-    ["Home", {:controller => "youth", :action => "index"}],
-    ["About", {:controller => "youth", :action => "about"}],
-    ["Festival Guide", {:controller => "youth", :action => "guide"}],
-    ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
-    ["Volunteer", {:controller => "youth", :action => "volunteer"}],
-    ["Book ticket", {:controller => "youth", :action => "booking"}],
-    ["RM50,000 Giveaway", {:controller => "youth", :action => "giveaway"}]
-  ]
+    [
+      ["Home", {:controller => "youth", :action => "index"}],
+      ["About", {:controller => "youth", :action => "about"}],
+      ["Festival Guide", {:controller => "youth", :action => "guide"}],
+      ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
+      ["Volunteer", {:controller => "youth", :action => "volunteer"}],
+      ["Book ticket", {:controller => "youth", :action => "booking"}],
+      ["Invite Friends", {:controller => "youth", :action => "giveaway"}]
+    ]
   end
 
   def event_link(event)
@@ -46,18 +58,18 @@ module LinkHelper
 
   def status_publisher
     fb_user = fbsession.users_getInfo(:uids => @uid,
-            :fields => ["first_name"]).user_list.first
+      :fields => ["first_name"]).user_list.first
     %Q{
       callPublish('',
         {'name':'Youth 10','href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}',
-        'description':'#{fb_user.first_name} has just successfully secured a spot in Youth 2010 - Malaysia largest youth festival',
-        'media':
-          [
-            {
-            'type':'image','src':'http://www.i-tich.net/facebook/mood/images/mood9.gif',
-            'href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'
-            }
-          ]
+    'description':'#{fb_user.first_name} has just successfully secured a spot in Youth 2010 - Malaysia largest youth festival',
+    'media':
+    [
+    {
+    'type':'image','src':'http://www.i-tich.net/facebook/mood/images/mood9.gif',
+    'href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'
+    }
+    ]
         },
         [{ 'text': 'Book ticket', 'href': 'http://apps.facebook.com/youthasia/youth/booking'}]);
         return false;

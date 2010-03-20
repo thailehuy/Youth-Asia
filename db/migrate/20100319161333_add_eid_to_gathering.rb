@@ -4,8 +4,7 @@ class AddEidToGathering < ActiveRecord::Migration
 
     Gathering.all.each do |gathering|
       gathering.update_eid
-      gathering.agreement = 'on'
-      gathering.save!
+      gathering.save
     end
   end
 
