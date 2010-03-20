@@ -345,13 +345,11 @@ class YouthController < ApplicationController
     @all_gatherings = Gathering.paginate(:all,
       :per_page => PER_PAGE, :page => params[:page_all])
     @all_gathering_events = []
-    event_eids = @all_gatherings.map{|e| e.eid.to_s}
+    event_eids = @all_gatherings.map{|e| e.eid.to_s}.compact
 
     unless event_eids.empty?
       @all_gathering_events = fbsession.events_get(:eids => event_eids).event_list
     end
-  rescue
-    @all_gathering_events = []
   end
 
   def paginate_volunteer
