@@ -68,7 +68,7 @@
 <div id="all_gathering" class="box">
   <h1>All gatherings at Youth '10</h1>
   <% @all_gathering_events.each do |event| %>
-    <%= render :partial => "event" %>
+    <%= render :partial => "event", :object => event %>
   <% end %>
   <br class="clr"/>
   <div>

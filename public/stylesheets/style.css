@@ -65,12 +65,12 @@ a:visited.filterBtnSelected {
     text-decoration: none;
 }
 
- a.event_name {
+a.event_name {
     font-size: 16px;
     color: #000000;
 }
 
- a.event_name, a:hover.event_name,  a:visited.event_name {
+a.event_name, a:hover.event_name,  a:visited.event_name {
     text-decoration: none;
 }
 
@@ -112,17 +112,17 @@ table td {padding: 5px;}
 
 a{color:#0033CC;}
 h1, h2, p, form{
-	border:0px;
-	margin:0px;
-	padding:0px;
+    border:0px;
+    margin:0px;
+    padding:0px;
 }
 
 input{	font-family:"Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
-	font-size:12px;
+       font-size:12px;
 }
 h2{	color:#666666;
-	margin-bottom:20px;
-	font-size:16px;
+    margin-bottom:20px;
+    font-size:16px;
 }
 
 div.box{
@@ -137,29 +137,29 @@ div.box{
     background: #f9f9f9;
     color:#333333;
     padding: 5px;
-    margin: 8px
+    margin: 9px
 }
 div.box h1 {
-	font-size:30px;
-	color:#000000;
-	padding:5px;
-        margin-bottom: 10px
+    font-size:30px;
+    color:#000000;
+    padding:5px;
+    margin-bottom: 10px
 }
 h1 a {
-	font-size:12px;
-        text-decoration: none;
+    font-size:12px;
+    text-decoration: none;
 }
 
 h2 a {
-	font-size:12px;
-        text-decoration: none;
+    font-size:12px;
+    text-decoration: none;
 }
 div.box h2 {
-	font-size:16px;
-        background:#dfe4ee;
-	color:#000000;
-	padding:5px;
-        margin-bottom: 10px
+    font-size:16px;
+    background:#dfe4ee;
+    color:#000000;
+    padding:5px;
+    margin-bottom: 10px
 }
 
 div.box div{
@@ -169,21 +169,21 @@ div.box div{
 div.box p{padding-bottom:14px;}
 
 div.box input .input-text{
-	border:1px solid #3b6e22;
-	color:#666666;
-	width:180px;
+    border:1px solid #3b6e22;
+    color:#666666;
+    width:180px;
 }
 
 div.box label{
-	color:#555555;
+    color:#555555;
 }
 
 div.box label span{
-	float:left;
-	padding-right:6px;
-	width:70px;
-	text-align:right;
-	font-weight:bold;
+    float:left;
+    padding-right:6px;
+    width:70px;
+    text-align:right;
+    font-weight:bold;
 }
 
 .top_div {
@@ -192,39 +192,39 @@ div.box label span{
 
 
 .spacer{margin-left:80px;
-	margin-bottom:10px;
-	font-size:11px;
-	color:#555555;
+        margin-bottom:10px;
+        font-size:11px;
+        color:#555555;
 }
 .green{
-	background:url(/images/green.gif);
-	padding:0px 6px;
-	border:1px solid #3b6e22;
-	height:24px;
-	line-height:24px;
-	color:#FFFFFF;
-	font-size:12px;
-	margin-right:10px;
-	display:inline-block;
-	text-decoration:none;
+    background:url(/images/green.gif);
+    padding:0px 6px;
+    border:1px solid #3b6e22;
+    height:24px;
+    line-height:24px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin-right:10px;
+    display:inline-block;
+    text-decoration:none;
 }
 .light{
-	background:url(/images/light.gif);
-	padding:0px 6px;
-	border:1px solid #3b6e22;
-	height:24px;
-	line-height:24px;
-	color:#FFFFFF;
-	font-size:12px;
-	margin-right:10px;
-	display:inline-block;
-	text-decoration:none;
+    background:url(/images/light.gif);
+    padding:0px 6px;
+    border:1px solid #3b6e22;
+    height:24px;
+    line-height:24px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin-right:10px;
+    display:inline-block;
+    text-decoration:none;
 }
 
 .intro {
     background:url(/images/top_intro_1.jpg) no-repeat;
     height:310px;
-    margin: 3px;
+    margin: 9px;
 }
 
 div.get_ticket {
@@ -245,7 +245,7 @@ div.learn_more {
 }
 .event_table {
     float:left;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 .event_table tr td {
     padding:5px;
@@ -273,11 +273,11 @@ div.learn_more {
 
 .boxLeft {
     float:left;
-    width: 49%;
+    width: 46%;
 }
 .boxRight {
     float: right;
-    width: 49%;
+    width: 46%;
 }
 
 #partners {
@@ -313,6 +313,9 @@ table.info_table td{
 table.filter_table td{
     vertical-align: text-top;
     padding: 0px 5px;
+}
+
+table.filter_table {
     border-bottom: 1px solid #cfcfcf;
 }
 
@@ -321,6 +324,19 @@ table.guide_event_table {
 }
 
 #guide_event_panel {
-    
+    overflow: auto;
+    max-height: 1000px;
+    height: auto !important;
+    height: expression( this.clientHeight > 1000 ? "1000px" : "auto" );
+}
+
+.select_wide {
+    width: 150px;
+}
+
+.friend_table {
+    text-align: center;
+    margin: 5px;
+    float: left;
 }
 /* opacity:0.7; filter:alpha(opacity=50); */
