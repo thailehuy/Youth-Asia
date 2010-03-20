@@ -90,49 +90,44 @@ class YouthController < ApplicationController
     all_events = Event.all
 
     events = []
-    if params["cat1".to_sym].to_i == 0 && params["cat2".to_sym].to_i == 0 && params["cat3".to_sym].to_i == 0 && params["cat4".to_sym].to_i == 0
-      events = all_events
+    zero_cat = true
+    Event::CATEGORIES.each_with_index do |cat, index|
+      if params["cat#{index + 1}".to_sym].to_i == 1
+        events += all_events.select{|e| e.category == cat}
+        zero_cat = false
+      end
+    end
+
+    events = all_events if zero_cat
+    
+    if params["date1".to_sym].to_i == 0 && params["date2".to_sym].to_i == 0 && params["date3".to_sym].to_i == 0
+      start_date = nil
+      end_date = nil
     else
-      (1..4).to_a.each do |index|
-        if params["cat#{index}".to_sym].to_i == 1
-          events += all_events.select{|e| e.category == Event::CATEGORIES[index - 1]}
+      start_date_offset = 0
+      end_date_offset = 0
+
+      (1..3).to_a.each do |index|
+        if params["date#{index}".to_sym].to_i == 1
+          start_date_offset += (index - 1) unless start_date_offset > 0
+          end_date_offset += (index - 1)
         end
       end
+      start_date = (DateTime.parse("May 28") + start_date_offset.days).to_time.to_i
+      end_date = (DateTime.parse("May 29") + end_date_offset.days).to_time.to_i
     end
 
-    start_date_offset = 0
-    end_date_offset = 0
-
-    (1..3).to_a.each do |index|
-      if params["date#{index}".to_sym].to_i == 1
-        start_date_offset += (index - 1) unless start_date_offset > 0
-        end_date_offset += (index - 1)
-      end
-    end
-
-    start_date = (DateTime.parse("May 28") + start_date_offset.days).to_time.to_i
-    end_date = (DateTime.parse("May 29") + end_date_offset.days).to_time.to_i
+    
     @events = []
     unless events.blank?
       @events = fbsession.events_get(:eids => events.collect{|e| e.eid},
                 :start_time => start_date, :end_time => end_date).event_list
     end
 
-    @first_event = @events.first
-    @event_slice_1 = @events.select{|e|
-      Time.at(e.start_time.to_i) < DateTime.parse("May 29").to_time
-    }
-    @event_slice_2 = @events.select{|e|
-      Time.at(e.start_time.to_i) < DateTime.parse("May 30").to_time && Time.at(e.start_time.to_i) > DateTime.parse("May 29").to_time
-    }
-    @event_slice_3 = @events.select{|e|
-      Time.at(e.start_time.to_i) < DateTime.parse("May 31").to_time && Time.at(e.start_time.to_i) > DateTime.parse("May 30").to_time
-    }
-
     flickr = Flickr.new("#{Rails.root}/config/flickr.yml")
     # @photos = flickr.photos.search(:user_id => '91188732@N00', :photoset_id => '72157602116489467', :per_page => 10)
     @photoset = flickr.photosets.get_list(:user_id => FLICKR_USER_ID).detect{ |set| set.id == FLICKR_PHOTOSET_ID }
-    @photos = @photoset.get_photos(:per_page => 8)
+    @photos = @photoset.get_photos(:per_page => 6)
   end
 
   def update_attendant_panel
@@ -143,14 +138,7 @@ class YouthController < ApplicationController
 
   def gathering
     @current_tab = "Youth Gatherings"
-    @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},
-      :per_page => 2, :page => params[:page_your])
-    @your_gathering_events = []
-    event_eids = @your_gatherings.map{|e| Utils.get_event_eid e.event_link}
-    unless event_eids.empty?
-      @your_gathering_events = fbsession.events_get(:eids => event_eids).event_list
-    end
-
+    get_your_gathering
     @all_gatherings = Gathering.paginate(:all, :conditions => ["uid <> ?", @uid],
       :per_page => PER_PAGE, :page => params[:page_all])
     @all_gathering_events = []
@@ -163,18 +151,42 @@ class YouthController < ApplicationController
   end
 
   def create_gathering
-    eid = Utils.get_event_eid(params[:gathering][:event_link])
-    gathering = Gathering.find_or_create_by_eid_and_uid(eid, @uid)
-    if gathering.update_attributes(params[:gathering])
-      render :update do |page|
-        page["gathering_form"].replace_html :partial => "gathering_form"
-        page.alert("Your gathering has been created")
-        page << gathering_publisher(gathering)
-      end
-    else
-      @gathering = gathering
+    @gathering = Gathering.new(params[:gathering])
+    if params[:gathering].nil?
       render :update do |page|
         page.alert("Please check your information again")
+        page["gathering_form"].replace_html :partial => "gathering_form"
+      end
+      return
+    end
+    eid = Utils.get_event_eid(params[:gathering][:event_link])
+
+    if eid.blank?
+      render :update do |page|
+        page.alert("Event link is incorrect")
+        page["gathering_form"].replace_html :partial => "gathering_form"
+      end
+      return
+    end
+
+    dup = Gathering.find_by_eid_and_uid(eid, @uid)
+    @gathering.uid = @uid
+    @gathering.eid = eid
+    if !dup && @gathering.save!
+      get_your_gathering
+      render :update do |page|
+        page["gathering_form"].replace_html :partial => "gathering_form"
+        page["your_gathering"].replace_html :partial => "your_gathering"
+        page.alert("Your gathering has been created")
+        page << gathering_publisher(@gathering)
+      end
+    else
+      render :update do |page|
+        if dup
+          page.alert("The same event has already been registered")
+        else
+          page.alert("Please check your information again")
+        end
         page["gathering_form"].replace_html :partial => "gathering_form"
       end
     end
@@ -251,7 +263,7 @@ class YouthController < ApplicationController
   end
 
   def giveaway
-    @current_tab = "RM50,000 Giveaway"
+    @current_tab = "Invite Friends"
     @friend_uids = (fbsession.friends_get.friend_list)
     @exclude_friends = fbsession.users_getInfo(:uids => @friend_uids, :fields => ["uid"]).user_list.collect{|f| f.uid}
   end
@@ -304,6 +316,17 @@ class YouthController < ApplicationController
       else
         page.alert("Something went wrong, please try again")
       end
+    end
+  end
+
+  protected
+  def get_your_gathering
+    @your_gatherings = Gathering.paginate(:all, :conditions => {:uid => @uid},
+      :per_page => 2, :page => params[:page_your])
+    @your_gathering_events = []
+    event_eids = @your_gatherings.map{|e| Utils.get_event_eid e.event_link}
+    unless event_eids.empty?
+      @your_gathering_events = fbsession.events_get(:eids => event_eids).event_list
     end
   end
 end

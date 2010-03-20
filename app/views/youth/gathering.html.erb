@@ -1,4 +1,4 @@
-<div class="box">
+<div class="top_box">
   <table>
     <tr>
       <td>
@@ -15,7 +15,42 @@
 
 <div id="steps" class="box">
   <h1>4 simple steps to your gathering</h1>
-
+  <div>
+    <table class="info_table">
+      <tr>
+        <td>
+          <%= image_tag("/images/step1.jpg") %>
+        </td>
+        <td>
+          <%= image_tag("/images/step2.jpg") %>
+        </td>
+        <td>
+          <%= image_tag("/images/step3.jpg") %>
+        </td>
+        <td>
+          <%= image_tag("/images/step4.jpg") %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>1.</strong>
+          Come up with a brilliant idea. Give your gathering a name like "Young A-List geeks come together at Youth'10"
+        </td>
+        <td>
+          <strong>2.</strong>
+          Put it on a Facebook Event with details about who should join the gathering, who to contact and where to meet
+        </td>
+        <td>
+          <strong>3.</strong>
+          Copy the Facebook Event link and submit it <%= link_to "here", "#create_form" %>
+        </td>
+        <td>
+          <strong>4.</strong>
+          Invite all your friends to join. Put it on Twitter, blog, forums ... The more the merrier
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 <div id="gathering" class="box">
@@ -27,14 +62,7 @@
 </div>
 
 <div id="your_gathering" class="box">
-  <h1>Gatherings you have submitted</h1>
-  <% @your_gathering_events.each do |event| %>
-    <%= render :partial => "event", :locals => {:event => event} %>
-  <% end %>
-  <br class="clr"/>
-  <div>
-    <%= will_paginate @your_gatherings, :param_name => 'page_your' %>
-  </div>
+  <%= render :partial => "your_gathering" %>
 </div>
 
 <div id="all_gathering" class="box">

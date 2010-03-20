@@ -7,7 +7,7 @@ module LinkHelper
     ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
     ["Volunteer", {:controller => "youth", :action => "volunteer"}],
     ["Book ticket", {:controller => "youth", :action => "booking"}],
-    ["RM50,000 Giveaway", {:controller => "youth", :action => "giveaway"}]
+    ["Invite Friends", {:controller => "youth", :action => "giveaway"}]
   ]
   end
 
