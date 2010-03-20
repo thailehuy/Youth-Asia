@@ -1,13 +1,13 @@
-<%= link_to "Home", url_for(:controller => "youth", :action => "index") %>
+<%= link_to "Home", :controller => "youth", :action => "index" %>
 |
-<%= link_to "Event list", url_for(:action => "event_list") %>
+<%= link_to "Event list", :controller => "admin", :action => "event_list" %>
 |
-<%= link_to "Featured event list", url_for(:action => "featured_event_list") %>
+<%= link_to "Featured event list", :controller => "admin", :action => "featured_event_list" %>
 |
-<%= link_to "Gathering list", url_for(:action => "gathering_list") %>
+<%= link_to "Gathering list", :controller => "admin", :action => "gathering_list" %>
 |
-<%= link_to "Featured gathering list", url_for(:action => "featured_gathering_list") %>
+<%= link_to "Featured gathering list", :controller => "admin", :action => "featured_gathering_list" %>
 |
-<%= link_to "Volunteer list", url_for(:action => "volunteer_list") %>
+<%= link_to "Volunteer list", :controller => "admin", :action => "volunteer_list" %>
 |
-<%= link_to "CMS", url_for(:action => "cms") %>
+<%= link_to "CMS", :controller => "admin", :action => "cms" %>
