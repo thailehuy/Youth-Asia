@@ -4,7 +4,7 @@ class AdminController < ApplicationController
   PER_PAGE = 4
 
   def index
-    redirect_to :action => "event_list"
+    top_redirect_to :action => "event_list"
   end
 
   def event_list
@@ -66,9 +66,9 @@ class AdminController < ApplicationController
     end
 
     if params[:f_type] == "event"
-      redirect_to :action => "event_list"
+      top_redirect_to :action => "event_list"
     else
-      redirect_to :action => "gathering_list"
+      top_redirect_to :action => "gathering_list"
     end
   end
 
@@ -76,7 +76,7 @@ class AdminController < ApplicationController
     eid = !params[:event][:link].blank? && Utils.get_event_eid(params[:event][:link])
     @event = Event.find_or_create_by_eid(eid)
     if @event.update_attributes(params[:event])
-      redirect_to :action => "event_list"
+      top_redirect_to :action => "event_list"
     else
       event_list
       render :action => "event_list"
@@ -92,7 +92,7 @@ class AdminController < ApplicationController
       end
       feature.destroy
     end
-    redirect_to :action => "#{f_type}_list"
+    top_redirect_to :action => "#{f_type}_list"
   end
 
   def download_cv
@@ -115,7 +115,7 @@ class AdminController < ApplicationController
     @content = Content.first
     if @content.update_attributes(params[:content])
       flash[:notice] = "Content updated"
-      redirect_to :action => "cms"
+      top_redirect_to :action => "cms"
     else
       flash[:error] = "Error updating content"
       render :action => "cms"
