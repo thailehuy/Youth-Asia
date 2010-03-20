@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     redirect_to :controller => "youth", :action => "index"
   end
 
+  def top_redirect_to(url)
+    url = url_for({:force_fbapp_url => true}.merge(url)) if url.is_a?(Hash)
+    render :inline => url, :layout => 'redirect'
+  end
+
   private
   def get_current_uid
     @uid = fbsession.users_getLoggedInUser.to_s

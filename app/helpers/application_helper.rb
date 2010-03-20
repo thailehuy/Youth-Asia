@@ -8,4 +8,10 @@ module ApplicationHelper
 #    fbsession.events_getMembers(:eid => event.eid).attending.scan(/<uid>(.+)<\/uid>/).size
     fbsession.events_getMembers(:eid => event.eid).attending.gsub(" ", "").split("\n").compact.delete_if{|e| e.blank?}.size
   end
+
+  def escape_string(s)
+    s.gsub(/['"\\]/) do |c|
+      "\\#{c}"
+    end
+  end
 end

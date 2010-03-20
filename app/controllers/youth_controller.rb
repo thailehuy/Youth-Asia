@@ -5,7 +5,7 @@ class YouthController < ApplicationController
 
   def landing
     InvitationCount.find_or_create_by_uid_and_invited_uid(params[:from_ref], @uid) unless @uid.to_s == params[:from_ref].to_s
-    redirect_to :action => "index"
+    top_redirect_to :action => "index"
   end
 
   def index
@@ -238,7 +238,7 @@ class YouthController < ApplicationController
       @volunteer.save!
       flash[:notice] = "Your application has been submitted"
     end
-    redirect_to :action => "volunteer"
+    top_redirect_to :action => "volunteer"
   rescue
     paginate_volunteer
     render :action => "volunteer"
@@ -275,7 +275,7 @@ class YouthController < ApplicationController
       @ticket.save!
       flash[:notice] = "Your ticket has been reserved"
     end
-    redirect_to :action => "booking"
+    top_redirect_to :action => "booking"
   rescue
     @page = 1
     uids = fbsession.friends_get.friend_list
