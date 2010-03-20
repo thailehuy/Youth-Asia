@@ -34,7 +34,7 @@ class AdminController < ApplicationController
       :per_page => PER_PAGE, :page => params[:page])
 
     @gathering_infos = []
-    featured_event_eids = @gatherings.map{|e| Utils.get_event_eid(e.event_link)}
+    featured_event_eids = @gatherings.map{|e| e.eid}
     unless featured_event_eids.empty?
       @gathering_infos = fbsession.events_get(:eids => featured_event_eids).event_list
     end
