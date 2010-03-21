@@ -134,7 +134,7 @@ div.box{
     -moz-border-radius-topleft: 8px;
     -moz-border-radius-topright: 8px;
     border:solid 1px #c2c2c2;
-    background: #f9f9f9;
+    background-color: #f9f9f9;
     color:#333333;
     padding: 5px;
     margin: 9px
