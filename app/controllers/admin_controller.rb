@@ -60,8 +60,8 @@ class AdminController < ApplicationController
     if v
       send_data(v.db_file.data,
         :filename => v.filename,
-        :type => File.mime_type?(v.filename),
-        :disposition => 'inline')
+        :type => 'application/octet-stream',
+        :disposition => "Content-Disposition: attachment;")
     else
       render :nothing => true;
     end
@@ -105,15 +105,6 @@ class AdminController < ApplicationController
       feature.destroy
     end
     top_redirect_to :action => "#{f_type}_list"
-  end
-
-  def download_cv
-    volunteer = Volunteer.find_by_id(params[:v_id])
-    if volunteer
-      send_file volunteer.public_filename
-    else
-      render :nothing => true
-    end
   end
 
   def cms
