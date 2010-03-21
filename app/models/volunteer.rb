@@ -13,8 +13,7 @@ class Volunteer < ActiveRecord::Base
     "State 1", "State 2"
   ]
 
-  has_attachment :storage => :file_system,
-                 :max_size => 500.kilobytes
+  has_attachment :max_size => 500.kilobytes
 
   validates_as_attachment
 
@@ -25,6 +24,6 @@ class Volunteer < ActiveRecord::Base
   validates_presence_of :email, :message => "Please enter your email"
   validates_presence_of :ic_number, :message => "Please enter your IC number"
   validates_presence_of :position_1, :message => "Please choose your first preferred position"
-  validates_presence_of :reason, :message => "Please tell us why you want to v"
+  validates_presence_of :reason, :message => "Please tell us why you want to volunteer"
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 end
