@@ -24,7 +24,7 @@
     Youth '10 is presented by YouthSays.com.<br/>
     Find Youth '10 interesting? Share more interesting opportunities with your friends by inviting them to YouthSays.com and get rewarded.
     <p class="middle">
-      <%= link_to "Join YouthSays.com", "http://www.youthsays.com", :class => "bigButton", :target => "_blank" %>
+      <%= link_to image_tag("/images/goto-youthsays.png"), "http://www.youthsays.com", :class => "bigButton", :target => "_blank" %>
     </p>
   </div>
 </div>
@@ -32,7 +32,7 @@
 <fb:serverfbml>
 <script type="text/fbml">
     <fb:fbml>
-      <fb:request-form action="<%= SERVER_URL + {:action => "index"} %>"
+      <fb:request-form action="<%= SERVER_URL + "/" %>"
           method="POST" invite="true" type="Youth Asia"
           content="This network is the best place on Facebook for viewing, sharing and giving friends the highest quality stuff.  Join me on this network! <fb:req-choice url='<%= SERVER_URL + url_for(:action => "landing", :from_ref => @uid) %>' label='Check out Youth 10!' />"
           exclude_ids="<%= @exclude_friends.join(',') %>" >
