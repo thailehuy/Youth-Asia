@@ -65,10 +65,10 @@ class YouthController < ApplicationController
         @featured_gatherings = fbsession.events_get(:eids => @featured_gathering_eids).event_list
       end
 
-      @ticket_rsvp = Ticket.find_by_uid(@uid)
-      unless @ticket_rsvp
-        @ticket = Ticket.new
-      end
+#      @ticket_rsvp = Ticket.find_by_uid(@uid)
+#      unless @ticket_rsvp
+#        @ticket = Ticket.new
+#      end
     end
   end
 
@@ -268,9 +268,8 @@ class YouthController < ApplicationController
 
   def booking
     @current_tab = "Book ticket"
-    @ticket_rsvp = Ticket.find_by_uid(@uid)
-    @ticket = Ticket.new
-    @page = 1
+#    @ticket_rsvp = Ticket.find_by_uid(@uid)
+#    @ticket = Ticket.new
     uids = fbsession.friends_get.friend_list
     @friend_uids = uids.paginate(:page => params[:page], :per_page => FRIEND_PER_PAGE)
 

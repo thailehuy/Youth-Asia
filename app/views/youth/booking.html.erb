@@ -1,16 +1,16 @@
-<%= error_messages_for :ticket %>
+<%#= error_messages_for :ticket %>
 
-<div id="tickets_info" class="box">
-  <h1>Your ticket information</h1>
+<%#*<div id="tickets_info" class="box">%>
+  <%#*<h1>Your ticket information</h1>%>
 
-  <% if @ticket_rsvp %>
-    <%= render :partial => "ticket_info" %>
-  <% else %>
-    <div id="ticket_signup">
-      <%= render :partial => "ticket_signup" %>
-    </div>
-  <% end %>
-</div>
+  <%# if @ticket_rsvp %>
+    <%#= render :partial => "ticket_info" %>
+  <%# else %>
+    <%#*<div id="ticket_signup">%>
+      <%#= render :partial => "ticket_signup" %>
+    <%#*</div>%>
+  <%# end %>
+<%#*</div>%>
 
 <%= render :partial => "about_info" %>
 
