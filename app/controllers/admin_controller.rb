@@ -55,6 +55,18 @@ class AdminController < ApplicationController
       :per_page => PER_PAGE, :page => params[:page])
   end
 
+  def download_cv
+    v = Volunteer.find_by_id(params[:id])
+    if v
+      send_data(v.db_file.data,
+        :filename => v.filename,
+        :type => File.mime_type?(v.filename),
+        :disposition => 'inline')
+    else
+      render :nothing => true;
+    end
+  end
+
   def make_feature
     eid = Utils.get_event_eid(params[:event_link])
 

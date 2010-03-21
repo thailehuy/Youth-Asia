@@ -13,7 +13,7 @@
         Position 2: <%= volunteer.position_2 %><br/>
         Position 3: <%= volunteer.position_3 %><br/>
         Reason: <%= volunteer.reason %><br/>
-        CV: <%= link_to "Download", url_for(volunteer.public_filename) %>
+        CV: <%= link_to "Download", {:action => "download_cv", :id => volunteer.id} %>
       </div>
     <% end %>
 

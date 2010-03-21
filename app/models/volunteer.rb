@@ -13,8 +13,7 @@ class Volunteer < ActiveRecord::Base
     "State 1", "State 2"
   ]
 
-  has_attachment :storage => :file_system,
-                 :max_size => 500.kilobytes
+  has_attachment :max_size => 500.kilobytes
 
   validates_as_attachment
 
