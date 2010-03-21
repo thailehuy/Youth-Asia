@@ -8,10 +8,10 @@
 <% if !@already_applied %>
 <div id="volunteer_form" class="box">
   <h1>Apply to become a volunteer</h1>
+  <%= error_messages_for :volunteer %>
   <% form_for :volunteer, @volunteer, 
     :url => {:action => "create_volunteer"}, :html => {:multipart => true} do |f| %>
   <div>
-    <%= error_messages_for :volunteer %>
     <table>
       <tr>
         <td><%= f.text_field :name, :value => @volunteer.name || "Name", :onclick => "this.value='';" %></td>
