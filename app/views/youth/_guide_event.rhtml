@@ -18,7 +18,7 @@
         <td width="30%">
           <div>+ Share this event:</div>
           <div>
-            <%= link_to_function image_tag("/images/facebook-16x16.png", :class => "alignV") + " Tell my friends that I'm coming", :onclick => joining_publisher(guide_event) %>
+            <%= link_to_function image_tag("/images/facebook-16x16.png", :class => "alignV") + " Post on wall", :onclick => joining_publisher(guide_event), :class => "no_decor" %>
           </div>
           <div>
             <%= link_to image_tag("/images/twitter-16x16.png", :class => "alignV") + " Tweet it!!!", "http://twitter.com/?status=Join me at http://www.facebook.com/event.php?eid=#{guide_event.eid}", :class => "no_decor", :target => "_blank" %>
@@ -41,11 +41,12 @@
       </tr>
       <tr>
         <td colspan="3">
+          <% uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.uid_list %>
           <div>
-            This event has <strong><%= display_attendant(guide_event) %></strong> attendees so far
+            This event has <strong><%= uids.size %></strong> attendees so far
           </div>
           
-          <% member_uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.gsub(" ", "").scan(/<uid>(.+)<\/uid>/).flatten[0...8] %>
+          <% member_uids = uids[0...8] %>
           <% members = fbsession.users_getInfo(:uids => member_uids,
                 :fields => ["first_name", "pic_square", "profile_url"]).user_list %>
           <% members.each do |mem| %>
