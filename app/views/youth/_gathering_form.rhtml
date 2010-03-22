@@ -8,32 +8,32 @@
 <table class="ticket_table" id="ticket_booking_table">
   <tr>
     <td>
-        <%= f.text_field :name, :value => @gathering.name || "Name", :onclick => "this.value='';" %>
+        <%= f.text_field :name, :value => @gathering.name || "Name", :onclick => "if (this.value == 'Name') this.value='';", :onblur => "if (this.value == '') this.value='Name';" %>
     </td>
-    <td>
-        <%= f.text_field :event_link, :value => @gathering.event_link || "Event Link", :onclick => "this.value='';" %>
+    <td style="width:60%; text-align: right;">
+        <%= f.text_field :event_link, :value => @gathering.event_link || "Event Link", :onclick => "if (this.value == 'Event Link') this.value='';", :onblur => "if (this.value == '') this.value='Event Link';" %>
     </td>
   </tr>
   <tr>
     <td>
-        <%= f.text_field :ic_number, :value => @gathering.ic_number || "IC number", :onclick => "this.value='';" %>
+        <%= f.text_field :ic_number, :value => @gathering.ic_number || "IC number", :onclick => "if (this.value == 'IC Number') this.value='';", :onblur => "if (this.value == '') this.value='IC Number';" %>
     </td>
-    <td>
+    <td style="text-align: right;">
       <%= f.check_box :agreement, {}, "on", "off" %>
       <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
     </td>
   </tr>
   <tr>
     <td>
-        <%= f.text_field :email, :value => @gathering.email || "Email", :onclick => "this.value='';" %>
+        <%= f.text_field :email, :value => @gathering.email || "Email", :onclick => "if (this.value == 'Email') this.value='';", :onblur => "if (this.value == '') this.value='Email';" %>
     </td>
-    <td rowspan="2">
+    <td rowspan="2" style="text-align: right;">
       <%= image_submit_tag "/images/submit_gathering.jpg" %>
     </td>
   </tr>
   <tr>
     <td>
-        <%= f.text_field :phone, :value => @gathering.phone || "Phone", :onclick => "this.value='';" %>
+        <%= f.text_field :phone, :value => @gathering.phone || "Phone", :onclick => "if (this.value == 'Phone') this.value='';", :onblur => "if (this.value == '') this.value='Phone';" %>
     </td>
   </tr>
 </table>
