@@ -80,11 +80,13 @@ table td {padding: 5px;}
 
 /* STRUCTURE */
 #topWrapper {
-    background:url(/images/banner_1.jpg) no-repeat;
     height: 100px;
     width: 747px;
 }
-#topright { width:600px; padding:60px 0px 10px 400px; margin-right: 5px}
+
+#topleft {float:left}
+
+#topright { float:right; margin: 250px 600px 0px 0px}
 #nav ul li {
     display:inline; list-style:none;
 }
