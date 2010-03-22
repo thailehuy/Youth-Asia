@@ -32,9 +32,9 @@
 <fb:serverfbml>
 <script type="text/fbml">
     <fb:fbml>
-      <fb:request-form action="<%= SERVER_URL + "/" %>"
+      <fb:request-form action="http://apps.facebook.com/youthfestival"
           method="POST" invite="true" type="Youth Asia"
-          content="This network is the best place on Facebook for viewing, sharing and giving friends the highest quality stuff.  Join me on this network! <fb:req-choice url='<%= SERVER_URL + url_for(:action => "landing", :from_ref => @uid) %>' label='Check out Youth 10!' />"
+          content="This network is the best place on Facebook for viewing, sharing and giving friends the highest quality stuff.  Join me on this network! <fb:req-choice url='http://apps.facebook.com/youthfestival/youth/landing?from_ref=<%= @uid %>' label='Check out Youth 10!' />"
           exclude_ids="<%= @exclude_friends.join(',') %>" >
         <fb:multi-friend-selector showborder="false" actiontext="Invite your friends to Youth '10.">
       </fb:request-form>
