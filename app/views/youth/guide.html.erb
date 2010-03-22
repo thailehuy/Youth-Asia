@@ -6,6 +6,15 @@
   </div>
 </div>
 
+<div id="top_info" class="guide_intro">
+  <div class="get_ticket">
+    <%= link_to image_tag("/images/get_ticket.jpg"), {:controller => 'youth', :action => "booking"} %>
+  </div>
+  <div class="learn_more">
+    <%= link_to image_tag("/images/learn_more.jpg"), {:controller => 'youth', :action => "guide"} %>
+  </div>
+</div>
+
 <div id="must_know" class="box">
   <h1>Youth '10 MUST KNOW information</h1>
   <div>
@@ -59,54 +68,25 @@
           :cat4 => params[:cat4], :cat5 => params[:cat5], :cat6 => params[:cat6],
           :cat7 => params[:cat7]
         } %>
-        <% date_param = (params[:date1].to_i == 1 ? 0 : 1) %>
-        <% class_name = (params[:date1].to_i == 1 ? "filterBtnSelected" : "filterBtn") %>
-        <%= link_to "Friday May 28", {:action => "guide",
-          :date1 => date_param,
-          :date2 => params[:date2],
-          :date3 => params[:date3],
-          :cat1 => params[:cat1],
-          :cat2 => params[:cat2],
-          :cat3 => params[:cat3],
-          :cat4 => params[:cat4],
-        }, :class => class_name %>
+        <% ["28", "29", "30"].each_with_index do |date, index| %>
+          <% date_param = (params["date#{index + 1}".to_sym].to_i == 1 ? 0 : 1) %>
+          <% class_name = (params["date#{index + 1}".to_sym].to_i == 1 ? "active" : "inactive") %>
+          <%= link_to image_tag("/images/#{date}-#{class_name}.png", :alt => "Friday May #{date}"),
+            {:action => "guide"}.merge(cat_params.merge(date_params.merge("date#{index + 1}".to_sym => date_param)))
+          %>
           &nbsp;
-
-        <% date_param = (params[:date2].to_i == 1 ? 0 : 1) %>
-        <% class_name = (params[:date2].to_i == 1 ? "filterBtnSelected" : "filterBtn") %>
-        <%= link_to "Friday May 29", {:action => "guide",
-          :date1 => params[:date1],
-          :date2 => date_param,
-          :date3 => params[:date3],
-          :cat1 => params[:cat1],
-          :cat2 => params[:cat2],
-          :cat3 => params[:cat3],
-          :cat4 => params[:cat4],
-        }, :class => class_name %>
-          &nbsp;
-
-        <% date_param = (params[:date3].to_i == 1 ? 0 : 1) %>
-        <% class_name = (params[:date3].to_i == 1 ? "filterBtnSelected" : "filterBtn") %>
-        <%= link_to "Friday May 30", {:action => "guide",
-          :date1 => params[:date1],
-          :date2 => params[:date2],
-          :date3 => date_param,
-          :cat1 => params[:cat1],
-          :cat2 => params[:cat2],
-          :cat3 => params[:cat3],
-          :cat4 => params[:cat4],
-        }, :class => class_name %>
+        <% end %>
       </td>
     </tr>
     <tr>
       <td style="padding: 0 0 20px 0;">See only events about:</td>
       <td style="padding: 0 0 20px 5px;">
         <% Event::CATEGORIES.each_with_index do |cat, index| %>
+          <% cat_name = cat.gsub(" Festival", "").downcase.gsub(" ", "") %>
           <% cat_param = (params["cat#{index + 1}".to_sym].to_i == 1 ? 0 : 1) %>
-          <% class_name = (params["cat#{index + 1}".to_sym].to_i == 1 ? "filterBtnSelected" : "filterBtn") %>
-          <%= link_to cat,
-            {:action => "guide"}.merge(date_params.merge(cat_params.merge("cat#{index + 1}".to_sym => cat_param))),
-            {:class => class_name} %>
+          <% class_name = (params["cat#{index + 1}".to_sym].to_i == 1 ? "active" : "inactive") %>
+          <%= link_to image_tag("/images/#{cat_name}-#{class_name}.png", :alt => cat),
+            {:action => "guide"}.merge(date_params.merge(cat_params.merge("cat#{index + 1}".to_sym => cat_param))) %>
             &nbsp;
             <% if index % 3 == 2 %>
               <br/>
