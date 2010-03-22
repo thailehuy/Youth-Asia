@@ -31,6 +31,7 @@ table td                  {padding: 5px;}
 
 /* STRUCTURE */
 #topWrapper               {background:url(/images/banner_1.jpg) repeat-x;height: 100px;width: 747px; position: relative;}
+#topleft                  {position: absolute; top: 0px; left: 0px; cursor: pointer; width: 225px; height: 100px;}
 #topright                 {position: absolute; right: 15px; bottom: 15px;}
 #topright a               {color: #2f2e2e; font-size: 12px; text-decoration: none;}
 #topright a:hover         {text-decoration: underline;}
