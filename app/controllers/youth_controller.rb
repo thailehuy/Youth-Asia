@@ -9,10 +9,9 @@ class YouthController < ApplicationController
   end
 
   def index
-    @current_tab = "Home"
     if request.xml_http_request?
       if params[:friend_page]
-        uids = fbsession.friends_get(:uid => @uid).friend_list
+        uids = fbsession.friends_getAppUsers.uid_list
         @friend_uids = uids.paginate(:page => params[:friend_page], :per_page => FRIEND_PER_PAGE)
         @friends = fbsession.users_getInfo(:uids => @friend_uids,
                 :fields => ["first_name", "pic_square", "profile_url"]).user_list
@@ -41,9 +40,10 @@ class YouthController < ApplicationController
       end
       return
     else
+      @current_tab = "Home"
       @featured_events = []
       @featured_gatherings = []
-      uids = fbsession.friends_get(:uid => @uid).friend_list
+      uids = fbsession.friends_getAppUsers.uid_list
       @friend_uids = uids.paginate(:page => params[:friend_page], :per_page => FRIEND_PER_PAGE)
       @friends = fbsession.users_getInfo(:uids => @friend_uids,
               :fields => ["first_name", "pic_square", "profile_url"]).user_list
@@ -77,7 +77,7 @@ class YouthController < ApplicationController
   #    @page = @page.to_i
   #    p_start = (@page - 1) * PER_PAGE
   #    p_end = @page * PER_PAGE
-  #    uids = fbsession.friends_get.friend_list
+  #    uids = fbsession.friends_getAppUsers.uid_list
   #    @friend_uids = uids.paginate(params[:current_page], params[:per_page])
   #    @have_next_friend_page = uids.size > @friend_uids.size
   #    @friends = fbsession.users_getInfo(:uids => @friend_uids,
@@ -270,7 +270,7 @@ class YouthController < ApplicationController
     @current_tab = "Book ticket"
 #    @ticket_rsvp = Ticket.find_by_uid(@uid)
 #    @ticket = Ticket.new
-    uids = fbsession.friends_get(:uid => @uid).friend_list
+    uids = fbsession.friends_getAppUsers.uid_list
     @friend_uids = uids.paginate(:page => params[:page], :per_page => FRIEND_PER_PAGE)
 
     @friends = fbsession.users_getInfo(:uids => @friend_uids,
@@ -287,7 +287,7 @@ class YouthController < ApplicationController
     top_redirect_to :action => "booking"
   rescue
     @page = 1
-    uids = fbsession.friends_get(:uid => @uid).friend_list
+    uids = fbsession.friends_getAppUsers.uid_list
     @friend_uids = uids[0...PER_PAGE]
     @have_next_friend_page = uids.size > @friend_uids.size
 
@@ -298,7 +298,7 @@ class YouthController < ApplicationController
 
   def giveaway
     @current_tab = "Invite Friends"
-    @friend_uids = (fbsession.friends_get(:uid => @uid).friend_list)
+    @friend_uids = (fbsession.friends_getAppUsers.uid_list)
     @exclude_friends = fbsession.users_getInfo(:uids => @friend_uids, :fields => ["uid"]).user_list.collect{|f| f.uid}
   end
 
@@ -325,7 +325,7 @@ class YouthController < ApplicationController
   end
 
   def friend_list
-    @uids = fbsession.friends_get(:uid => @uid).friend_list.paginate(:page => params[:page], :per_page => 10)
+    @uids = fbsession.friends_getAppUsers.uid_list.paginate(:page => params[:page], :per_page => 10)
     @friend_uids = @uids
     @have_next_friend_page = @uids.size > @friend_uids.size
 
@@ -341,7 +341,7 @@ class YouthController < ApplicationController
   end
 
   def invite_fb_friends
-    friend_uids = fbsession.friends_get(:uid => @uid).friend_list
+    friend_uids = fbsession.friends_getAppUsers.uid_list
     success = fbsession.events_invite(:eid => params[:eid], :uids => friend_uids)
 
     render :update do |page|
