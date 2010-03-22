@@ -12,29 +12,29 @@
   <% form_for :volunteer, @volunteer, 
     :url => {:action => "create_volunteer"}, :html => {:multipart => true} do |f| %>
   <div>
-    <table>
+    <table id="voulenteer_form">
       <tr>
-        <td><%= f.text_field :name, :value => @volunteer.name || "Name", :onclick => "this.value='';" %></td>
+        <td><%= f.text_field :name, :value => @volunteer.name || "Name", :onclick => "if (this.value == 'Name') this.value='';", :onblur => "if (this.value == '') this.value='Name';" %></td>
         <td><%= f.select :school, Volunteer::SCHOOLS, {}, {:class => "select_wide"} %></td>
         <td>Choose 3 positions you interested in:</td>
       </tr>
       <tr>
-        <td><%= f.text_field :ic_number, :value => @volunteer.ic_number || "IC number", :onclick => "this.value='';" %></td>
+        <td><%= f.text_field :ic_number, :value => @volunteer.ic_number || "IC number", :onclick => "if (this.value == 'IC number') this.value='';", :onblur => "if (this.value == '') this.value='IC number';" %></td>
         <td><%= f.select :state, Volunteer::STATES, {}, {:class => "select_wide"} %></td>
         <td><%= f.select :position_1, Volunteer::POSITION, {}, {:class => "select_wide"} %></td>
       </tr>
       <tr>
-        <td><%= f.text_field :email, :value => @volunteer.email || "Email", :onclick => "this.value='';" %></td>
+        <td><%= f.text_field :email, :value => @volunteer.email || "Email", :onclick => "if (this.value == 'Email') this.value='';", :onblur => "if (this.value == '') this.value='Email';" %></td>
         <td></td>
         <td><%= f.select :position_2, Volunteer::POSITION, {}, {:class => "select_wide"} %></td>
       </tr>
       <tr>
-        <td><%= f.text_field :phone, :value => @volunteer.phone || "Phone", :onclick => "this.value='';" %></td>
+        <td><%= f.text_field :phone, :value => @volunteer.phone || "Phone", :onclick => "if (this.value == 'Phone') this.value='';", :onblur => "if (this.value == '') this.value='Phone';" %></td>
         <td></td>
         <td><%= f.select :position_3, Volunteer::POSITION, {}, {:class => "select_wide"} %></td>
       </tr>
       <tr>
-        <td colspan="2"><%= f.text_area :reason, :rows => 5, :cols => 60, :value => @volunteer.reason || "Tell us why you want to join Youth '10", :onclick => "this.value='';" %></td>
+        <td colspan="2"><%= f.text_area :reason, :rows => 5, :cols => 60, :value => @volunteer.reason || "Tell us why you want to join Youth 10", :onclick => "if (this.value == 'Tell us why you want to join Youth 10') this.value='';", :onblur => "if (this.value == '') this.value='Tell us why you want to join Youth 10';" %></td>
         <td>
           <p>
             Your CV: <%= f.file_field :uploaded_data, :size => 10 %>

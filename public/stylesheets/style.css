@@ -92,7 +92,7 @@ div.learn_more            {height:50px;width:205px;padding-left: 532px;}
 
 #next_move a              {color: #3784b1;}
 #next_move_table td       {padding: 2px 20px 2px 20px;}
-.centerView               {vertical-align: middle;text-align: center;}
+.centerView               {vertical-align: middle;text-align: center; margin: 9px 9px 0 9px !important;}
 .boxLeft                  {float:left; margin: 9px 5px 0px 9px;}
 .boxRight                 {float:right; margin: 9px 9px 0px 5px;}
 #partners                 {margin: 9px;}
@@ -124,9 +124,12 @@ ul.featured-event-list>li                   {float: left; width: 286px; margin: 
 .friends-list-panel>li                      {float: left; margin: 0 10px 0 0; width: 208px;}
 .friends-list-panel>li img                  {float: left; margin-right: 8px;}
 
-
 #ticket_booking_table td {padding:4px 20px 4px 0px;}
 #ticket_booking_table input[type=text] {width: 95%; padding: 4px; color: #a3a3a3;}
 #ticket_booking_table input[type=text]:focus {color: #000;}
+
+#voulenteer_form input[type=text] {width: 95%; padding: 4px; color: #a3a3a3;}
+#voulenteer_form textarea {padding: 4px; color: #a3a3a3; font-family: normal 12px Arial, Helvetica, sans-serif;}
+#voulenteer_form input[type=text]:focus, #voulenteer_form textarea:focus {color: #000;}
 
 #footer {padding: 10px 0; font-size: 11px;}
