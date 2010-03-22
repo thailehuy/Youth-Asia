@@ -93,6 +93,7 @@ table td {padding: 5px;}
     background:#e2e0e0; color:#000000; border-right:1px solid #cfcfcf;
     border-bottom:1px solid #cfcfcf; text-decoration:none; font-size:12px;
     padding:7px 20px 7px 20px;
+    font-weight: bold;
 }
 #nav ul li a:hover { background:#dfe4ee; color:#000000; }
 #nav ul li.active a, #nav ul li.active a:hover { 
@@ -140,7 +141,8 @@ div.box{
     margin: 9px
 }
 div.box h1 {
-    font-size:30px;
+    font-size:20px;
+    font-weight: bold;
     color:#000000;
     padding:5px;
     margin-bottom: 10px
