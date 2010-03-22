@@ -16,10 +16,13 @@
 
   <div id="main">
     <div id="nav">
-        <%= render :partial => "layouts/admin_nav"%>
+        <%= render :partial => "layouts/admin_nav" %>
     </div><!-- end of #nav -->
     <br class="clr" />
-    <%= yield%>
+    <div class="main">
+      <%= yield %>
+    </div>
+    
   </div><!-- end of #main -->
   <%= render :partial => "layouts/footer" %>
 </body>

@@ -1,8 +1,10 @@
-<% @all_gathering_events.each do |event| %>
-  <%= render :partial => "event", :object => event %>
-<% end %>
+<ul class="featured-event-list">
+  <% @all_gathering_events.each do |event| %>
+    <%= render :partial => "event", :object => event %>
+  <% end %>
+</ul>
 <br class="clr"/>
 <div>
   <%= will_paginate @all_gatherings, :renderer => 'RemoteLinkRenderer',
-  :remote => {:update => "all_gatherings"}, :param_name => "page_all" %>
+    :remote => {:update => "all_gatherings"}, :param_name => "page_all" %>
 </div>

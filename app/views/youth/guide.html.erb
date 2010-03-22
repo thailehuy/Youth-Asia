@@ -79,8 +79,8 @@
       </td>
     </tr>
     <tr>
-      <td>See only events about:</td>
-      <td>
+      <td style="padding: 0 0 20px 0;">See only events about:</td>
+      <td style="padding: 0 0 20px 5px;">
         <% Event::CATEGORIES.each_with_index do |cat, index| %>
           <% cat_name = cat.gsub(" Festival", "").downcase.gsub(" ", "") %>
           <% cat_param = (params["cat#{index + 1}".to_sym].to_i == 1 ? 0 : 1) %>

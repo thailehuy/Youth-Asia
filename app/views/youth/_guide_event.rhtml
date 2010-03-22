@@ -6,7 +6,7 @@
             <img src="<%= guide_event.pic %>" alt="Event picture" id="e_pic"/>
           </a>
         </td>
-        <td>
+        <td style="vertical-align: top;">
           <%= link_to guide_event.name, event_link(guide_event), :class => "event_name" %>
           <p>
             Type: <span id="e_type"><%= guide_event.event_type %></span><br/>
