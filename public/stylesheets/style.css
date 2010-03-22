@@ -82,7 +82,7 @@ table td {padding: 5px;}
 #topWrapper {
     background:url(/images/banner_1.jpg) no-repeat;
     height: 100px;
-    width: 750px;
+    width: 758px;
 }
 #topright { width:600px; padding:60px 0px 10px 400px; margin-right: 5px}
 #nav ul li {
@@ -92,7 +92,7 @@ table td {padding: 5px;}
     display:block; float:left; height:20px; line-height:20px;
     background:#e2e0e0; color:#000000; border-right:1px solid #cfcfcf;
     border-bottom:1px solid #cfcfcf; text-decoration:none; font-size:12px;
-    padding:7px 20px 7px 20px;
+    padding:7px 17px;
     font-weight: bold;
 }
 #nav ul li a:hover { background:#dfe4ee; color:#000000; }
@@ -102,7 +102,7 @@ table td {padding: 5px;}
 }
 
 .main {
-    width: 748px;
+    width: 756px;
     border: 1px solid #cfcfcf;
 }
 
