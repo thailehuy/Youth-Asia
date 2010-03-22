@@ -84,7 +84,7 @@ table td {padding: 5px;}
     width: 747px;
 }
 
-#topleft {float:left}
+#topleft {float:left; z-index: -1; height:100px; overflow: hidden}
 
 #topright { float:right; margin: 250px 600px 0px 0px}
 #nav ul li {
