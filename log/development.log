@@ -1,0 +1,46 @@
+# Logfile created on Mon Mar 22 13:48:39 +0800 2010  [4;36;1mSQL (65.4ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (14.7ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (95.0ms)[0m   [0;1mCREATE DATABASE `youth_development` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_general_ci`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (15.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (154.8ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (121.0ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateGatherings (20100309153701)
+  [4;36;1mSQL (35.6ms)[0m   [0;1mCREATE TABLE `gatherings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `affiliation` varchar(255), `date_of_birth` datetime, `address` varchar(255), `email` varchar(255), `phone` varchar(255), `race` varchar(255), `ic_number` varchar(255), `event_link` varchar(255), `uid` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (34.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100309153701')[0m
+Migrating to CreateEvents (20100310154120)
+  [4;36;1mSQL (24.9ms)[0m   [0;1mCREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `link` varchar(255), `eid` varchar(255), `category` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (4.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100310154120')[0m
+Migrating to CreateFeatures (20100311000241)
+  [4;36;1mSQL (42.4ms)[0m   [0;1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `eid` varchar(255), `f_type` varchar(255), `event_link` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100311000241')[0m
+Migrating to CreateInvitationCounts (20100312005153)
+  [4;36;1mSQL (3.3ms)[0m   [0;1mCREATE TABLE `invitation_counts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `uid` varchar(255), `invited_uid` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100312005153')[0m
+Migrating to CreateVolunteers (20100312125058)
+  [4;36;1mSQL (25.0ms)[0m   [0;1mCREATE TABLE `volunteers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `uid` varchar(255), `name` varchar(255), `affiliation` varchar(255), `email` varchar(255), `phone` varchar(255), `date_of_birth` varchar(255), `address` varchar(255), `race` varchar(255), `ic_number` varchar(255), `position_1` varchar(255), `position_2` varchar(255), `position_3` varchar(255), `reason` text, `content_type` varchar(255), `filename` varchar(255), `thumbnail` varchar(255), `size` int(11), `width` int(11), `height` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100312125058')[0m
+Migrating to CreateTickets (20100313010221)
+  [4;36;1mSQL (5.2ms)[0m   [0;1mCREATE TABLE `tickets` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `uid` varchar(255), `name` varchar(255), `email` varchar(255), `phone` varchar(255), `ic_number` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100313010221')[0m
+Migrating to CreateContents (20100315234430)
+  [4;36;1mSQL (31.3ms)[0m   [0;1mCREATE TABLE `contents` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `volunteer_opp` text, `video_link` varchar(255), `about_youthsay` text, `about_youth10` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100315234430')[0m
+Migrating to AddEidToGathering (20100319161333)
+  [4;36;1mSQL (94.6ms)[0m   [0;1mALTER TABLE `gatherings` ADD `eid` varchar(255)[0m
+  [4;35;1mGathering Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `gatherings`[0m
+  [4;36;1mGathering Load (0.1ms)[0m   [0;1mSELECT * FROM `gatherings` [0m
+  [4;35;1mSQL (1.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100319161333')[0m
+Migrating to AddSchoolAndStateToVolunteer (20100320051325)
+  [4;36;1mSQL (28.4ms)[0m   [0;1mALTER TABLE `volunteers` ADD `school` varchar(255) DEFAULT ''[0m
+  [4;35;1mSQL (10.2ms)[0m   [0mALTER TABLE `volunteers` ADD `state` varchar(255) DEFAULT ''[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100320051325')[0m
+Migrating to ChangeAttachmentToDb (20100321070859)
+  [4;35;1mSQL (35.3ms)[0m   [0mALTER TABLE `volunteers` ADD `db_file_id` int(11)[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mMysql::Error: Duplicate column name 'size': ALTER TABLE `volunteers` ADD `size` int(11)[0m
