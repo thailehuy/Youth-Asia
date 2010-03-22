@@ -108,7 +108,7 @@
             {:action => "guide"}.merge(date_params.merge(cat_params.merge("cat#{index + 1}".to_sym => cat_param))),
             {:class => class_name} %>
             &nbsp;
-            <% if index % 4 == 3 %>
+            <% if index % 3 == 2 %>
               <br/>
             <% end %>
         <% end %>
