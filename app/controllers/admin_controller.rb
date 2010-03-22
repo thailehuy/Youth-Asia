@@ -55,6 +55,18 @@ class AdminController < ApplicationController
       :per_page => PER_PAGE, :page => params[:page])
   end
 
+  def download_cv
+    v = Volunteer.find_by_id(params[:id])
+    if v
+      send_data(v.db_file.data,
+        :filename => v.filename,
+        :type => 'application/octet-stream',
+        :disposition => "Content-Disposition: attachment;")
+    else
+      render :nothing => true;
+    end
+  end
+
   def make_feature
     eid = Utils.get_event_eid(params[:event_link])
 
@@ -93,15 +105,6 @@ class AdminController < ApplicationController
       feature.destroy
     end
     top_redirect_to :action => "#{f_type}_list"
-  end
-
-  def download_cv
-    volunteer = Volunteer.find_by_id(params[:v_id])
-    if volunteer
-      send_file volunteer.public_filename
-    else
-      render :nothing => true
-    end
   end
 
   def cms
