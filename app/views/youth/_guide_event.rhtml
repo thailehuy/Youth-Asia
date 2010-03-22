@@ -37,5 +37,18 @@
           <%= truncate(guide_event.description, :length => 400, :omission => "...") %>
         </td>
       </tr>
+      <tr>
+        <td colspan="3">
+          <% member_uids = fbsession.events_getMembers(:eid => event.eid).attending.gsub(" ", "").split("\n").compact.delete_if{|e| e.blank?}[0...8] %>
+          <% members = fbsession.users_getInfo(:uids => member_uids,
+                :fields => ["first_name", "pic_square", "profile_url"]).user_list %>
+          <% members.each do |mem| %>
+            <div class="friend_table">
+              <%= link_to image_tag(mem.pic_square), mem.profile_url, :target => "_blank" %><br/>
+              <%= link_to mem.first_name, mem.profile_url, :target => "_blank" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
     </table>
 </div>
