@@ -62,14 +62,14 @@ module LinkHelper
     %Q{
       callPublish('',
         {'name':'Youth 10','href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}',
-    'description':'#{fb_user.first_name} has just successfully secured a spot in Youth 2010 - Malaysia largest youth festival',
-    'media':
-    [
-    {
-    'type':'image','src':'http://www.i-tich.net/facebook/mood/images/mood9.gif',
-    'href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'
-    }
-    ]
+          'description':'#{fb_user.first_name} has just successfully secured a spot in Youth 2010 - Malaysia largest youth festival',
+          'media':
+          [
+          {
+          'type':'image','src':'#{SERVER_URL + "/images/feed_icon.jpg"}',
+          'href':'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'
+          }
+          ]
         },
         [{ 'text': 'Book ticket', 'href': 'http://apps.facebook.com/youthasia/youth/booking'}]);
         return false;
@@ -78,6 +78,7 @@ module LinkHelper
 
   def gathering_publisher(gathering)
     fb_user = fbsession.users_getInfo(:uids => @uid, :fields => ["first_name"]).user_list.first
+    event = fbsession.events_get(:eids => [gathering.eid]).event_list.first
     js = <<-JS
       callPublish('', {
         'name' : 'Youth 10',
@@ -85,7 +86,7 @@ module LinkHelper
         'description' : '#{fb_user.first_name} has just submitted a gathering in Youth 2010 - Malaysia largest youth festival',
         'media' : [ {
             'type' : 'image',
-            'src' : 'http://www.i-tich.net/facebook/mood/images/mood9.gif',
+            'src' : '#{event.pic}',
             'href' : 'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'
           }
         ]
