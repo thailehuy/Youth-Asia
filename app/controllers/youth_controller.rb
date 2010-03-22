@@ -211,7 +211,7 @@ class YouthController < ApplicationController
       return
     end
 
-    dup = Gathering.find_by_eid_and_uid(eid, @uid)
+    dup = Gathering.find_by_eid(eid)
     @gathering.uid = @uid
     @gathering.eid = eid
     if !dup && @gathering.save
