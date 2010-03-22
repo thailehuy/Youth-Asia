@@ -1,7 +1,8 @@
-<div>
+<ul class="featured-event-list">
   <%= render :partial => "event", :collection => @featured_events %>
-  <br class="clr"/>
-</div>
+</ul>
+<br class="clr"/>
+
 <div class="page_link">
   <%= will_paginate @features, :renderer => 'RemoteLinkRenderer', 
     :remote => {:update => "events_panel"}, :param_name => "event_page" %>
