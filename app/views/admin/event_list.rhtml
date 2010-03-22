@@ -35,6 +35,7 @@
             <%= link_to "Make feature",
                     {:action => "make_feature", :eid => event.eid,
                     :f_type => "event", :event_link => event_link(event)} %>
+            <%= link_to "Remove", {:action => "remove", :eid => event.eid, :f_type => "event"} %>
           </td>
         </tr>
       </table>

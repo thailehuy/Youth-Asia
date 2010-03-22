@@ -15,7 +15,8 @@
           <td>
             <%= link_to "Make feature",
                   {:action => "make_feature", :eid => event.eid,
-                  :f_type => "gathering", :event_link => event_link(event)} %>
+                  :f_type => "gathering", :event_link => event_link(event)} %><br/>
+            <%= link_to "Remove", {:action => "remove", :eid => event.eid, :f_type => "gathering"} %>
           </td>
         </tr>
       </table>

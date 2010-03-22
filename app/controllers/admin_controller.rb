@@ -95,6 +95,19 @@ class AdminController < ApplicationController
     end
   end
 
+  def remove
+    event = Event.find_by_eid(params[:eid])
+    if event
+      event.destroy
+    end
+    if params[:f_type] == "gathering"
+      redirect_to :action => "gathering_list"
+    else
+      redirect_to :action => "event_list"
+    end
+
+  end
+
   def remove_feature
     feature = Feature.find_by_eid(params[:eid])
     f_type = "event"
