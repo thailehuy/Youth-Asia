@@ -11,5 +11,7 @@ class ChangeAttachmentToDb < ActiveRecord::Migration
   end
 
   def self.down
+    drop_table :db_files
+    remove_column :volunteers, :db_file_id
   end
 end
