@@ -97,4 +97,26 @@ module LinkHelper
       ]);
     JS
   end
+
+  def joining_publisher(event)
+#    fb_user = fbsession.users_getInfo(:uids => @uid, :fields => ["first_name"]).user_list.first
+    event = fbsession.events_get(:eids => [event.eid]).event_list.first
+    js = <<-JS
+      callPublish('', {
+        'name' : 'Youth 10',
+        'href' : 'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}',
+        'description' : 'I\\\'m coming to #{event.name.gsub("'", "\\\\\\'")} at Youth \\\'10 - Malaysia\\\'s largest youth festival. Join me!',
+        'media' : [ {
+            'type' : 'image',
+            'src' : '#{event.pic}',
+            'href' : 'http://apps.facebook.com/youthasia/youth/landing?from_ref=#{@uid}'
+          }
+        ]
+      }, [ {
+          'text' : 'Join event',
+          'href' : '#{event_link(event)}'
+        }
+      ]);
+    JS
+  end
 end
