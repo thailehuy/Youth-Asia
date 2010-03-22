@@ -26,7 +26,7 @@
                         {
                           :url => {:action => "invite_fb_friends", :eid => guide_event.eid},
                           :before => "$('invite_fb_link').hide(); $('please_wait').show();",
-                          :complete => "$('invite_fb_link').show(); $('please_wait').hide();"
+                          :complete => "$('invite_fb_link').show(); $('please_wait').hide();alert('Invitations sent');"
                         }, {:class => "no_decor"} %>
           </div>
           <div id="please_wait" style="display:none">Sending invites, please wait ...</div>
@@ -39,7 +39,7 @@
       </tr>
       <tr>
         <td colspan="3">
-          <% member_uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.scan(/<uid>(.+?)<\/ui>/).flatten.compact.delete_if{|e| e.blank?}[0...8] %>
+          <% member_uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.gsub(" ", "").scan(/<uid>(.+)<\/uid>/).flatten[0...8] %>
           <% members = fbsession.users_getInfo(:uids => member_uids,
                 :fields => ["first_name", "pic_square", "profile_url"]).user_list %>
           <% members.each do |mem| %>
