@@ -39,7 +39,7 @@
       </tr>
       <tr>
         <td colspan="3">
-          <% member_uids = fbsession.events_getMembers(:eid => event.eid).attending.gsub(" ", "").split("\n").compact.delete_if{|e| e.blank?}[0...8] %>
+          <% member_uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.gsub(" ", "").split("\n").compact.delete_if{|e| e.blank?}[0...8] %>
           <% members = fbsession.users_getInfo(:uids => member_uids,
                 :fields => ["first_name", "pic_square", "profile_url"]).user_list %>
           <% members.each do |mem| %>
