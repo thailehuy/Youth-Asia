@@ -96,13 +96,17 @@ class AdminController < ApplicationController
   end
 
   def remove
-    event = Event.find_by_eid(params[:eid])
-    if event
-      event.destroy
-    end
     if params[:f_type] == "gathering"
+      gathering = Gathering.find_by_eid(params[:eid])
+      if gathering
+        gathering.destroy
+      end
       redirect_to :action => "gathering_list"
     else
+      event = Event.find_by_eid(params[:eid])
+      if event
+        event.destroy
+      end
       redirect_to :action => "event_list"
     end
 
