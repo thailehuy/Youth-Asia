@@ -80,7 +80,7 @@ table td {padding: 5px;}
 
 /* STRUCTURE */
 #topWrapper {
-    background:url(/images/banner_1.jpg) no-repeat;
+    background:url(/images/banner_1.jpg);
     height: 100px;
     width: 747px;
 }
