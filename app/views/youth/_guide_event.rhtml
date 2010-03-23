@@ -43,7 +43,7 @@
         <td colspan="3">
           <% uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.uid_list %>
           <div>
-            This event has <strong><%= uids.size %></strong> attendees so far
+            This event has <strong><%= uids.size %></strong> attendees so far (<%= link_to "See all", { :action => "all_attendees", :eid => guide_event.eid }, :class => "seeAll" %>)
           </div>
           
           <% member_uids = uids[0...8] %>

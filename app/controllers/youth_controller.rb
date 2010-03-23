@@ -116,6 +116,16 @@ class YouthController < ApplicationController
     @photos = @photoset.get_photos(:per_page => 6)
   end
 
+  def all_attendees
+    if !params[:eid].blank?
+      @uids = fbsession.events_getMembers(:eid => params[:eid]).attending.uid_list
+      @attendess = fbsession.users_getInfo(:uids => @uids,
+                :fields => ["first_name", "pic_square", "profile_url"]).user_list
+    else
+      redirect_to :action => "index"
+    end
+  end
+
   def update_attendant_panel
     event = fbsession.events_get(:eids => [params[:eid]]).event_list.first
 
