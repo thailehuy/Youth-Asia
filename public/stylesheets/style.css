@@ -75,8 +75,8 @@ div.box label             {color:#555555;}
 div.box label span        {float:left;padding-right:6px;width:70px;text-align:right;font-weight:bold;}
 .top_div                  {background-color: #e2e0e0;}
 .spacer                   {margin-left:80px;margin-bottom:10px;font-size:11px;color:#555555;}
-.green                    {background:url(/images/green.gif);padding:0px 6px;border:1px solid #3b6e22;height:24px;line-height:24px;color:#FFFFFF;font-size:12px;margin-right:10px;display:inline-block;text-decoration:none;}
-.light                    {background:url(/images/light.gif);padding:0px 6px;border:1px solid #3b6e22;height:24px;line-height:24px;color:#FFFFFF;font-size:12px;margin-right:10px;display:inline-block;text-decoration:none;}
+.green                    {background:url(/images/green.gif);padding:0px 10px;border:1px solid #3b6e22;height:24px;line-height:24px;color:#FFFFFF !important;font-size:12px;margin-right:10px;display:inline-block;text-decoration:none;}
+.light                    {background:url(/images/light.gif);padding:0px 6px;border:1px solid #3b6e22;height:24px;line-height:24px;color:#FFFFFF !important;font-size:12px;margin-right:10px;display:inline-block;text-decoration:none;}
 .intro                    {background:url(/images/bg-cta-home.jpg) no-repeat;height:302px;margin: 9px 9px 0px 9px !important; width: 727px;}
 div.get_ticket            {height:50px;width:205px;padding: 185px 0 0 492px;}
 div.learn_more            {height:50px;width:205px;padding-left: 532px;}
@@ -122,7 +122,7 @@ ul.featured-event-list>li                   {float: left; width: 286px; margin: 
 .friends-list-panel                         {list-style-type: none; margin:0; padding:0; font-size: 12px; color: #231f20; line-height: 1.1;}
 .friends-list-panel a                       {font-size: 12px; color: #231f20; text-decoration: none;}
 .friends-list-panel a:hover                 {text-decoration: underline;}
-.friends-list-panel>li                      {float: left; margin: 0 10px 0 0; width: 208px;}
+.friends-list-panel>li                      {float: left; margin: 0 10px 8px 0; width: 208px;}
 .friends-list-panel>li img                  {float: left; margin-right: 8px;}
 
 #ticket_booking_table td {padding:4px 20px 4px 0px;}
@@ -130,7 +130,10 @@ ul.featured-event-list>li                   {float: left; width: 286px; margin: 
 #ticket_booking_table input[type=text]:focus {color: #000;}
 
 #voulenteer_form input[type=text] {width: 95%; padding: 4px; color: #a3a3a3;}
-#voulenteer_form textarea {padding: 4px; color: #a3a3a3; font-family: normal 12px Arial, Helvetica, sans-serif;}
+#voulenteer_form textarea {padding: 4px; color: #a3a3a3; font: normal 12px Arial, Helvetica, sans-serif;}
 #voulenteer_form input[type=text]:focus, #voulenteer_form textarea:focus {color: #000;}
+
+.about-box  {line-height: 1.5;}
+.about-box a {color: #231f20;}
 
 #footer {padding: 10px 0; font-size: 11px;}
