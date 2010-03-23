@@ -1,1 +1,13 @@
-<%= navigation_menu(@current_tab) %>
+<ul>
+  <%= navigation_menu(@current_tab) %>
+  <li>
+    <%= link_to image_tag("twitter.png", :class => "top_icon"), "http://twitter.com/youth10fest", :target => "_blank", :class => "no_decor" %>
+  </li>
+  <li>
+    <%= link_to image_tag("facebook.png", :class => "top_icon"), "http://facebook.com/youth10", :target => "_blank", :class => "no_decor" %>
+  </li>
+  <li>
+    <%= link_to image_tag("youtube.png", :class => "top_icon"), "http://youtube.com/youth10fest", :target => "_blank", :class => "no_decor" %>
+  </li>
+</ul>
+

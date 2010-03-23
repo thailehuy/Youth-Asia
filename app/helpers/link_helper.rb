@@ -36,7 +36,7 @@ module LinkHelper
       }
     }
 
-    return "<ul>#{links.join}</ul>"
+    return "#{links.join}"
   end
 
   def book_ticket_url
