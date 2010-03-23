@@ -306,9 +306,9 @@ class YouthController < ApplicationController
   end
 
   def send_mail
-    if !params[:name].blank? && params[:name] != "Name" && !params[:reason].blank? && params[:reason] != "What do you want to tell us?"
+#    if !params[:name].blank? && params[:name] != "Name" && !params[:reason].blank? && params[:reason] != "What do you want to tell us?"
       UserMailer.deliver_contact_submit(params[:name], params[:email], params[:reason])
-    end
+#    end
 
     redirect_to :action => "contact"
   end
