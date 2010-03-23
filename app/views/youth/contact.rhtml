@@ -40,7 +40,7 @@
         <% form_tag url_for(:action => "send_mail") do %>
           <%= text_field_tag :name, "Name", :onclick => "this.value=''" %><br/>
           <%= text_field_tag :email, "Email", :onclick => "this.value=''" %><br/>
-          <%= text_area_tag :raeson, "What do you want to tell us?", :onclick => "this.value=''", :size => "40x10" %>
+          <%= text_area_tag :reason, "What do you want to tell us?", :onclick => "this.value=''", :size => "40x10" %>
           <div style="text-align:right">
             <%= image_submit_tag("/images/send_us.png") %>
           </div>
