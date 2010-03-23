@@ -26,8 +26,9 @@ config.action_mailer.delivery_method = :smtp
 
 ActionMailer::Base.smtp_settings = {
   :address  => "mail.authsmtp.com",
+  :domain => "youthsays.com",
   :port  => 2525,
-  :user_name  => "ac44853@youthsays.com",
+  :user_name  => "ac44853",
   :password  => "kbjh2uxxc",
   :authentication  => :login
 }
