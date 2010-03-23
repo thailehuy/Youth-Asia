@@ -21,3 +21,13 @@ config.action_controller.perform_caching             = false
 # config.action_mailer.raise_delivery_errors = false
 FACEBOOK_API_KEY = 'f6bd3de2d88563f4da1245b0cc4d3a7f'
 SERVER_URL = "http://sharp-fog-22.heroku.com/"
+
+config.action_mailer.delivery_method = :smtp
+
+ActionMailer::Base.smtp_settings = {
+  :address  => "mail.authsmtp.com",
+  :port  => 2525,
+  :user_name  => "ac44853@youthsays.com",
+  :password  => "kbjh2uxxc",
+  :authentication  => :login
+}

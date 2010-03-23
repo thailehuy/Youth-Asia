@@ -88,7 +88,7 @@
           <%= link_to image_tag("/images/#{cat_name}-#{class_name}.png", :alt => cat),
             {:action => "guide"}.merge(date_params.merge(cat_params.merge("cat#{index + 1}".to_sym => cat_param))) %>
             &nbsp;
-            <% if index % 3 == 2 %>
+            <% if index % 4 == 3 %>
               <br/>
             <% end %>
         <% end %>

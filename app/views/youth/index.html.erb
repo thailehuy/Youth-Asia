@@ -30,6 +30,10 @@
 
   <div id="gatherings_panel">
     <%= render :partial => "gathering_panel" %>
+    <br class="clr" />
+    <div class="middle">
+      <%= link_to image_tag("/images/create_gathering.jpg"), {:action => "gathering"} %>
+    </div>
   </div>
 </div>
 
@@ -56,27 +60,3 @@
     <%#*</div>%>
   <%# end %>
 <%#*</div>%>
-
-<div id="next_move" class="box">
-  <h1>Your next move</h1>
-  <div>
-    <table id="next_move_table">
-      <tr>
-        <td>Get a ticket</td>
-        <td><%= link_to "Book here for free", {:controller => 'youth', :action => "booking"}, :class => "softLink" %></td>
-      </tr>
-      <tr>
-        <td>Share the opportunities with your friends and get rewarded</td>
-        <td><%= link_to "Invite your friends", {:controller => 'youth', :action => "giveaway"}, :class => "softLink" %></td>
-      </tr>
-      <tr>
-        <td>RSVP for an event</td>
-        <td><%= link_to "See list of events", {:controller => 'youth', :action => "guide"}, :class => "softLink" %></td>
-      </tr>
-      <tr>
-        <td>Lend us a hand</td>
-        <td><%= link_to "Become a volunteer", {:controller => 'youth', :action => "volunteer"}, :class => "softLink" %></td>
-      </tr>
-    </table>
-  </div>
-</div>

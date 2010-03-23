@@ -1,7 +1,7 @@
 class YouthController < ApplicationController
   PER_PAGE = 4
 
-  FRIEND_PER_PAGE = 8
+  FRIEND_PER_PAGE = 10
 
   def landing
     InvitationCount.find_or_create_by_uid_and_invited_uid(params[:from_ref], @uid) unless @uid.to_s == params[:from_ref].to_s
@@ -64,56 +64,8 @@ class YouthController < ApplicationController
       unless @featured_gathering_eids.empty?
         @featured_gatherings = fbsession.events_get(:eids => @featured_gathering_eids).event_list
       end
-
-#      @ticket_rsvp = Ticket.find_by_uid(@uid)
-#      unless @ticket_rsvp
-#        @ticket = Ticket.new
-#      end
     end
   end
-
-  #  def show_friend_page
-  #    @page = params[:page] || 1
-  #    @page = @page.to_i
-  #    p_start = (@page - 1) * PER_PAGE
-  #    p_end = @page * PER_PAGE
-  #    uids = fbsession.friends_getAppUsers.uid_list
-  #    @friend_uids = uids.paginate(params[:current_page], params[:per_page])
-  #    @have_next_friend_page = uids.size > @friend_uids.size
-  #    @friends = fbsession.users_getInfo(:uids => @friend_uids,
-  #            :fields => ["first_name", "pic_square", "profile_url"]).user_list
-  #    render :partial => "youth/friend_panel"
-  #  end
-  #
-  #  def show_event_page
-  #    @featured_events = []
-  #    @page = params[:page] || 1
-  #    @page = @page.to_i
-  #    p_start = (@page - 1) * PER_PAGE
-  #
-  #    featured_event_eids = Feature.find(:all,
-  #      :conditions => {:f_type => "event"}, :limit => PER_PAGE, :offset => p_start).map{|e| e.eid.to_s}
-  #    @have_next_event_page = Feature.count(:conditions => {:f_type => "event"}) > featured_event_eids.size
-  #    unless featured_event_eids.empty?
-  #      @featured_events = fbsession.events_get(:eids => featured_event_eids).event_list
-  #    end
-  #    render :partial => "youth/event_panel"
-  #  end
-  #
-  #  def show_gathering_page
-  #    @featured_gatherings = []
-  #    @page = params[:page] || 1
-  #    @page = @page.to_i
-  #    p_start = (@page - 1) * PER_PAGE
-  #
-  #    featured_gathering_eids = Feature.find(:all,
-  #      :conditions => {:f_type => "gathering"}, :limit => PER_PAGE, :offset => p_start).map{|e| e.eid.to_s}
-  #    @have_next_gathering_page = Feature.count(:conditions => {:f_type => "gathering"}) > featured_gathering_eids.size
-  #    unless featured_gathering_eids.empty?
-  #      @featured_gatherings = fbsession.events_get(:eids => featured_gathering_eids).event_list
-  #    end
-  #    render :partial => "youth/gathering_panel"
-  #  end
 
   def about
     @current_tab = "About"
@@ -351,6 +303,14 @@ class YouthController < ApplicationController
         page.alert("Something went wrong, please try again")
       end
     end
+  end
+
+  def send_mail
+    if !params[:name].blank? && params[:name] != "Name" && !params[:reason].blank? && params[:reason] != "What do you want to tell us?"
+      UserMailer.deliver_contact_submit(params[:name], params[:email], params[:reason])
+    end
+
+    redirect_to :action => "contact"
   end
 
   protected

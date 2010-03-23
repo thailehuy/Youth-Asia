@@ -1,10 +1,12 @@
+<%= link_to "About", {:action => "about"} %>
+|
 <%= link_to "Blog", "http://blog.youthsays.com/", :target => "_blank" %>
 |
-<%= link_to "Media" %>
+<%= link_to "Social Media" %>
 |
 <%= link_to "News" %>
 |
-<%= link_to "Help", "http://blog.youthsays.com/category/faq/", :target => "_blank" %>
+<%= link_to "FAQ", {:action => "about"}, :target => "_blank" %>
 |
 <%= link_to "Contact us" %>
 <%# if is_admin? %>
