@@ -78,6 +78,7 @@ div.box label span        {float:left;padding-right:6px;width:70px;text-align:ri
 .green                    {background:url(/images/green.gif);padding:0px 10px;border:1px solid #3b6e22;height:24px;line-height:24px;color:#FFFFFF !important;font-size:12px;margin-right:10px;display:inline-block;text-decoration:none;}
 .light                    {background:url(/images/light.gif);padding:0px 6px;border:1px solid #3b6e22;height:24px;line-height:24px;color:#FFFFFF !important;font-size:12px;margin-right:10px;display:inline-block;text-decoration:none;}
 .intro                    {background:url(/images/bg-cta-home.jpg) no-repeat;height:302px;margin: 9px 9px 0px 9px !important; width: 727px;}
+.guide_intro                    {background:url(/images/guide_graphic.jpg) no-repeat;height:302px;margin: 9px 9px 0px 9px !important; width: 727px;}
 div.get_ticket            {height:50px;width:205px;padding: 185px 0 0 492px;}
 div.learn_more            {height:50px;width:205px;padding-left: 532px;}
 .seeAll                   {float:right;padding-top:0px;font-weight: normal;text-decoration: underline !important;color: #3784b1;font-size: 12px;}
