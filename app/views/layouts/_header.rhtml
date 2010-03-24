@@ -6,12 +6,13 @@
   <%= javascript_include_tag :defaults, :defer => "defer"%>
 
   <script type="text/javascript">
-  function callPublish(msg, attachment, action_link)
-  {  FB.ensureInit(function ()
-  {    FB.Connect.streamPublish(msg, attachment, action_link);  });
-  }
-  </script>
-  <script type="text/javascript">
+    function callPublish(msg, attachment, action_link){
+      FB.ensureInit(function ()
+        {    FB.Connect.streamPublish(msg, attachment, action_link);  });
+    }
+    function learn_more_popup() {
+      FB.Connect.showFeedDialog();
+    }
     window.onload = function() {
       FB_RequireFeatures(["XFBML"], function() {
         FB.Facebook.init("<%= FACEBOOK_API_KEY %>", "<%= SERVER_URL %>/xd_receiver.htm");
