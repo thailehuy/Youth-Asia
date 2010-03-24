@@ -89,11 +89,11 @@
     <%= render :partial => "gathering_form" %>
   </div>
 </div>
-<% unless @your_gatherings.blank? %>
-  <div id="your_gathering" class="box">
-    <%= render :partial => "your_gathering" %>
-  </div>
-<% end %>
+<div id="your_gathering" class="box" <%= "style='display:none'" if @your_gatherings.blank? %>
+  <% unless @your_gatherings.blank? %>
+      <%= render :partial => "your_gathering" %>
+  <% end %>
+</div>
 
 <div id="all_gathering" class="box">
   <h1>All gatherings at Youth '10</h1>

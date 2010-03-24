@@ -7,20 +7,25 @@ class UserMailer < ActionMailer::Base
     body       :name => name, :email => email, :reason => reason
   end
 
-  def gathering_submit(name, email, link)
+  def gathering_submit(gathering)
     recipients "youth10@youthsays.com"
     from       "dev@youthsays.com"
     subject    "[Gathering submit]"
     sent_on    Time.now
-    body       :name => name, :email => email, :link => link
+    body       :name => gathering.name, 
+                :email => gathering.email, :link => gathering.event_link,
+                :phone => gathering.phone, :ic_number => gathering.ic_number
   end
 
-  def volunteer_submit(name, email, reason)
+  def volunteer_submit(volunteer)
     recipients "youth10@youthsays.com"
     from       "dev@youthsays.com"
     subject    "[Volunteer application]"
     sent_on    Time.now
-    body       :name => name, :email => email, :reason => reason
+    body       :name => volunteer.name,
+                :email => volunteer.email,
+                :phone => volunteer.phone, :ic_number => volunteer.ic_number,
+                :reason => volunteer.reason
   end
 
 end

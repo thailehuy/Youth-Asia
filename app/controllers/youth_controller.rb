@@ -178,12 +178,13 @@ class YouthController < ApplicationController
     @gathering.eid = eid
     if !dup && @gathering.save
       get_your_gathering
-      UserMailer.deliver_gathering_submit(@gathering.name, @gathering.email, params[:gathering][:event_link])
       render :update do |page|
         page["gathering_form"].replace_html :partial => "gathering_form"
+        page["your_gathering"].show
         page["your_gathering"].replace_html :partial => "your_gathering"
         page.alert("Your gathering has been created")
         page << gathering_publisher(@gathering)
+        UserMailer.deliver_gathering_submit(@gathering)
       end
     else
       render :update do |page|
@@ -209,7 +210,7 @@ class YouthController < ApplicationController
       @volunteer = Volunteer.new(params[:volunteer])
       @volunteer.uid = @uid
       @volunteer.save!
-      UserMailer.deliver_volunteer_submit(@volunteer.name, @volunteer.email, @volunteer.reason)
+      UserMailer.deliver_volunteer_submit(@volunteer)
       flash[:notice] = "Your application has been submitted"
     end
     top_redirect_to :action => "volunteer"
