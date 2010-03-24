@@ -118,7 +118,7 @@ class YouthController < ApplicationController
 
   def all_attendees
     if !params[:eid].blank?
-      @uids = fbsession.events_getMembers(:eid => params[:eid]).attending.uid_list
+      @uids = fbsession.events_getMembers(:eid => params[:eid]).attending.uid_list.paginate(:page => params[:page], :per_page => 18)
       @attendess = fbsession.users_getInfo(:uids => @uids,
                 :fields => ["first_name", "pic_square", "profile_url"]).user_list
     else
@@ -178,6 +178,7 @@ class YouthController < ApplicationController
     @gathering.eid = eid
     if !dup && @gathering.save
       get_your_gathering
+      UserMailer.deliver_gathering_submit(@gathering.name, @gathering.email, params[:gathering][:event_link])
       render :update do |page|
         page["gathering_form"].replace_html :partial => "gathering_form"
         page["your_gathering"].replace_html :partial => "your_gathering"
@@ -208,6 +209,7 @@ class YouthController < ApplicationController
       @volunteer = Volunteer.new(params[:volunteer])
       @volunteer.uid = @uid
       @volunteer.save!
+      UserMailer.deliver_volunteer_submit(@volunteer.name, @volunteer.email, @volunteer.reason)
       flash[:notice] = "Your application has been submitted"
     end
     top_redirect_to :action => "volunteer"
@@ -287,7 +289,7 @@ class YouthController < ApplicationController
   end
 
   def friend_list
-    @uids = fbsession.friends_getAppUsers.uid_list.paginate(:page => params[:page], :per_page => 10)
+    @uids = fbsession.friends_getAppUsers.uid_list.paginate(:page => params[:page], :per_page => 18)
     @friend_uids = @uids
     @have_next_friend_page = @uids.size > @friend_uids.size
 
@@ -296,7 +298,7 @@ class YouthController < ApplicationController
   end
 
   def volunteer_list
-    @uids = Volunteer.paginate(:all, :page => params[:page], :per_page => 20).map{|v| v.uid}
+    @uids = Volunteer.paginate(:all, :page => params[:page], :per_page => 18).map{|v| v.uid}
 
     @volunteers = fbsession.users_getInfo(:uids => @uids,
             :fields => ["first_name", "pic_square", "profile_url"]).user_list

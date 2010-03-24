@@ -4,13 +4,11 @@
   </h1>
 
   <div id="volunteer_list">
-    <% @volunteers.each_with_index do |v, index| %>
-      <%= render :partial => "friend", :object => v %>
-      <%= "<br class='clr'/>"  if index % 4 == 3 %>
-    <% end %>
+    <ul class="friends-list-panel">
+      <%= render :partial => "friend", :collection => @volunteers %>
+    </ul>
     <br class='clr'/>
   </div>
-  <div class="page_link">
-    <%= fb_will_paginate @uids %>
-  </div>
+  <%= fb_will_paginate @uids %>
+  <br class="clr" />
 </div>

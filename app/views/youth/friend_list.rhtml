@@ -1,10 +1,9 @@
-<p>
-  Your friends coming to Youth '10
-</p>
-
-<div id="friend_list">
+<div id="friend_list" class="box">
+  <h1>Your friends coming to Youth '10</h1>
+  <ul class="friends-list-panel">
   <%= render :partial => "friend", :collection => @friends %>
-  <br class='clr'/>
+  </ul>
+  <br class="clr" />
+  <%= fb_will_paginate @uids %>
+  <br class="clr" />
 </div>
-
-<%= fb_will_paginate @uids %>
