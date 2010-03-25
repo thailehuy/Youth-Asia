@@ -1,5 +1,5 @@
 <div id="why_volunteer" class="box">
-  <h1>Why volunteer at Youth '10?</h1>
+  <h1>Why volunteer at YOUTH '10?</h1>
   <div>
     Some reasons go here
   </div>
@@ -34,7 +34,7 @@
         <td><%= f.select :position_3, Volunteer::POSITION, {}, {:class => "select_wide"} %></td>
       </tr>
       <tr>
-        <td colspan="2"><%= f.text_area :reason, :rows => 5, :cols => 60, :value => @volunteer.reason || "Tell us why you want to join Youth 10", :onclick => "if (this.value == 'Tell us why you want to join Youth 10') this.value='';", :onblur => "if (this.value == '') this.value='Tell us why you want to join Youth 10';" %></td>
+        <td colspan="2"><%= f.text_area :reason, :rows => 5, :cols => 60, :value => @volunteer.reason || "Tell us why you want to join YOUTH 10", :onclick => "if (this.value == 'Tell us why you want to join YOUTH 10') this.value='';", :onblur => "if (this.value == '') this.value='Tell us why you want to join YOUTH 10';" %></td>
         <td>
           <p>
             Your CV: <%= f.file_field :uploaded_data, :size => 10 %>
@@ -61,7 +61,7 @@
 
 <div id="volunteer_list" class="box">
   <h1>
-    Volunteers at Youth '10
+    Volunteers at YOUTH '10
     <span class="see_all">
       <%= link_to "See all", { :action => "volunteer_list" }, :class => "seeAll" %>
     </span>
