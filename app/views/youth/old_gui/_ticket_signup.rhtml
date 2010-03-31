@@ -1,0 +1,34 @@
+<%= error_messages_for :ticket %>
+
+<% form_for :ticket, @ticket, :url => url_for(:action => "create_ticket") do |f| %>
+<table class="ticket_table">
+  <tr>
+    <td>
+        <%= f.text_field :name, :value => @ticket.name || "Name", :onclick => "this.value='';" %>
+    </td>
+    <td>
+        <%= f.check_box :agreement %>
+        <%= f.label :agreement, "I have read and agree with Terms &amp; Conditions" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <%= f.text_field :ic_number, :value => @ticket.ic_number || "IC number", :onclick => "this.value='';" %>
+    </td>
+    <td rowspan="3">
+      <%= image_submit_tag "/images/have_account.jpg" %><br/><br/>
+      <%= link_to image_tag("/images/no_account.jpg"), "http://www.youthsays.com", :target => "_blank" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <%= f.text_field :email, :value => @ticket.email || "Email", :onclick => "this.value='';" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <%= f.text_field :phone, :value => @ticket.phone || "Phone", :onclick => "this.value='';" %>
+    </td>
+  </tr>
+</table>
+<% end %>

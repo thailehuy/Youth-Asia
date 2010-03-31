@@ -1,0 +1,9 @@
+<ul class="featured-event-list">
+  <%= render :partial => "event", :collection => @featured_gatherings %>
+
+</ul>
+<br class="clr"/>
+<div class="page_link">
+  <%= will_paginate @gatherings, :renderer => 'RemoteLinkRenderer',
+    :remote => {:update => "gatherings_panel"}, :param_name => "gathering_page" %>
+</div>

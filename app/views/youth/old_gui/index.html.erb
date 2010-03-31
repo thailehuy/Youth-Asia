@@ -1,0 +1,62 @@
+<div id="top_info" class="guide_intro">
+  <div class="get_ticket">
+    <%= link_to image_tag("/images/get_ticket.jpg"), {:controller => 'youth', :action => "booking"} %>
+  </div>
+  <div class="learn_more">
+    <%= link_to image_tag("/images/learn_more.jpg"), {:controller => 'youth', :action => "guide"} %>
+  </div>
+</div>
+
+<div id="events" class="box">
+  <h1>
+    Featured events
+    <span class="see_all">
+      <%= link_to "See all", { :action => "guide" }, :class => "seeAll" %>
+    </span>
+  </h1>
+
+  <div id="events_panel">
+    <%= render :partial => "event_panel" %>
+  </div>
+</div>
+
+<div id="gatherings" class="box">
+  <h1>
+    Featured gatherings
+    <span class="see_all">
+      <%= link_to "See all", { :action => "gathering" }, :class => "seeAll" %>
+    </span>
+  </h1>
+
+  <div id="gatherings_panel">
+    <%= render :partial => "gathering_panel" %>
+    <br class="clr" />
+    <div class="middle">
+      <%= link_to image_tag("/images/create_gathering.jpg"), {:action => "gathering"} %>
+    </div>
+  </div>
+</div>
+
+<div id="friends" class="box">
+  <h1>
+    Friends coming to YOUTH '10
+    <span class="see_all">
+      <%= link_to "See all", { :action => "friend_list" }, :class => "seeAll" %>
+    </span>
+  </h1>
+  
+  <div id="friends_panel">
+    <%= render :partial => "friend_panel" %>
+  </div>
+</div>
+
+<%#*<div id="tickets_info" class="box">%>
+  <%#*<h1>Your ticket information</h1>%>
+  <%# if @ticket_rsvp %>
+    <%#= render :partial => "ticket_info" %>
+  <%# else %>
+    <%#*<div id="ticket_signup">%>
+      <%#= render :partial => "ticket_signup" %>
+    <%#*</div>%>
+  <%# end %>
+<%#*</div>%>

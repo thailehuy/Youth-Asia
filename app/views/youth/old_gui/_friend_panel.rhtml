@@ -1,0 +1,7 @@
+<ul class="friends-list-panel">
+  <%= render :partial => "friend", :collection => @friends %>
+</ul>
+<br class="clr"/>
+<div class="page_link">
+  <%= fb_will_paginate @friend_uids %>
+</div>

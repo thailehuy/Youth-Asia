@@ -41,29 +41,65 @@ class YouthController < ApplicationController
       return
     else
       @current_tab = "Home"
-      @featured_events = []
-      @featured_gatherings = []
       uids = fbsession.friends_getAppUsers.uid_list
       @friend_uids = uids.paginate(:page => params[:friend_page], :per_page => FRIEND_PER_PAGE)
       @friends = fbsession.users_getInfo(:uids => @friend_uids,
               :fields => ["first_name", "pic_square", "profile_url"]).user_list
 
-      @features = Feature.paginate(:all,
-              :page => params[:event_page], :per_page => PER_PAGE,
-              :conditions => {:f_type => "event"})
-      @featured_event_eids = @features.map{|e| e.eid.to_s}
-      unless @featured_event_eids.empty?
-        @featured_events = fbsession.events_get(:eids => @featured_event_eids).event_list
+      all_events = Event.all
+
+      events = []
+      zero_cat = true
+      Event::CATEGORIES.each_with_index do |cat, index|
+        if params["cat#{index + 1}".to_sym].to_i == 1
+          events += all_events.select{|e| e.category == cat}
+          zero_cat = false
+        end
       end
-      
-      @featured_gatherings = []
-      @gatherings = Feature.paginate(:all,
-            :page => params[:event_page], :per_page => PER_PAGE,
-            :conditions => {:f_type => "gathering"})
-      @featured_gathering_eids = @gatherings.map{|e| e.eid.to_s}
-      unless @featured_gathering_eids.empty?
-        @featured_gatherings = fbsession.events_get(:eids => @featured_gathering_eids).event_list
+
+      events = all_events if zero_cat
+
+      if params["date1".to_sym].to_i == 0 && params["date2".to_sym].to_i == 0 && params["date3".to_sym].to_i == 0
+        start_date = nil
+        end_date = nil
+      else
+        start_date_offset = 0
+        end_date_offset = 0
+
+        (1..3).to_a.each do |index|
+          if params["date#{index}".to_sym].to_i == 1
+            start_date_offset += (index - 1) unless start_date_offset > 0
+            end_date_offset += (index - 1)
+          end
+        end
+        start_date = (DateTime.parse("May 28") + start_date_offset.days).to_time.to_i
+        end_date = (DateTime.parse("May 29") + end_date_offset.days).to_time.to_i
       end
+
+      @events = []
+      unless events.blank?
+        @events = fbsession.events_get(:eids => events.collect{|e| e.eid},
+                  :start_time => start_date, :end_time => end_date).event_list
+      end
+
+#      @featured_events = []
+#      @featured_gatherings = []
+#      @features = Feature.paginate(:all,
+#              :page => params[:event_page], :per_page => PER_PAGE,
+#              :conditions => {:f_type => "event"})
+#      @featured_event_eids = @features.map{|e| e.eid.to_s}
+#      unless @featured_event_eids.empty?
+#        @featured_events = fbsession.events_get(:eids => @featured_event_eids).event_list
+#      end
+#
+#      @featured_gatherings = []
+#      @gatherings = Feature.paginate(:all,
+#            :page => params[:event_page], :per_page => PER_PAGE,
+#            :conditions => {:f_type => "gathering"})
+#      @featured_gathering_eids = @gatherings.map{|e| e.eid.to_s}
+#      unless @featured_gathering_eids.empty?
+#        @featured_gatherings = fbsession.events_get(:eids => @featured_gathering_eids).event_list
+#      end
     end
   end
 

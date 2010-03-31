@@ -1,0 +1,7 @@
+<div>
+  <%= render :partial => "volunteer", :collection => @volunteers %>
+  <br class="clr"/>
+</div>
+<div class="page_link">
+  <%= fb_will_paginate @volunteer_uids %>
+</div>

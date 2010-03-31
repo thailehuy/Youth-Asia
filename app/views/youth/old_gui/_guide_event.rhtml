@@ -1,0 +1,61 @@
+<div>
+    <table width="100%" class="guide_event_table">
+      <tr>
+        <td width="20%">
+          <a id="e_link" href="<%= "http://www.facebook.com/event.php?eid=#{guide_event.eid}" %>" target="_blank">
+            <img src="<%= guide_event.pic %>" alt="Event picture" id="e_pic"/>
+          </a>
+        </td>
+        <td style="vertical-align: top;">
+          <%= link_to guide_event.name, event_link(guide_event), :class => "event_name" %>
+          <p>
+            Type: <span id="e_type"><%= guide_event.event_type %></span><br/>
+            Start time: <span id="e_start"><%= display_time(guide_event.start_time.to_s) %></span><br/>
+            End time: <span id="e_end"><%= display_time(guide_event.end_time.to_s) %></span><br/>
+            Location: <span id="e_location"><%= guide_event.location %></span>
+          </p>
+        </td>
+        <td width="30%">
+          <div>+ Share this event:</div>
+          <div>
+            <%= link_to_function image_tag("/images/facebook-16x16.png", :class => "alignV") + " Post on wall", :onclick => joining_publisher(guide_event), :class => "no_decor" %>
+          </div>
+          <div>
+            <%= link_to image_tag("/images/twitter-16x16.png", :class => "alignV") + " Tweet it!!!", "http://twitter.com/?status=Join me at http://www.facebook.com/event.php?eid=#{guide_event.eid}", :class => "no_decor", :target => "_blank" %>
+          </div>
+          <div id="invite_fb_link">
+            <%= link_to_remote image_tag("/images/facebook-16x16.png", :class => "alignV") + " Invite FB friends",
+                        {
+                          :url => {:action => "invite_fb_friends", :eid => guide_event.eid},
+                          :before => "$('invite_fb_link').hide(); $('please_wait').show();",
+                          :complete => "$('invite_fb_link').show(); $('please_wait').hide();alert('Invitations sent');"
+                        }, {:class => "no_decor"} %>
+          </div>
+          <div id="please_wait" style="display:none">Sending invites, please wait ...</div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <%= truncate(guide_event.description, :length => 400, :omission => "...") %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <% uids = fbsession.events_getMembers(:eid => guide_event.eid).attending.uid_list %>
+          <div>
+            This event has <strong><%= uids.size %></strong> attendees so far <%= link_to "See all", { :action => "all_attendees", :eid => guide_event.eid }, :class => "seeAll" %>
+          </div>
+          
+          <% member_uids = uids[0...8] %>
+          <% members = fbsession.users_getInfo(:uids => member_uids,
+                :fields => ["first_name", "pic_square", "profile_url"]).user_list %>
+          <% members.each do |mem| %>
+            <div class="friend_table">
+              <%= link_to image_tag(mem.pic_square), mem.profile_url, :target => "_blank" %><br/>
+              <%= link_to mem.first_name, mem.profile_url, :target => "_blank" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+</div>

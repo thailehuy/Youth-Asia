@@ -1,0 +1,14 @@
+<div class="box">
+  <h1>
+    Volunteers at YOUTH '10
+  </h1>
+
+  <div id="volunteer_list">
+    <ul class="friends-list-panel">
+      <%= render :partial => "friend", :collection => @volunteers %>
+    </ul>
+    <br class='clr'/>
+  </div>
+  <%= fb_will_paginate @uids %>
+  <br class="clr" />
+</div>

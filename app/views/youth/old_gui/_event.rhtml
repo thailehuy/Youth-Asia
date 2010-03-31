@@ -1,0 +1,11 @@
+<li>
+  <div class="event-image"><%= link_to image_tag(event.pic, :size => "90x90"), event_link(event), :target => "_blank" %></div>
+  <div class="event-info">
+    <h3><%= link_to truncate(event.name, :length => 25, :omission => "..."), event_link(event), :target => "_blank", :class => "event_link" %></h3>
+    <%= truncate(event.location, :length => 25, :omission => "...") %><br />
+    <%= display_time(event.start_time.to_s) %>
+    <%= "- " + display_time(event.end_time.to_s) unless event.end_time.blank? %><br />
+    <strong><%= display_attendant(event) %> attendees so far</strong><br />
+    <%= link_to "See details", event_link(event), :target => "_blank" %>
+  </div>
+</li>

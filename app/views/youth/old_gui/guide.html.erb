@@ -28,6 +28,12 @@
             70000 youths and much more
           </div>
         </td>
+        <td>
+          <div>
+            <%= render :partial => 'gallery' %>
+          </div>
+          <%= link_to "More pictures at YOUTH '08 and YOUTH '09", "flikr_url" %>
+        </td>
       </tr>
     </table>
   </div>
@@ -72,32 +78,8 @@
       </td>
     </tr>
   </table>
-
+  
   <div id="guide_event_panel">
     <%= render :partial => "guide_event", :collection => @events %>
   </div>
 </div>
-
-<div id="friends" class="box">
-  <h1>
-    Friends coming to YOUTH '10
-    <span class="see_all">
-      <%= link_to "See all", { :action => "friend_list" }, :class => "seeAll" %>
-    </span>
-  </h1>
-  
-  <div id="friends_panel">
-    <%= render :partial => "friend_panel" %>
-  </div>
-</div>
-
-<div id="tweets_from" class="box boxLeft boxSmall">
-  <h2>Follow us on Twitter @Youth10Fest</h2>
-</div>
-<div id="tweets_about" class="box boxLeft boxSmall">
-  <h2>What are they talking about YOUTH '10</h2>
-</div>
-<div id="fb_fan_page" class="box boxLeft boxSmall">
-  <h2>Follow YOUTH '10 Facebook Fanpage</h2>
-</div>
-<br class="clr" />

@@ -1,0 +1,59 @@
+<%#= error_messages_for :ticket %>
+
+<%#*<div id="tickets_info" class="box">%>
+  <%#*<h1>Your ticket information</h1>%>
+
+  <%# if @ticket_rsvp %>
+    <%#= render :partial => "ticket_info" %>
+  <%# else %>
+    <%#*<div id="ticket_signup">%>
+      <%#= render :partial => "ticket_signup" %>
+    <%#*</div>%>
+  <%# end %>
+<%#*</div>%>
+
+<div class="box centerView">
+  Ticket booking is available at Youthsays website, please visit the site to book directly
+  <div>
+    <%= link_to image_tag("/images/goto-youthsays.png"), "http://www.youthsays.com", :class => "bigButton", :target => "_blank" %>
+  </div>
+</div>
+
+<%= render :partial => "about_info" %>
+
+<div id="friends" class="box">
+  <h1>
+    Friends coming to YOUTH '10
+    <span class="see_all">
+      <%= link_to "See all", { :action => "friend_list" }, :class => "seeAll" %>
+    </span>
+  </h1>
+
+  <div id="friends_panel">
+    <%= render :partial => "friend_panel" %>
+  </div>
+</div>
+
+<div id="next_move" class="box">
+  <h1>Your next move</h1>
+  <div>
+    <table id="next_move_table">
+      <tr>
+        <td>Get a ticket</td>
+        <td><%= link_to "Book here for free", {:controller => 'youth', :action => "booking"}, :class => "softLink" %></td>
+      </tr>
+      <tr>
+        <td>Share the opportunities with your friends and get rewarded</td>
+        <td><%= link_to "Invite your friends", {:controller => 'youth', :action => "giveaway"}, :class => "softLink" %></td>
+      </tr>
+      <tr>
+        <td>RSVP for an event</td>
+        <td><%= link_to "See list of events", {:controller => 'youth', :action => "guide"}, :class => "softLink" %></td>
+      </tr>
+      <tr>
+        <td>Lend us a hand</td>
+        <td><%= link_to "Become a volunteer", {:controller => 'youth', :action => "volunteer"}, :class => "softLink" %></td>
+      </tr>
+    </table>
+  </div>
+</div>

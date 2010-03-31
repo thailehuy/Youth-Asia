@@ -1,0 +1,5 @@
+<% @photos.each do |photo| %>
+  <% link_to photo.url_photopage, :target => "_blank" do %>
+    <%= image_tag photo.url(:square) %>
+  <% end %>
+<% end %>

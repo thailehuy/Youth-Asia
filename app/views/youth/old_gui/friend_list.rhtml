@@ -1,0 +1,9 @@
+<div id="friend_list" class="box">
+  <h1>Your friends coming to YOUTH '10</h1>
+  <ul class="friends-list-panel">
+  <%= render :partial => "friend", :collection => @friends %>
+  </ul>
+  <br class="clr" />
+  <%= fb_will_paginate @uids %>
+  <br class="clr" />
+</div>
