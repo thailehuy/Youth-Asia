@@ -81,25 +81,6 @@ class YouthController < ApplicationController
         @events = fbsession.events_get(:eids => events.collect{|e| e.eid},
                   :start_time => start_date, :end_time => end_date).event_list
       end
-
-#      @featured_events = []
-#      @featured_gatherings = []
-#      @features = Feature.paginate(:all,
-#              :page => params[:event_page], :per_page => PER_PAGE,
-#              :conditions => {:f_type => "event"})
-#      @featured_event_eids = @features.map{|e| e.eid.to_s}
-#      unless @featured_event_eids.empty?
-#        @featured_events = fbsession.events_get(:eids => @featured_event_eids).event_list
-#      end
-#
-#      @featured_gatherings = []
-#      @gatherings = Feature.paginate(:all,
-#            :page => params[:event_page], :per_page => PER_PAGE,
-#            :conditions => {:f_type => "gathering"})
-#      @featured_gathering_eids = @gatherings.map{|e| e.eid.to_s}
-#      unless @featured_gathering_eids.empty?
-#        @featured_gatherings = fbsession.events_get(:eids => @featured_gathering_eids).event_list
-#      end
     end
   end
 
@@ -255,22 +236,8 @@ class YouthController < ApplicationController
     render :action => "volunteer"
   end
 
-#  def show_volunteer_page
-#    @page = params[:page] || 1
-#    @page = @page.to_i
-#    p_start = (@page - 1) * PER_PAGE
-#
-#    @volunteer_uids = Volunteer.find(:all, :limit => PER_PAGE, :offset => p_start).collect{|v| v.uid}
-#
-#    @volunteers = fbsession.users_getInfo(:uids => @volunteer_uids, :fields => ["pic_square", "first_name", "profile_url"]).user_list
-#    @have_next_volunteer_page = Volunteer.count > p_start + PER_PAGE
-#    render :partial => "youth/volunteer_panel"
-#  end
-
   def booking
     @current_tab = "Book ticket"
-#    @ticket_rsvp = Ticket.find_by_uid(@uid)
-#    @ticket = Ticket.new
     uids = fbsession.friends_getAppUsers.uid_list
     @friend_uids = uids.paginate(:page => params[:page], :per_page => FRIEND_PER_PAGE)
 
@@ -360,6 +327,29 @@ class YouthController < ApplicationController
     end
 
     redirect_to :action => "contact"
+  end
+
+  def all_stories
+    @story = Story.new
+  end
+
+  def create_story
+    @story = Story.create(params[:story])
+    render :update do |page|
+      if @story.save
+        page.alert("Your story has been submitted")
+        page << story_publisher(@story)
+        author = fbsession.users_getInfo(:uids => [@uid],
+                :fields => ["first_name"]).user_list.first
+        UserMailer.deliver_story_submit(author.first_name, @story)
+      else
+        page.alert("Please check your information again")
+      end
+    end
+  end
+
+  def contest
+    
   end
 
   protected

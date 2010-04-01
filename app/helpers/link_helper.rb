@@ -14,8 +14,8 @@ module LinkHelper
   def menu_items
     [
       ["Home", {:controller => "youth", :action => "index"}],
-#      ["About", {:controller => "youth", :action => "about"}],
-      ["Festival Guide", {:controller => "youth", :action => "guide"}],
+      ["Contest", {:controller => "youth", :action => "contest"}],
+#      ["Festival Guide", {:controller => "youth", :action => "guide"}],
       ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
       ["Volunteer", {:controller => "youth", :action => "volunteer"}],
       ["Book ticket", {:controller => "youth", :action => "booking"}],

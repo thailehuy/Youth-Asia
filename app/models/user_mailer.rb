@@ -28,4 +28,12 @@ class UserMailer < ActionMailer::Base
                 :reason => volunteer.reason
   end
 
+  def story_submit(name, story)
+    recipients "youth10@youthsays.com"
+    from       "dev@youthsays.com"
+    subject    "[Story submitted]"
+    sent_on    Time.now
+    body       :name => name,
+                :story => story.content
+  end
 end

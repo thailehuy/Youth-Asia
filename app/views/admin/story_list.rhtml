@@ -1,0 +1,19 @@
+<div class="box">
+  <h2>All stories</h2>
+  <div>
+    <% @stories.each do |story| %>
+      <div>
+        <% author = fbsession.users_getInfo(:uids => [story.uid],
+                :fields => ["first_name", "pic_square", "profile_url"]).user_list.first %>
+        Posted by: <br/>
+        <%= link_to image_tag(author.pic_square), author.profile_url, :target => "_blank" %>
+        <%= link_to author.first_name, author.profile_url, :target => "_blank" %>
+      </div>
+      <div>
+        <%= story.content %>
+      </div>
+    <% end %>
+
+    <%= fb_will_paginate @stories %>
+  </div>
+</div>

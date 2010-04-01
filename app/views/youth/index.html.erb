@@ -49,7 +49,7 @@
           <% date_param = (params["date#{index + 1}".to_sym].to_i == 1 ? 0 : 1) %>
           <% class_name = (params["date#{index + 1}".to_sym].to_i == 1 ? "active" : "inactive") %>
           <%= link_to image_tag("/images/#{date}-#{class_name}.png", :alt => "Friday May #{date}"),
-            {:action => "guide"}.merge(cat_params.merge(date_params.merge("date#{index + 1}".to_sym => date_param)))
+            {:action => "index"}.merge(cat_params.merge(date_params.merge("date#{index + 1}".to_sym => date_param)))
           %>
           &nbsp;
         <% end %>
@@ -63,7 +63,7 @@
           <% cat_param = (params["cat#{index + 1}".to_sym].to_i == 1 ? 0 : 1) %>
           <% class_name = (params["cat#{index + 1}".to_sym].to_i == 1 ? "active" : "inactive") %>
           <%= link_to image_tag("/images/#{cat_name}-#{class_name}.png", :alt => cat),
-            {:action => "guide"}.merge(date_params.merge(cat_params.merge("cat#{index + 1}".to_sym => cat_param))) %>
+            {:action => "index"}.merge(date_params.merge(cat_params.merge("cat#{index + 1}".to_sym => cat_param))) %>
             &nbsp;
             <% if index % 4 == 3 %>
               <br/>
@@ -90,14 +90,3 @@
     <%= render :partial => "friend_panel" %>
   </div>
 </div>
-
-<div id="tweets_from" class="box boxLeft boxSmall">
-  <h2>Follow us on Twitter @Youth10Fest</h2>
-</div>
-<div id="tweets_about" class="box boxLeft boxSmall">
-  <h2>What are they talking about YOUTH '10</h2>
-</div>
-<div id="fb_fan_page" class="box boxLeft boxSmall">
-  <h2>Follow YOUTH '10 Facebook Fanpage</h2>
-</div>
-<br class="clr" />

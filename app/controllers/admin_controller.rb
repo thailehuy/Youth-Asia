@@ -50,6 +50,16 @@ class AdminController < ApplicationController
     end
   end
 
+  def story_list
+    @stories = Story.paginate(:all,
+      :per_page => PER_PAGE, :page => params[:page])
+  end
+
+  def featured_story_list
+    @stories = Feature.paginate(:all, :conditions => {:f_type => "story"},
+      :per_page => PER_PAGE, :page => params[:page])
+  end
+
   def volunteer_list
     @volunteers = Volunteer.paginate(:all,
       :per_page => PER_PAGE, :page => params[:page])
@@ -79,8 +89,10 @@ class AdminController < ApplicationController
 
     if params[:f_type] == "event"
       top_redirect_to :action => "event_list"
-    else
+    elsif params[:f_type] == "gathering"
       top_redirect_to :action => "gathering_list"
+    else
+      top_redirect_to :action => "story_list"
     end
   end
 
@@ -113,11 +125,15 @@ class AdminController < ApplicationController
   end
 
   def remove_feature
-    feature = Feature.find_by_eid(params[:eid])
+    feature = Feature.find_by_eid(params[:eid]) || Feature.find_by_id(params[:id])
     f_type = "event"
     if feature
       if feature.f_type == "gathering"
         f_type = "gathering"
+      elsif feature.f_type == "event"
+        f_type = "event"
+      else
+        f_type = "story"
       end
       feature.destroy
     end
