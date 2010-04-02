@@ -8571,3 +8571,50 @@ Rendered layouts/_nav (2.9ms)
 Rendered layouts/_footer (0.7ms)
 ** RFACEBOOK INFO: persisting Facebook session information into Rails session
 Completed in 905ms (View: 21, DB: 0) | 200 OK [http://localhost/youth/contest?fb_sig_in_iframe=1&fb_sig_iframe_key=a2ef406e2c2351e0b9e80029c909242d&fb_sig_locale=en_US&fb_sig_in_new_facebook=1&fb_sig_time=1270198566.099&fb_sig_added=1&fb_sig_profile_update_time=1264031847&fb_sig_expires=1270202400&fb_sig_user=100000225274542&fb_sig_session_key=2.iMjSEfYBNReECWQzEvXPYw__.3600.1270202400-100000225274542&fb_sig_ss=duu7tSIUogqChqamEu4LSw__&fb_sig_cookie_sig=00d45d6c1dceb7efb588c3d0deb7d4f3&fb_sig_ext_perms=auto_publish_recent_activity&fb_sig_api_key=e6888d5e9df5989ebdf6407343ed69c1&fb_sig_app_id=365288342656&fb_sig=26f988a740171a9f4f9f3ff16da27f73]
+
+
+Processing YouthController#index (for 127.0.0.1 at 2010-04-02 17:05:37) [GET]
+  Parameters: {"fb_sig_app_id"=>"365288342656", "fb_sig_iframe_key"=>"a2ef406e2c2351e0b9e80029c909242d", "fb_sig_in_iframe"=>"1", "fb_sig_locale"=>"en_US", "fb_sig_in_new_facebook"=>"1", "fb_sig"=>"3b58c69e0afeec572449ffbbd8d5af76", "fb_sig_added"=>"1", "fb_sig_expires"=>"1270206000", "fb_sig_session_key"=>"2.c3UcEkr53nhaMvfKO5ex2g__.3600.1270206000-100000225274542", "fb_sig_cookie_sig"=>"a05604e33be73438989db9ce833c787f", "fb_sig_ext_perms"=>"auto_publish_recent_activity", "fb_sig_ss"=>"QhpMi_QBQt_bTg8Bubpchg__", "fb_sig_api_key"=>"e6888d5e9df5989ebdf6407343ed69c1", "fb_sig_time"=>"1270199137.6619", "fb_sig_profile_update_time"=>"1264031847", "fb_sig_user"=>"100000225274542"}
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+** RFACEBOOK INFO: Activated session from inside the canvas (user=100000225274542, session_key=2.c3UcEkr53nhaMvfKO5ex2g__.3600.1270206000-100000225274542, expires=1270206000)
+** RFACEBOOK(GEM) - when you call a remote Facebook method
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - users.getLoggedInUser(nil) - making remote call
+** RFACEBOOK(GEM) - when you call a remote Facebook method
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - friends.getAppUsers(nil) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - users.getInfo({:uids=>["608116520", "654407413", "788344374"], :fields=>["first_name", "pic_square", "profile_url"]}) - making remote call
+  [4;36;1mEvent Load (0.3ms)[0m   [0;1mSELECT * FROM `events` [0m
+  [4;35;1mEvent Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `events`[0m
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.get({:start_time=>nil, :eids=>["108570285827563", "106332779389897", "111407278873161", "106423256051874", "110925015589824"], :end_time=>nil}) - making remote call
+Rendering template within layouts/application
+Rendering youth/index
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.get({:eids=>["108570285827563"]}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.getMembers({:eid=>"108570285827563"}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - users.getInfo({:uids=>["521009176", "1361527803", "1158840115", "839532707", "578685644", "717838508", "100000225274542", "603877036"], :fields=>["first_name", "pic_square", "profile_url"]}) - making remote call
+Rendered youth/_guide_event (4655.5ms)
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.get({:eids=>["106332779389897"]}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.getMembers({:eid=>"106332779389897"}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - users.getInfo({:uids=>["814496561", "536899686", "1244988406", "504550774", "1182412424"], :fields=>["first_name", "pic_square", "profile_url"]}) - making remote call
+Rendered youth/_guide_event (7715.4ms)
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.get({:eids=>["111407278873161"]}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.getMembers({:eid=>"111407278873161"}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - users.getInfo({:uids=>["814496561", "536899686", "788344374"], :fields=>["first_name", "pic_square", "profile_url"]}) - making remote call
+Rendered youth/_guide_event (2559.1ms)
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.get({:eids=>["106423256051874"]}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.getMembers({:eid=>"106423256051874"}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - users.getInfo({:uids=>["536899686"], :fields=>["first_name", "pic_square", "profile_url"]}) - making remote call
+Rendered youth/_guide_event (2752.4ms)
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.get({:eids=>["110925015589824"]}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - events.getMembers({:eid=>"110925015589824"}) - making remote call
+** RFACEBOOK(GEM) - RFacebook::FacebookSession#remote_call - users.getInfo({:uids=>["536899686", "504550774", "1182412424"], :fields=>["first_name", "pic_square", "profile_url"]}) - making remote call
+Rendered youth/_guide_event (2702.1ms)
+Rendered youth/_friend (1.4ms)
+Rendered youth/_friend (0.7ms)
+Rendered youth/_friend (0.9ms)
+Rendered youth/_friend_panel (10.9ms)
+Rendered layouts/_header (0.7ms)
+Rendered layouts/_top_nav (0.0ms)
+Rendered layouts/_nav (5.9ms)
+Rendered layouts/_footer (0.3ms)
+** RFACEBOOK INFO: persisting Facebook session information into Rails session
+Completed in 26138ms (View: 20436, DB: 3) | 200 OK [http://localhost/?fb_sig_in_iframe=1&fb_sig_iframe_key=a2ef406e2c2351e0b9e80029c909242d&fb_sig_locale=en_US&fb_sig_in_new_facebook=1&fb_sig_time=1270199137.6619&fb_sig_added=1&fb_sig_profile_update_time=1264031847&fb_sig_expires=1270206000&fb_sig_user=100000225274542&fb_sig_session_key=2.c3UcEkr53nhaMvfKO5ex2g__.3600.1270206000-100000225274542&fb_sig_ss=QhpMi_QBQt_bTg8Bubpchg__&fb_sig_cookie_sig=a05604e33be73438989db9ce833c787f&fb_sig_ext_perms=auto_publish_recent_activity&fb_sig_api_key=e6888d5e9df5989ebdf6407343ed69c1&fb_sig_app_id=365288342656&fb_sig=3b58c69e0afeec572449ffbbd8d5af76]
