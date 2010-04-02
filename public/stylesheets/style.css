@@ -125,7 +125,7 @@ ul.featured-event-list>li                   {float: left; width: 286px; margin: 
 .friends-list-panel                         {list-style-type: none; margin:0; padding:0; font-size: 12px; color: #231f20; line-height: 1.1;}
 .friends-list-panel a                       {font-size: 12px; color: #231f20; text-decoration: none;}
 .friends-list-panel a:hover                 {text-decoration: underline;}
-.friends-list-panel>li                      {float: left; margin: 0 10px 8px 0; width: 208px;}
+.friends-list-panel>li                      {float: left; margin: 0 10px 8px 0; width: 159px;}
 .friends-list-panel>li img                  {float: left; margin-right: 8px;}
 
 #ticket_booking_table td {padding:4px 20px 4px 0px;}
