@@ -264,7 +264,7 @@ class YouthController < ApplicationController
     render :action => "booking"
   end
 
-  def giveaway
+  def invite_friends
     @current_tab = "Invite Friends"
     @friend_uids = (fbsession.friends_getAppUsers.uid_list)
     @exclude_friends = fbsession.users_getInfo(:uids => @friend_uids, :fields => ["uid"]).user_list.collect{|f| f.uid}

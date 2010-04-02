@@ -13,9 +13,9 @@ img                       {border:0;}
 img                       {behavior:url(iepngfix.htc);}
 img.alignV                {vertical-align:middle;}
 
-.actionBtn                {-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; margin: 0 0 5px 0; background: #819511;color: #ffffff;font-weight: noemal; font-face: Arial, Helvetica, sans-serif; width: 170px;padding: 3px; border: 0px none;}
+.actionBtn                {-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; margin: 0 0 5px 0; background: #819511;color: #ffffff;font-weight: noemal; font-face: Arial, Helvetica, sans-serif; width: 170px;padding: 3px; border: 0px none; cursor: pointer;}
 a.filterBtn               {font: normal 12px Arial, Helvetica, sans-serif; white-space:nowrap;background: #abada2; padding: 5px 8px;margin:0px;color: #fff; text-decoration: none;line-height: 32px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
-a.filterBtn:hover         {color: #ffffff;text-decoration: none; background-color:#333; }
+a.filterBtn:hover         {color: #ffffff;text-decoration: none; background-color:#333;}
 a.filterBtn:visited       {color: #ffffff;text-decoration: none;}
 a.filterBtnSelected       {font: normal 12px Arial, Helvetica, sans-serif; background: #819511; white-space:nowrap;padding: 5px 8px;margin:0px;color: #fff;font-weight: bold;text-decoration: none;line-height: 32px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
 a.filterBtnSelected:hover {color: #ffffff;font-weight: bold;text-decoration: none;}
@@ -27,7 +27,7 @@ a.event_name, a.event_name:hover,  a.event_name:visited
 
 /* TABLE */
 table                     {border-collapse:collapse;}
-table td                  {padding: 5px;}
+table td                  {padding: 5px; vertical-align: top;}
 
 /* STRUCTURE */
 #topWrapper               {background:url(/images/banner_1.jpg) repeat-x;height: 100px;width: 747px; position: relative;}
@@ -60,10 +60,10 @@ h1, h2, p, form           {border:0px;margin:0px;padding:0px;}
 input                     {font-family:"Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;font-size:12px;}
 h2                        {color:#666666;margin-bottom:20px;font-size:16px;}
 
-div.box                   {position: relative; background: #f9f9f9 url('/images/bg-box.png') no-repeat 0 0;color:#333;padding: 25px 30px;margin: 9px;}
-div.box:after             {display: block; position: absolute; bottom:0; left:0; margin:0; padding:0; height: 25px; width: 727px; background: #f9f9f9 url('/images/bg-box.png') no-repeat 0 100%; content: " ";}
-div.box-half              {width: 298px; position: relative; background: #f9f9f9 url('/images/bg-box-half.png') no-repeat 0 0;color:#333;padding: 25px 30px;}
-div.box-half:after        {display: block; position: absolute; bottom:0; left:0; margin:0; padding:0; height: 25px; width: 358px; background: #f9f9f9 url('/images/bg-box-half.png') no-repeat 0 100%; content: " ";}
+div.box                   {position: relative; background: #f9f9f9 url('/images/bg-box.png') no-repeat 0 0;color:#333;padding: 15px 20px;margin: 9px;}
+div.box:after             {display: block; position: absolute; bottom:0; left:0; margin:0; padding:0; height: 20px; width: 727px; background: #f9f9f9 url('/images/bg-box.png') no-repeat 0 100%; content: " ";}
+div.box-half              {width: 318px; position: relative; background: #f9f9f9 url('/images/bg-box-half.png') no-repeat 0 0;color:#333;padding: 15px 20px;}
+div.box-half:after        {display: block; position: absolute; bottom:0; left:0; margin:0; padding:0; height: 20px; width: 358px; background: #f9f9f9 url('/images/bg-box-half.png') no-repeat 0 100%; content: " ";}
 div.box h1                {font: bold 30px/1 Helvetica, Arial, sans-serif;color:#000000;padding:5px;margin-bottom: 10px}
 h1 a                      {font-size:12px;text-decoration: none;}
 h2 a                      {font-size:12px;text-decoration: none;}
@@ -104,9 +104,10 @@ div.learn_more            {height:50px;width:205px;padding-left: 532px;}
 .no_decor                 {text-decoration: none;}
 table.ticket_table td     {padding: 10px;}
 .wide                     {width:150px;}
-table.info_table td       {vertical-align: text-top;padding: 0px 5px;}
-table.filter_table td     {vertical-align: text-top;padding: 0px 5px;}
-table.filter_table        {border-bottom: 1px solid #cfcfcf; width: 100%;}
+table.info_table td       {vertical-align: top;padding: 0px;}
+table.filter_table td     {vertical-align: top; padding: 0;}
+table.filter_table        {border-bottom: 1px solid #cfcfcf; width: 100%; margin-bottom: 10px;}
+table.filter_table a, table.filter_table img {padding:0; margin: 0;}
 table.guide_event_table   {border-bottom: 1px solid #cfcfcf; line-height: 1.3;}
 .guide_event_table a      {color:#3784b1; text-decoration: none;}
 #guide_event_panel        {overflow: auto;max-height: 1000px;height: auto !important;height: expression( this.clientHeight > 1000 ? "1000px" : "auto" );}
@@ -124,7 +125,7 @@ ul.featured-event-list>li                   {float: left; width: 286px; margin: 
 .friends-list-panel                         {list-style-type: none; margin:0; padding:0; font-size: 12px; color: #231f20; line-height: 1.1;}
 .friends-list-panel a                       {font-size: 12px; color: #231f20; text-decoration: none;}
 .friends-list-panel a:hover                 {text-decoration: underline;}
-.friends-list-panel>li                      {float: left; margin: 0 10px 8px 0; width: 208px;}
+.friends-list-panel>li                      {float: left; margin: 0 10px 8px 0; width: 159px;}
 .friends-list-panel>li img                  {float: left; margin-right: 8px;}
 
 #ticket_booking_table td {padding:4px 20px 4px 0px;}
@@ -143,3 +144,19 @@ ul.featured-event-list>li                   {float: left; width: 286px; margin: 
 #footer {padding: 10px 0; font-size: 11px;}
 
 .top_icon {padding-top:13px;}
+
+
+a.filter-btn {
+  display: block; float: left; margin: 0 4px 0 0 !important;
+  background: #abada2; color: #fff; line-height: 20px;
+  -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;
+  padding: 4px 10px 0 10px !important; text-decoration: none;
+}
+
+a.active {
+  background: #819511 !important;
+}
+
+a.filter-btn:hover {
+  background: #819511 !important;
+}

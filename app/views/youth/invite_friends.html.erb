@@ -1,0 +1,47 @@
+<div id="giveaway_info" class="box">
+  <div>
+    <p>
+      We give out RM50000 for those who help promoting YOUTH '10 to other youths.
+      <ul>
+        <li>
+          RM5000 for 20 largest youth gatherings.
+        </li>
+        <li>
+          RM40000 worth of products and cash on other contests.
+        </li>
+      </ul>
+    </p>
+    <br/>
+    <p class="middle">
+      <%= link_to image_tag("/images/create_gathering.jpg"), {:controller => 'youth', :action => "gathering"} %>
+    </p>
+  </div>
+</div>
+
+<div class="box">
+  <h1>Invite your friends to YouthSays</h1>
+  <div>
+    YOUTH '10 is presented by YouthSays.com.<br/>
+    Find YOUTH '10 interesting? Share more interesting opportunities with your friends by inviting them to YouthSays.com and get rewarded.
+    <p class="middle">
+      <%= link_to image_tag("/images/goto-youthsays.png"), "http://www.youthsays.com", :class => "bigButton", :target => "_blank" %>
+    </p>
+  </div>
+</div>
+
+<fb:serverfbml>
+<script type="text/fbml">
+    <fb:fbml>
+      <fb:request-form action="<%= SERVER_URL %> "
+          method="POST" invite="true" type="YOUTH '10"
+          content="This is Malaysia largest youth festival.  Join me on this! <fb:req-choice url='http://apps.facebook.com/youthfestival/youth/landing?from_ref=<%= @uid %>' label='Check out YOUTH 10!' />"
+          exclude_ids="<%= @exclude_friends.join(',') %>" >
+        <fb:multi-friend-selector showborder="false" actiontext="Invite your friends to YOUTH '10.">
+      </fb:request-form>
+    </fb:fbml>
+</script>
+</fb:serverfbml>
+
+<br class="clr"/>
+
+<br class="clr"/>
