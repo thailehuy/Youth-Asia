@@ -27,7 +27,7 @@ a.event_name, a.event_name:hover,  a.event_name:visited
 
 /* TABLE */
 table                     {border-collapse:collapse;}
-table td                  {padding: 5px;}
+table td                  {padding: 5px; vertical-align: top;}
 
 /* STRUCTURE */
 #topWrapper               {background:url(/images/banner_1.jpg) repeat-x;height: 100px;width: 747px; position: relative;}
