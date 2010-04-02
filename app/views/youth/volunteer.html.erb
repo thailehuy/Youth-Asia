@@ -37,7 +37,8 @@
         <td colspan="2"><%= f.text_area :reason, :rows => 5, :cols => 60, :value => @volunteer.reason || "Tell us why you want to join YOUTH 10", :onclick => "if (this.value == 'Tell us why you want to join YOUTH 10') this.value='';", :onblur => "if (this.value == '') this.value='Tell us why you want to join YOUTH 10';" %></td>
         <td>
           <p>
-            Your CV: <%= f.file_field :uploaded_data, :size => 10 %>
+            Your CV: <%= f.file_field :uploaded_data, :size => 10 %><br/>
+            Files must be .txt, .doc, .docx or .pdf and smaller than 5MB
           </p>
           <p>
             <%= submit_tag "Submit", :class => "green" %>

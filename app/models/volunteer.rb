@@ -1,8 +1,15 @@
 class Volunteer < ActiveRecord::Base
   POSITION = [
-    "Position 1",
-    "Position 2",
-    "Position 3",
+    "Registration Officer",
+    "Security Officer",
+    "Mover",
+    "Photographer",
+    "Videomen",
+    "Event Assistant",
+    "Guerilla street promoter",
+    "Usher",
+    "Food & beverage for volunteer",
+    "Transporter"
   ]
 
   SCHOOLS = [
@@ -77,9 +84,13 @@ class Volunteer < ActiveRecord::Base
     "Terengganu"
   ]
 
-  has_attachment :max_size => 500.kilobytes
+  has_attachment :max_size => 5.megabytes
 
-  validates_as_attachment
+#  validates_presence_of :filename, :message => "Please submit your CV"
+
+  def validate
+     errors.add_to_base "Please submit your CV" if filename.blank?
+  end
 
   validates_inclusion_of :school, :in => SCHOOLS
   validates_inclusion_of :state, :in => STATES
