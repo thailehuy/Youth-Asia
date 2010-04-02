@@ -1,31 +1,40 @@
 <div id="must_know" class="box">
   <h1>YOUTH '10 MUST KNOW information</h1>
   <div>
-    <table>
+    <table style="margin-bottom: 15px;">
       <tr>
         <td>
-          <%= button_to_function "How to get there?", :onclick => "show_info(1)", :class => "actionBtn" %><br/>
-          <%= button_to_function "Who should be there?", :onclick => "show_info(2)", :class => "actionBtn" %><br/>
-          <%= button_to_function "What to bring?", :onclick => "show_info(3)", :class => "actionBtn" %><br/>
-          <%= button_to_function "Who to contact?", :onclick => "show_info(4)", :class => "actionBtn" %><br/>
+          <%= button_to_function "What is YOUTH'10?", :onclick => "show_info(1)", :class => "actionBtn" %><br/>
+          <%= button_to_function "How to get a ticket?", :onclick => "show_info(2)", :class => "actionBtn" %><br/>
+          <%= button_to_function "How to get there?", :onclick => "show_info(3)", :class => "actionBtn" %><br/>
+          <%= button_to_function "Who should be there?", :onclick => "show_info(4)", :class => "actionBtn" %><br/>
         </td>
-        <td width="200px">
+        <td>
           <div id="must_know_1" class="must_know_info">
-            <strong>What?</strong><br/>
-            YOUTH '10 - Malaysia largest youths festival
+            <strong>What is Youth Festival?</strong><br/>
+            <b>Youth Festival</b> is an annual event held by <a href="http://youthasia.com">Youth Asia</a> based on
+            <a href="http://malaysia.youthsays.com">Malaysia YouthSays.com community</a>.<br />
+            YOUTH'09 attracted more than 36,000 youths from all over Malaysia with more than 100 events. This year YOUTH'10
+            expects to see 70,000 youths with a lot more exciting events.<br />
           </div>
           <div id="must_know_2" class="must_know_info" style="display:none">
-            <strong>When?</strong><br/>
-            8pm - 10pm<br/>
-            Friday - Sunday May 28 - 30, 2010
+            <strong>How to get a ticket?</strong><br/>
+            You can get a ticket on site for RM3 for 1 day and RM5 for all 3 days.<br />
+            But, why pay for it while you can get it for free?
+            Head to the <a href="http://apps.facebook.com/youthfestival/youth/booking">BOOK TICKET</a> page or <a href="http://malaysia.youthsays.com/youth10/">YouthSays.com</a> to get reserve a seat at YOUTH'10, free of charge!
           </div>
           <div id="must_know_3" class="must_know_info" style="display:none">
-            <strong>Where?</strong><br/>
-            PWTC (Putrajaya World Trade Center)
+            <strong>How to get there?</strong><br/>
+            YOUTH'10 is held in Putra World Trade Center (PWTC).<br />
+            By car (<a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Putra+World+Trade+Center&sll=37.0625,-95.677068&sspn=31.839416,81.123047&ie=UTF8&hq=Putra+World+Trade+Center&hnear=&radius=15000&ll=3.168176,101.689367&spn=0.009791,0.019805&z=16">see map</a>).<br />
+            By train
+            Take the Rapid KL Ampang Line LRT and stop by the PWTC station (<a href="http://www.rapidkl.com.my/network/rail/railmap">click here to view the train map</a>).
           </div>
           <div id="must_know_4" class="must_know_info" style="display:none">
-            <strong>Who?</strong><br/>
-            70000 youths and much more
+            <strong>Who should be there?</strong><br/>
+            Youths.<br />
+            Anyone between 15 and 35, of all races, religions is welcome to join. Let's celebrate Malaysia's largest youth festival together!<br />
+            More than 100 youth leaders, singers, dancers, sportsmen, etc. are also expected to show up.
           </div>
         </td>
       </tr>
@@ -37,8 +46,8 @@
   <h1>All events</h1>
   <table class="filter_table">
     <tr>
-      <td>See only events on:</td>
-      <td>
+      <td style="width:150px">See only events on:</td>
+      <td style="padding: 0 0 4px 0">
         <% date_params = {:date1 => params[:date1], :date2 => params[:date2], :date3 => params[:date3]} %>
         <% cat_params = {
           :cat1 => params[:cat1], :cat2 => params[:cat2], :cat3 => params[:cat3],
@@ -48,27 +57,25 @@
         <% ["28", "29", "30"].each_with_index do |date, index| %>
           <% date_param = (params["date#{index + 1}".to_sym].to_i == 1 ? 0 : 1) %>
           <% class_name = (params["date#{index + 1}".to_sym].to_i == 1 ? "active" : "inactive") %>
-          <%= link_to image_tag("/images/#{date}-#{class_name}.png", :alt => "Friday May #{date}"),
-            {:action => "index"}.merge(cat_params.merge(date_params.merge("date#{index + 1}".to_sym => date_param)))
-          %>
-          &nbsp;
+          <%= link_to date + ' May 2010',
+            {:action => "index"}.merge(cat_params.merge(date_params.merge("date#{index + 1}".to_sym => date_param))),
+            :class => 'filter-btn ' + class_name
+        %>
         <% end %>
       </td>
     </tr>
     <tr>
-      <td style="padding: 0 0 20px 0;">See only events about:</td>
-      <td style="padding: 0 0 20px 5px;">
+      <td style="width:150px;">See only events about:</td>
+      <td>
         <% Event::CATEGORIES.each_with_index do |cat, index| %>
           <% cat_name = cat.gsub(" Festival", "").downcase.gsub(" ", "") %>
           <% cat_param = (params["cat#{index + 1}".to_sym].to_i == 1 ? 0 : 1) %>
           <% class_name = (params["cat#{index + 1}".to_sym].to_i == 1 ? "active" : "inactive") %>
-          <%= link_to image_tag("/images/#{cat_name}-#{class_name}.png", :alt => cat),
-            {:action => "index"}.merge(date_params.merge(cat_params.merge("cat#{index + 1}".to_sym => cat_param))) %>
-            &nbsp;
-            <% if index % 4 == 3 %>
-              <br/>
-            <% end %>
+          <%= link_to cat_name,
+            {:action => "index"}.merge(date_params.merge(cat_params.merge("cat#{index + 1}".to_sym => cat_param))), :class => 'filter-btn ' + class_name %>
         <% end %>
+        <div class="clr"></div>
+        <br /><br />
       </td>
     </tr>
   </table>
@@ -85,8 +92,19 @@
       <%= link_to "See all", { :action => "friend_list" }, :class => "seeAll" %>
     </span>
   </h1>
-  
+
   <div id="friends_panel">
     <%= render :partial => "friend_panel" %>
   </div>
 </div>
+
+<div id="tweets" class="box-half boxLeft">
+  <h2>Tweets about YouthFestival</h2>
+
+</div>
+
+<div id="fanpage" class="box-half boxRight">
+  <h2>Be our fan!</h2>
+</div>
+
+<div class="clr"></div>
