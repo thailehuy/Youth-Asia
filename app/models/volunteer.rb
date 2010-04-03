@@ -62,7 +62,8 @@ class Volunteer < ActiveRecord::Base
     "University Teknologi Mara - Skudai, Johor",
     "University Teknologi Mara - Sri Iskandar, Perak",
     "University Teknologi Mara - Sungai Petani, Kedah",
-    "University Utara Malaysia (UUM)"
+    "University Utara Malaysia (UUM)",
+    "Other"
   ]
 
   STATES = [

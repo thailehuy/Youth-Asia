@@ -13,7 +13,13 @@
   </div>
 </div>
 
-<% if !@already_applied %>
+<% if @already_applied %>
+  <% if params[:registered] == "1" %>
+    <script type="text/javascript">
+      <%= volunteer_publisher %>
+    </script>
+  <% end %>
+<% else %>
 <div id="volunteer_form" class="box">
   <h1>Apply to become a volunteer</h1>
   <%= error_messages_for :volunteer %>

@@ -230,7 +230,7 @@ class YouthController < ApplicationController
       UserMailer.deliver_volunteer_submit(@volunteer)
       flash[:notice] = "Your application has been submitted"
     end
-    top_redirect_to :action => "volunteer"
+    top_redirect_to :action => "volunteer", :registered => "1"
   rescue
     paginate_volunteer
     render :action => "volunteer"
