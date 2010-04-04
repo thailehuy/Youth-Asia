@@ -149,7 +149,7 @@ class YouthController < ApplicationController
     render :partial => "guide_event", :object => event
   end
 
-  def gathering
+  def contest
     if request.xml_http_request?
       if params[:page_all]
         get_all_gathering
@@ -346,10 +346,6 @@ class YouthController < ApplicationController
         page.alert("Please check your information again")
       end
     end
-  end
-
-  def contest
-    
   end
 
   protected

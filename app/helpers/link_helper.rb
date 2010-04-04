@@ -16,7 +16,7 @@ module LinkHelper
       ["Home", {:controller => "youth", :action => "index"}],
       ["Contest", {:controller => "youth", :action => "contest"}],
 #      ["Festival Guide", {:controller => "youth", :action => "guide"}],
-      ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
+#      ["Youth Gatherings", {:controller => "youth", :action => "gathering"}],
       ["Volunteer", {:controller => "youth", :action => "volunteer"}],
       ["Book ticket", {:controller => "youth", :action => "booking"}],
       ["Invite Friends", {:controller => "youth", :action => "giveaway"}]
